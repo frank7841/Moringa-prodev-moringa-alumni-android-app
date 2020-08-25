@@ -2,8 +2,10 @@ package com.prodev.moringaalumni;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,6 +22,7 @@ import java.net.URI;
 import butterknife.BindView;
 
 public class PostActivity extends AppCompatActivity {
+    private static final int GALLERY_REQUEST_CODE = 2;
     private StorageReference storageReference;
     private Uri uri=null;
     private FirebaseDatabase database;
@@ -42,5 +45,16 @@ public class PostActivity extends AppCompatActivity {
         mAuth= FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseuser = FirebaseDatabase.getInstance().getReference().child("users").child(mCurrentUser.getUid());
+
+        //select image from the gallery
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+            }
+        });
     }
+
 }
