@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "583424750029",
+    "firebase_url": "https://moringa-alumni.firebaseio.com",
+    "project_id": "moringa-alumni",
+    "storage_bucket": "moringa-alumni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583424750029:android:7922866620b72b71925484",
+        "android_client_info": {
+          "package_name": "com.prodev.moringaalumni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583424750029-fe321rsboiodlmn40ai7ntu6odnr4l0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prodev.moringaalumni",
+            "certificate_hash": "76b759a96c14aab6c5e3da91bf1374d0ecddc28f"
+          }
+        },
+        {
+          "client_id": "583424750029-thtpd5ircdgoeq7kvu85lnnmrqpbcaa7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prodev.moringaalumni",
+            "certificate_hash": "f5099b9a79cd4cd810bdebec8d9865f359751d27"
+          }
+        },
+        {
+          "client_id": "583424750029-dcdtmqbu3gdc2pclan90uqs1mqgpgh96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOh0p1SHh_j65-d8Lj1E9cfPeWjxFYAFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583424750029-dcdtmqbu3gdc2pclan90uqs1mqgpgh96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
