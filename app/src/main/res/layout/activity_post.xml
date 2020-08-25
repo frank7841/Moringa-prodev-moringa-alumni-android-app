@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imagebutton"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context = ".PostActivity">
 
-    <EditText
-        android:padding="10dp"
-        android:id="@+id/profUserName"
+    <ImageButton
+        android:id="@+id/imageBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="Enter Display name"/>
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_img" />
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/textTitle"
+        android:background="@drawable/edit_text_styles"
+        android:padding="10dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:hint="Post Title"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:background="@drawable/edit_text_styles"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:hint="Post Description"
+        android:textColor="#fff"
+        android:id="@+id/textDesc"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:layout_marginTop="10dp"
-        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+        android:layout_marginTop="30dp"
+        android:id="@+id/postBtn"
         android:textColor="#fff"
-        android:id="@+id/doneBtn"
+        android:textStyle="bold"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/action_button_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Finish"
-        />
-
+        android:text="Post"/>
 </LinearLayout>
+</ScrollView>
