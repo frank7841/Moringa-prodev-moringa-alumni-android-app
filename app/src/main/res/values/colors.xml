@@ -4,7 +4,7 @@
     <color name="colorTextIcons">#F7F7F7</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#E4DACC</color>
-    <color name="colorPrimary">#4D732C</color>
+    <color name="colorPrimary"> #4A5432</color>
     <color name="colorPrimaryDark">#0E4747</color>
     <color name="colorAccent">#1E6754</color>
     <color name="colorNull">#00000000</color>
@@ -12,6 +12,6 @@
     <color name="colorPrimaryText">#383437</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhiteDark">#E0E9E7</color>
-    <color name="colorPrimaryLight">#3ba99c</color>
+    <color name="colorPrimaryLight">#4D732C</color>
     <color name="colorBackground">#F4F7F7</color>
 </resources>
