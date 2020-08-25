@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.moringaschool.paleorecipeapp.ui.LoginActivity"
+    tools:context="com.prodev.moringaalumni.LoginActivity"
     android:background="@color/colorPrimary">
 
     <LinearLayout
