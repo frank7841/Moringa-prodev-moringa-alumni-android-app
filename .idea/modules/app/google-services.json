@@ -15,7 +15,14 @@
       },
       "oauth_client": [
         {
-
+          "client_id": "583424750029-fe321rsboiodlmn40ai7ntu6odnr4l0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prodev.moringaalumni",
+            "certificate_hash": "76b759a96c14aab6c5e3da91bf1374d0ecddc28f"
+          }
+        },
+        {
           "client_id": "583424750029-thtpd5ircdgoeq7kvu85lnnmrqpbcaa7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
