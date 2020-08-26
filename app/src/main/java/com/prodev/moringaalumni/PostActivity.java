@@ -44,17 +44,17 @@ public class PostActivity extends AppCompatActivity {
         databaseReference = database.getInstance().getReference().child("MoringaPosts");
         mAuth= FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
-        mDatabaseuser = FirebaseDatabase.getInstance().getReference().child("users").child(mCurrentUser.getUid());
+//        mDatabaseuser = FirebaseDatabase.getInstance().getReference().child("users").child(mCurrentUser.getUid());
 
         //select image from the gallery
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
-            }
-        });
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//                galleryIntent.setType("image/*");
+//                startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+//            }
+//        });
     }
 
 }
