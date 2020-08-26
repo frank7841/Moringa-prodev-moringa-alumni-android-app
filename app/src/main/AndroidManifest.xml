@@ -17,12 +17,18 @@
             android:name="com.prodev.moringaalumni.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.prodev.moringaalumni.LoginActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,17 +39,16 @@
             android:name="com.prodev.moringaalumni.CreateAccountActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.prodev.moringaalumni.PostActivity"
             android:screenOrientation="portrait"
-            tools:ignore="WrongManifestParent" />
-    </application>
-
-
+            android:parentActivityName="com.prodev.moringaalumni.PostActivity"/>
+<!--        <activity android:name="com.android.rivchat.ui.AddGroupActivity"-->
+<!--            android:theme="@style/MyThemeNoActionbar"/>-->
 <!--        <service android:name="com.android.rivchat.service.FriendChatService"-->
 <!--            android:exported="false"-->
 <!--            android:persistent= "true" />-->
+    </application>
 
 
 </manifest>
