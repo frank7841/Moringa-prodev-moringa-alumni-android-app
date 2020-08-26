@@ -17,7 +17,19 @@
              android:id="@+id/proiflev"
              android:layout_width="35dp"
              android:layout_height="35dp"
-             android:scaleType="centerCrop"/>
+             android:scaleType="centerCrop"
+             android:src="@drawable/ic_face"
+             app:civ_shadow_color="@color/colorPrimary"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!--Receiver message-->
+
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
