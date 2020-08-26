@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdapterUsers {
+public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     //contains view holder class
 
