@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.prodev.moringaalumni">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -12,7 +13,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PostActivity">
         <activity
             android:name="com.prodev.moringaalumni.MainActivity"
             android:label="@string/app_name"
@@ -21,18 +21,29 @@
         <activity
             android:name="com.prodev.moringaalumni.LoginActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.prodev.moringaalumni.CreateAccountActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.prodev.moringaalumni.PostActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="WrongManifestParent" />
     </application>
+
+
+<!--        <service android:name="com.android.rivchat.service.FriendChatService"-->
+<!--            android:exported="false"-->
+<!--            android:persistent= "true" />-->
+
 
 </manifest>
