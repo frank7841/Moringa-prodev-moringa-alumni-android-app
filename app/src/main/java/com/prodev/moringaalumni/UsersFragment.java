@@ -32,6 +32,8 @@ public class UsersFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager((new LinearLayoutManager(getActivity())));
 
+        return view;
+
 
     }
     // TODO: Rename parameter arguments, choose names that match
@@ -42,10 +44,6 @@ public class UsersFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    public UsersFragment() {
-        // Required empty public constructor
-    }
 
     /**
      * Use this factory method to create a new instance of
