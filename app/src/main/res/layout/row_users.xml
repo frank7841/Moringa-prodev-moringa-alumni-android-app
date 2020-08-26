@@ -29,6 +29,11 @@
                 android:text="Person Name"
                 android:textSize="18sp"
                 android:textColor="@color/colorPrimaryDark"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Person Email"
+                android:textColor="@color/colorPrimaryDark"/>
 
 
         </LinearLayout>
