@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     //views
     EditText mEmailEt, mPasswordEt;
     Button mRegisterBtn;
+    TextView mHaveAccountTv;
+
 
     //progressbar to display while registering user
     ProgressDialog progressDialog;
@@ -47,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailEt = findViewById(R.id.emailEt);
         mPasswordEt = findViewById(R.id.passwordEt);
         mRegisterBtn = findViewById(R.id.registerBtn);
+        mHaveAccountTv= findViewById(R.id.have_accountTv);
 
         //In the onCreate() method, initialize the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
@@ -74,6 +78,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                     registerUser(email, password); //register the user
                 }
+
+            }
+        });
+        //handle login textview click listener
+        mHaveAccountTv.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
             }
         });
