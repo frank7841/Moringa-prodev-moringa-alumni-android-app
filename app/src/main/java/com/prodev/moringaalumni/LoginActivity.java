@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
 //Declare an instance of FirebaseAuth
 private FirebaseAuth mAuth;
+
+        ProgressDialog pd;
 
 
 
@@ -81,21 +84,30 @@ private FirebaseAuth mAuth;
                     startActivity (new Intent(LoginActivity.this, RegisterActivity.class));
                 }
             });
+            //init progress dialog
+
+            pd = new ProgressDialog(this);
+            pd.setMessage("Logging In...");
+
 
 
     }
 
     private void loginUser(String email, String passw) {
+        pd.show();
         mAuth.createUserWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //dissmiss progress dialogy
+                            pd.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
 
                         } else {
                             // If sign in fails, display a message to the user.
+                            pd.dismiss();
 
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -108,6 +120,9 @@ private FirebaseAuth mAuth;
 
             @Override
             public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                //error, get and show error message
+                Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
