@@ -26,7 +26,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.row_users, ViewGroup);
+        View view= LayoutInflater.from(context).inflate(R.layout.row_users, parent);
         return new MyHolder(view);
     }
 
@@ -35,6 +35,16 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         String userImage = userList.get(position).getImage();
         String userName = userList.get(position).getName();
         String userEmail = userList.get(position).getEmail();
+
+
+        //setting values
+        holder.mNameTv.setText(userName);
+        holder.mEmailTv.setText(userEmail);
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -49,8 +59,6 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
     class MyHolder extends RecyclerView.ViewHolder{
         ImageView mAvatarIv;
         TextView mNameTv, mEmailTv;
-
-
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
