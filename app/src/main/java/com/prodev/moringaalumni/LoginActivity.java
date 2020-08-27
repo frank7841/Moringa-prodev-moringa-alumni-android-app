@@ -96,22 +96,19 @@ private FirebaseAuth mAuth;
 
     private void loginUser(String email, String passw) {
         pd.show();
-        mAuth.createUserWithEmailAndPassword(email, passw)
+        mAuth.signInWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //dissmiss progress dialogy
-                            pd.dismiss();
                             // Sign in success, update UI with the signed-in user's information
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                             finish();
-
                         } else {
                             // If sign in fails, display a message to the user.
                             pd.dismiss();
-
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
