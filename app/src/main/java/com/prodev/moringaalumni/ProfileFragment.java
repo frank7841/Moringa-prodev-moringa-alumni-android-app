@@ -1,5 +1,6 @@
 package com.prodev.moringaalumni;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -101,9 +102,26 @@ public class ProfileFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showEditProfileDialog();
 
             }
         });
         return view;
+    }
+
+    private void showEditProfileDialog() {
+        // show dialog containing options
+        // edit profile picture
+        //edit cover photo
+        // edit name
+        // edit phone
+
+        //options to show dialog
+        String options[] = {"Edit Profile Picture", "Edit Cover Photo", "Edit Name", "Edit Phone"};
+        //alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // set title
+        builder.setTitle("Choose Action");
+
     }
 }
