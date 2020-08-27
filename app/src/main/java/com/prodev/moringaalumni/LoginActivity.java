@@ -104,6 +104,8 @@ private FirebaseAuth mAuth;
                             pd.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                            finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
