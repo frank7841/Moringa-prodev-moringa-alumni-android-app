@@ -13,6 +13,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/coverTv"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/colorAccent">
+            </ImageView>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
@@ -83,6 +90,7 @@
 
 <!--    Floating Action Button-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:src="@drawable/ic_edit_white"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
