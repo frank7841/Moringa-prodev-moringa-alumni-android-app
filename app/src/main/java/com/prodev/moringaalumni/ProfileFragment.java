@@ -126,9 +126,23 @@ public class ProfileFragment extends Fragment {
         //set items dialog
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
+            public void onClick(DialogInterface dialogInterface, int which) {
+                //handle dialog item clicks
+                if (which == 0){
+                    //edit profile clicked
+                }
+                else if (which == 1){
+                    //edit cover clicked
+                }
+                else if (which == 2){
+                    //edit name clicked
+                }
+                else if (which == 3){
+                    //edit phone clicked
+                }
             }
         });
+        //create and show dialog
+        builder.create().show();
     }
 }
