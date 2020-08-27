@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +104,17 @@ private FirebaseAuth mAuth;
     }
 
     private void showRecoverPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        //views to set in dialog
+
+        EditText emailEt= new EditText(this);
+        emailEt.setHint("Email");
+
+        //Buttons
+        builder.setPositiveButton(new OnCli())
+
     }
 
     private void loginUser(String email, String passw) {
