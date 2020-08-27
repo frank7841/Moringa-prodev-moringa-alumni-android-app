@@ -80,6 +80,11 @@ public class UsersFragment extends Fragment {
 
         //initialising userList
         userList = new ArrayList<>();
+
+        getAllUsers();
         return view;
+    }
+
+    private void getAllUsers() {
     }
 }
