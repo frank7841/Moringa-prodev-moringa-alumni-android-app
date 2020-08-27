@@ -6,5 +6,6 @@ class DashboardActivityTest {
 
     @org.junit.jupiter.api.Test
     void onCreate() {
+
     }
 }
