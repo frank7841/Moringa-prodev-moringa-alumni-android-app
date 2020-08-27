@@ -88,6 +88,7 @@ private FirebaseAuth mAuth;
                 @Override
                 public void onClick(View v){
                     startActivity (new Intent(LoginActivity.this, RegisterActivity.class));
+                    finish();
                 }
             });
             mRecoverPassTv.setOnClickListener(new View.OnClickListener(){
@@ -116,8 +117,8 @@ private FirebaseAuth mAuth;
         final EditText emailEt= new EditText(this);
         emailEt.setHint("Email");
         emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-
-        emailEt.setMinEms(10);
+//sets the min width of an Editview to fit a text of n "M" letters regardless of text
+        emailEt.setMinEms(16);
 
         linearLayout.addView(emailEt);
         linearLayout.setPadding(10,10,10,10);
