@@ -115,6 +115,9 @@ private FirebaseAuth mAuth;
         emailEt.setHint("Email");
         emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
+        builder.setView(linearLayout);
+
+
 
         //Buttons
         builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
@@ -122,6 +125,7 @@ private FirebaseAuth mAuth;
             public void onClick(DialogInterface dialogInterface, int which) {
                 //input email
                 String email = emailEt.getText().toString().trim();
+                beginRecovery(email);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -132,8 +136,13 @@ private FirebaseAuth mAuth;
 
 
             }
-        })
+        });
+        //show dialog
+        builder.create().show();
 
+    }
+
+    private void beginRecovery(String email) {
     }
 
     private void loginUser(String email, String passw) {
