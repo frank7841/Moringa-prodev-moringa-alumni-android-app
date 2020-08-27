@@ -57,6 +57,35 @@
         android:id="@+id/chat_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"/>
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/chatLayout"/>
     <!--send massage button and edit text widget -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/chatLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/messageEt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="1"
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="Start Typing"
+            android:padding="15dp"/>
+        <!--image button-->
+        <ImageButton
+            android:id="@+id/sendBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:src="@drawable/ic_send_btn"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </RelativeLayout>
