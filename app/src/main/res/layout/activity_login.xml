@@ -65,6 +65,18 @@
         android:layout_below="@id/loginBtn"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center_horizontal" />
+
+    <!--google sign in -->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recoverPassTv">
+
+    </com.google.android.gms.common.SignInButton>
+
+
     <!--Textview click to go to loginActivity-->
     <TextView
 
