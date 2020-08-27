@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -94,5 +95,21 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(new Intent(DashboardActivity.this, MainActivity.class));
             finish();
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.action_logout){
+            firebaseAuth.signOut();
+            checkUserStatus();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
