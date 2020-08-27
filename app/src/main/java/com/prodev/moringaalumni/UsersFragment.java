@@ -101,13 +101,23 @@ public class UsersFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    ModelUser modelUser = ds.getValue(ModelUser.class);
+                    if (!modelUser.getUid().equals(fUser.getUid())){
+                        userList.add(modelUser);
+                    }
+                    //adapter
+                    adapterUsers = new AdapterUsers(getActivity(),userList);
+                    //setting adapter to recyclerView
 
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 }

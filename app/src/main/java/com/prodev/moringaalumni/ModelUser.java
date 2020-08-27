@@ -2,17 +2,18 @@ package com.prodev.moringaalumni;
 
 public class ModelUser {
 
-    String name, email, search, phone, image, cover;
+    String name, email, search, phone, image, cover,uid;
      public ModelUser(){
      }
 
-    public ModelUser(String name, String email, String search, String phone, String image, String cover) {
+    public ModelUser(String name, String email, String search, String phone, String image, String cover, String uid) {
         this.name = name;
         this.email = email;
         this.search = search;
         this.phone = phone;
         this.image = image;
         this.cover = cover;
+        this.uid = uid;
     }
 
     public String getName() {
@@ -61,5 +62,13 @@ public class ModelUser {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }
