@@ -66,7 +66,8 @@ private FirebaseAuth mAuth;
                         //input data
                         String email = mEmailEt.getText().toString();
                         String passw = mPasswordEt.getText().toString().trim();
-                        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+
                             //invalid email_pattern set error;
                             mEmailEt.setError("Invalid Email");
                             mEmailEt.setFocusable(true);
