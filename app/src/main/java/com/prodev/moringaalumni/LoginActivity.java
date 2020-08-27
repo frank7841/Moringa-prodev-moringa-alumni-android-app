@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     EditText mEmailEt, mPasswordEt;
-    TextView notHaveAccntTv;
+    TextView notHaveAccntTv, mRecoverPassTv;
     Button mLoginBtn;
 
 
@@ -58,6 +58,7 @@ private FirebaseAuth mAuth;
         mEmailEt = findViewById(R.id.emailEt);
         mPasswordEt = findViewById(R.id.passwordEt);
         notHaveAccntTv = findViewById(R.id.nothave_accountTv);
+        mRecoverPassTv = findViewById(R.id.recoverPassTv);
         mLoginBtn = findViewById(R.id.loginBtn);
 
         //login Button click
@@ -85,6 +86,12 @@ private FirebaseAuth mAuth;
                     startActivity (new Intent(LoginActivity.this, RegisterActivity.class));
                 }
             });
+            mRecoverPassTv.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    showRecoverPasswordDialog();
+                }
+            });
             //init progress dialog
 
             pd = new ProgressDialog(this);
@@ -92,6 +99,9 @@ private FirebaseAuth mAuth;
 
 
 
+    }
+
+    private void showRecoverPasswordDialog() {
     }
 
     private void loginUser(String email, String passw) {
