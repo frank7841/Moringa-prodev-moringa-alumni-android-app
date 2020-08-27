@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:src="@drawable/add_img"
+        android:src="@drawable/moringa_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
