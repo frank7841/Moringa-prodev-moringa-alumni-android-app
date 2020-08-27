@@ -68,8 +68,14 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:3.3.1'
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
     implementation "androidx.cardview:cardview:1.0.0"
+    // show-registered-users
+    implementation 'com.android.support:design:30.0.0'
+    //piccaso dependency
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     //google sign in library
 
 
 
+//develop
 }
