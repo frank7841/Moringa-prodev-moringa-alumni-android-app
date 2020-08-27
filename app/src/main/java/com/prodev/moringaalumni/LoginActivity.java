@@ -218,6 +218,7 @@ private FirebaseAuth mAuth;
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user = mAuth.getCurrentUser();
+                            //go to  profile activity after logged in
                             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                             finish();
                         } else {
@@ -278,6 +279,10 @@ private FirebaseAuth mAuth;
 
                             FirebaseUser user = mAuth.getCurrentUser();
                            // updateUI(user);
+                            //show user email in toast
+                            Toast.makeText(LoginActivity.this, ""+user.getEmail(),Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
 
