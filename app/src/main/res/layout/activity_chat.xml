@@ -11,26 +11,50 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:backgroundTint="@color/colorPrimary"
+        android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-         <com.mikhaellopez.circularimageview.CircularImageView
-             android:id="@+id/proiflev"
-             android:layout_width="35dp"
-             android:layout_height="35dp"
-             android:scaleType="centerCrop"
-             android:src="@drawable/ic_face"
-             app:civ_shadow_color="@color/colorPrimary"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/proiflev"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_face"
+            app:civ_shadow_color="@color/colorPrimary" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <!--Receiver message-->
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="His Name"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <!--Receiver status-->
+            <TextView
+                android:id="@+id/userStatusTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="online"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 </RelativeLayout>
