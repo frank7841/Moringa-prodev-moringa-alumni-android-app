@@ -91,6 +91,12 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            //get user email and uid from auth
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+                            //when a user is registred store user info in FB realtime database
+                            //using hashmap
+
                             Toast.makeText(RegisterActivity.this, "REgistered...\n"+user.getEmail(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterActivity.this, ProfileActivity.class));
                             finish();
