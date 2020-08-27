@@ -1,10 +1,12 @@
 package com.prodev.moringaalumni;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,9 +32,29 @@ public class DashboardActivity extends AppCompatActivity {
 
         //bottom navigation
         BottomNavigationView navigationView = findViewById(R.id.navigation);
-        navigationView.setOnNavigationItemSelectedListener();
+        navigationView.setOnNavigationItemSelectedListener(selectedListener);
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    // handle item clicks
+                    switch (menuItem.getItemId()){
+                        case R.id.nav_home:
+                            //home fragment transaction
+                            return true;
+                        case R.id.nav_profile:
+                            //profile fragment transaction
+                            return true;
+                        case R.id.nav_users:
+                            //usres fragment transaction
+                            return true;
+                    }
+                    return false;
+                }
+            };
 
     private void checkUserStatus(){
 //        get current user
