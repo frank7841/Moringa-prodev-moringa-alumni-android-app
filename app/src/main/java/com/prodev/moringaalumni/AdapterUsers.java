@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
@@ -41,10 +43,19 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         holder.mNameTv.setText(userName);
         holder.mEmailTv.setText(userEmail);
         try {
+            Picasso.get().load(userImage)
+                    .placeholder(R.drawable.ic_face)
+                    .into(holder.mAvatarIv);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
     }
