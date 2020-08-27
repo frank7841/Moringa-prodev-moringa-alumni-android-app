@@ -99,7 +99,7 @@ private FirebaseAuth mAuth;
             //init progress dialog
 
             pd = new ProgressDialog(this);
-            pd.setMessage("Logging In...");
+
 
 
 
@@ -107,13 +107,20 @@ private FirebaseAuth mAuth;
 
     private void showRecoverPasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Recover Password");
 
         LinearLayout linearLayout = new LinearLayout(this);
         //views to set in dialog
 
-        EditText emailEt= new EditText(this);
+
+        final EditText emailEt= new EditText(this);
         emailEt.setHint("Email");
         emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        emailEt.setMinEms(10);
+
+        linearLayout.addView(emailEt);
+        linearLayout.setPadding(10,10,10,10);
 
         builder.setView(linearLayout);
 
@@ -143,9 +150,35 @@ private FirebaseAuth mAuth;
     }
 
     private void beginRecovery(String email) {
+        //show progress dialog
+        pd.setMessage("Sending email...");
+        pd.show();
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                pd.dismiss();
+                if(task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Failed...", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //get and show proper message
+                Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     private void loginUser(String email, String passw) {
+        //show progress dialog
+        pd.setMessage("Logging In...");
         pd.show();
         mAuth.signInWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
