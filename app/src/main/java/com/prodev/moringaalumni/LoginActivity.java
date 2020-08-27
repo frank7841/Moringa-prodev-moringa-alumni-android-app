@@ -124,6 +124,7 @@ private FirebaseAuth mAuth;
                                 hashMap.put("name", "");// baadae
                                 hashMap.put("phone", "");
                                 hashMap.put("image", "");
+                                hashMap.put("cover", "");
 
                                 // firebase instance
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();

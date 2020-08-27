@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +30,9 @@ public class ProfileFragment extends Fragment {
     DatabaseReference databaseReference;
 
     // views from xml
-    ImageView avatarTv;
+    ImageView avatarTv, coverTv;
     TextView nameTv, emailTv, phoneTv;
+    FloatingActionButton fab;
 
 
     public ProfileFragment() {
@@ -53,9 +55,11 @@ public class ProfileFragment extends Fragment {
 
         //init views
         avatarTv = view.findViewById(R.id.avatarIv);
+        coverTv = view.findViewById(R.id.coverTv);
         nameTv = view.findViewById(R.id.nameTv);
         emailTv = view.findViewById(R.id.emailTv);
         phoneTv = view.findViewById(R.id.phoneTv);
+        fab = view.findViewById(R.id.fab);
 
         // get info of the currently signed in user using user's email
         // using  orderByChild query to show details from node
@@ -89,6 +93,14 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        // fab button click
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });
