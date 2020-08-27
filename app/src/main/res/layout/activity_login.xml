@@ -73,8 +73,8 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleLoginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
         android:layout_below="@id/recoverPassTv"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -82,9 +82,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="134dp"
-        android:layout_marginRight="134dp">
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp">
 
     </com.google.android.gms.common.SignInButton>
 
