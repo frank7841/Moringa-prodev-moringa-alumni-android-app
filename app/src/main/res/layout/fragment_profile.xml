@@ -3,14 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FIEDED"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:text="Profile"/>
+        android:layout_height="180dp"
+        android:background="@color/colorPrimaryDark">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp">
+
+            <ImageView
+                android:id="@+id/avatarIv"
+                android:layout_marginStart="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="20dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>
