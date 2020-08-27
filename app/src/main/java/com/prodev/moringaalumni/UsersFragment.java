@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -20,6 +23,8 @@ import butterknife.ButterKnife;
  */
 public class UsersFragment extends Fragment {
     RecyclerView recyclerView;
+    AdapterUsers adapterUsers;
+    List<ModelUser> userList;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,6 +77,9 @@ public class UsersFragment extends Fragment {
         recyclerView = view.findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //initialising userList
+        userList = new ArrayList<>();
         return view;
     }
 }
