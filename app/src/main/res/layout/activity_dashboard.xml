@@ -7,13 +7,25 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".DashboardActivity">
+<!--add frame layout-->
 
-    <TextView
-        android:id="@+id/profileTv"
-        android:text="Profile"
-        android:textSize="30sp"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+    
+<!--    Bottom navigation:show menu-->
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/menu_nav">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </LinearLayout>
