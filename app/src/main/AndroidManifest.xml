@@ -14,7 +14,6 @@
             android:name=".ChatListActivity"
             android:theme="@style/AppThemeNo" />
 
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>

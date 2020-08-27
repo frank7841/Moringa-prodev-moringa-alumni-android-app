@@ -16,8 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.register_btn) Button mregisterButton;
-    @BindView(R.id.login_btn) Button mloginbtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +25,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         //handling registration
 
-        mregisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //starting Register activity
-                startActivity(new Intent(MainActivity.this, ChatListActivity.class));
-            }
-        });
+
     }
 }
