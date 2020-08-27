@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment {
 
@@ -61,8 +62,29 @@ public class ProfileFragment extends Fragment {
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                // check until we get the required data
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    // get data
+                    String name = "" + ds.child("name").getValue();
+                    String email = "" + ds.child("email").getValue();
+                    String phone = "" + ds.child("phone").getValue();
+                    String image = "" + ds.child("image").getValue();
+
+                    //set data
+                    nameTv.setText(name);
+                    emailTv.setText(email);
+                    phoneTv.setText(phone);
+                    try {
+                        // if image received then set
+                        Picasso.get().load(image).into(avatarTv);
+                    }
+                    catch (Exception e){
+                        // if there is any exception while getting image then set default
+                        Picasso.get().load(R.drawable.ic_add_image).into(avatarTv);
+                    }
+                }
             }
 
             @Override
