@@ -4,9 +4,12 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -143,13 +146,36 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
+    private boolean checkStoragePermission(){
+        //check if storage perm is allowed or not
+        // return true if anabled
+        //return false if not
+        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == (PackageManager.PERMISSION_GRANTED);
+
+                return result;
+    }
+    private void requestStoragePermission(){
+        //request runtime storage permission
+        ActivityCompat.requestPermissions(getActivity(), storagePermission, STORAGE_REQUEST_CODE);
+    }
+
+
+    private boolean checkcameraPermission(){
+        //check if storage perm is allowed or not
+        // return true if anabled
+        //return false if not
+        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == (PackageManager.PERMISSION_GRANTED);
+
+        return result;
+    }
+    private void requestCameraPermission(){
+        //request runtime storage permission
+        ActivityCompat.requestPermissions(getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
+    }
 
     private void showEditProfileDialog() {
-        // show dialog containing options
-        // edit profile picture
-        //edit cover photo
-        // edit name
-        // edit phone
 
         //options to show dialog
         String options[] = {"Edit Profile Picture", "Edit Cover Photo", "Edit Name", "Edit Phone"};
