@@ -11,24 +11,41 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ChatActivity extends AppCompatActivity {
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.chat_recyclerview) RecyclerView recyclerview;
-    @BindView(R.id.proifleIv) ImageView proifileIv;
-    @BindView(R.id.nameTv) TextView nameTv;
-    @BindView(R.id.userStatusTv) TextView userStatusTv;
-    @BindView(R.id.messageEt) EditText messageEt;
-    @BindView(R.id.sendBtn) ImageButton sendbtn;
+    Toolbar toolbar;
+    RecyclerView recyclerview;
+    ImageView profileIv;
+    TextView nameTv;
+    TextView userStatusTv;
+    EditText messageEt;
+    ImageButton sendbtn;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        ButterKnife.bind(this);
          setSupportActionBar(toolbar);
          toolbar.setTitle("");
+         toolbar.findViewById(R.id.toolbar);
+         recyclerview.findViewById(R.id.chat_recyclerview);
+         profileIv.findViewById(R.id.proifleIv);
+         nameTv.findViewById(R.id.nameTv);
+         userStatusTv.findViewById(R.id.userStatusTv);
+         messageEt.findViewById(R.id.messageEt);
+         sendbtn.findViewById(R.id.sendBtn);
+
+        ButterKnife.bind(this);
+        //getting firebase auth
+        firebaseAuth= FirebaseAuth.getInstance();
+    }
+    private void checkUserStatus() {
+
     }
 }
