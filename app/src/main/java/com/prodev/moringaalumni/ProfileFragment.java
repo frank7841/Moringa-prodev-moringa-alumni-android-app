@@ -148,6 +148,7 @@ public class ProfileFragment extends Fragment {
                 if (which == 0){
                     //edit profile clicked
                     pd.setMessage("Updating Profile Picture");
+                    showImagePicDialog();
                 }
                 else if (which == 1){
                     //edit cover clicked
@@ -165,5 +166,41 @@ public class ProfileFragment extends Fragment {
         });
         //create and show dialog
         builder.create().show();
+    }
+
+    private void showImagePicDialog() {
+        //show diallog contaning options Camera and gallery to pick the image
+        String options[] = {"Camera", "Gallery"};
+        //alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // set title
+        builder.setTitle("Choose Action");
+        //set items dialog
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                //handle dialog item clicks
+                if (which == 0){
+                    //edit profile clicked
+                    pd.setMessage("Updating Profile Picture");
+                    showImagePicDialog();
+                }
+                else if (which == 1){
+                    //edit cover clicked
+                    pd.setMessage("Updating Cover Photo");
+                }
+                else if (which == 2){
+                    //edit name clicked
+                    pd.setMessage("Updating Name");
+                }
+                else if (which == 3){
+                    //edit phone clicked
+                    pd.setMessage("Updating Phone");
+                }
+            }
+        });
+        //create and show dialog
+        builder.create().show();
+
     }
 }
