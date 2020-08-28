@@ -288,10 +288,13 @@ public class ProfileFragment extends Fragment {
                                 }
                             });
                 }
+                else {
+                    Toast.makeText(getActivity(), "Please enter"+key, Toast.LENGTH_SHORT).show();
+                }
             }
         });
         //add button in dialog to cancel
-        builder.setPositiveButton("Upadte", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
