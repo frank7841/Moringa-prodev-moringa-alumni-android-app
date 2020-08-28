@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
 
@@ -47,6 +50,13 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        String message = chatList.get(position).getMessage();
+        String timestamp = chatList.get(position).getTimestamp();
+
+        //converting timestamp to dd/mm/yy hh/mn am/pm
+        Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(Long.parseLong(timestamp));
+        String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
 
     }
 
