@@ -306,8 +306,26 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //this method will be called after picking image from camera gallery
-        if(resultCode == RESULT_OK)
+        if(resultCode == RESULT_OK){
+
+            if(requestCode == IMAGE_PICK_GALLERY_CODE){
+                //image is picked from gallery, get uri of image
+                image_uri= data.getData();
+
+                uploadProfileCoverPhoto(image_uri);
+            }
+            if(requestCode == IMAGE_PICK_GALLERY_CODE){
+                //image is picked from gallery, get uri of image
+
+                uploadProfileCoverPhoto(image_uri);
+            }
+
+        }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void uploadProfileCoverPhoto(Uri image_uri) {
+
     }
 
     private void pickFromCamera() {
