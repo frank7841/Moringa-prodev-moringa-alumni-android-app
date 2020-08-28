@@ -366,6 +366,25 @@ public class ProfileFragment extends Fragment {
                             //add/update url in user's data
                             HashMap<String, Object> results = new HashMap<>();
                             results.put(profileOrCoverPhoto, downloadUri.toString());
+
+                            databaseReference.child(user.getUid()).updateChildren(results)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            //url in database of user is added successfully
+                                            //dismiss progress bar
+                                            pd.dismiss();
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            //url in database of user is added successfully
+                                            //dismiss progress bar
+
+                                        }
+                                    });
                         }
                         else{
                             //err
