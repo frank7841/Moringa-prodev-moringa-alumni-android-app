@@ -165,10 +165,13 @@ public class ProfileFragment extends Fragment {
         //check if storage perm is allowed or not
         // return true if anabled
         //return false if not
-        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 == (PackageManager.PERMISSION_GRANTED);
 
-        return result;
+        boolean result1 = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == (PackageManager.PERMISSION_GRANTED);
+
+        return result && result1;
     }
     private void requestCameraPermission(){
         //request runtime storage permission
@@ -235,5 +238,12 @@ public class ProfileFragment extends Fragment {
         //create and show dialog
         builder.create().show();
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        // This method called when user press Allow or deny from permmisipon req dialog
+        // handling perm cases
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
