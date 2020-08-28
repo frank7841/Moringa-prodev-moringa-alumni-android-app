@@ -230,9 +230,22 @@ public class ProfileFragment extends Fragment {
                 if (which == 0){
                     //Camera clicked
 
+                    if(!checkcameraPermission()){
+                        requestCameraPermission();
+                    }
+                    else {
+                        pickFromCamera();
+                    }
+
                 }
                 else if (which == 1){
                     //Gallery clicked
+                    if(!checkStoragePermission()){
+                        requestStoragePermission();
+                    }
+                    else {
+                        pickFromGallery();
+                    }
                 }
             }
         });
@@ -278,6 +291,9 @@ public class ProfileFragment extends Fragment {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void pickFromGallery() {
     }
 
     private void pickFromCamera() {
