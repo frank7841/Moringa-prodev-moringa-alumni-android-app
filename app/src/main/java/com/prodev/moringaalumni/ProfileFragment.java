@@ -147,15 +147,19 @@ public class ProfileFragment extends Fragment {
                 //handle dialog item clicks
                 if (which == 0){
                     //edit profile clicked
+                    pd.setMessage("Updating Profile Picture");
                 }
                 else if (which == 1){
                     //edit cover clicked
+                    pd.setMessage("Updating Cover Photo");
                 }
                 else if (which == 2){
                     //edit name clicked
+                    pd.setMessage("Updating Name");
                 }
                 else if (which == 3){
                     //edit phone clicked
+                    pd.setMessage("Updating Phone");
                 }
             }
         });
