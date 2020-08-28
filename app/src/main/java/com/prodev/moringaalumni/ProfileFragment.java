@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,9 @@ public class ProfileFragment extends Fragment {
     //ARRAYS of permission to be requseted
     String cameraPermissions[];
     String storagePermission[];
+
+    //uri of picked image
+    Uri image_uri;
 
 
 
