@@ -1,5 +1,6 @@
 package com.prodev.moringaalumni;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,7 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
+
+    private static final int MSG_TYPE_LEFT=0;
+    private static final int MSG_TYPE_RIGHT=1;
+    Context context;
+    List<ModelChat> chatList;
+    String imageUrl;
+
+    public AdapterChat(Context context, List<ModelChat> chatList, String imageUrl) {
+        this.context = context;
+        this.chatList = chatList;
+        this.imageUrl = imageUrl;
+    }
+
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
