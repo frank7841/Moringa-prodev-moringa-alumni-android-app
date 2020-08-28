@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +34,8 @@ public class ChatActivity extends AppCompatActivity {
     EditText messageEt;
     ImageButton sendbtn;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference usersDbRef;
     FirebaseAuth firebaseAuth;
     String hisUid;
     String myUid;
@@ -55,6 +59,8 @@ public class ChatActivity extends AppCompatActivity {
 
         //getting firebase auth
         firebaseAuth= FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        usersDbRef = firebaseDatabase.getReference("Users");
     }
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
