@@ -33,6 +33,8 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton sendbtn;
 
     FirebaseAuth firebaseAuth;
+    String hisUid;
+    String myUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,16 @@ public class ChatActivity extends AppCompatActivity {
          messageEt.findViewById(R.id.messageEt);
          sendbtn.findViewById(R.id.sendBtn);
 
-        ButterKnife.bind(this);
+         Intent intent = getIntent();
+         hisUid = intent.getStringExtra("hisUid");
+
         //getting firebase auth
         firebaseAuth= FirebaseAuth.getInstance();
     }
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null){
+            myUid= user.getUid();
 
 
         }else {
