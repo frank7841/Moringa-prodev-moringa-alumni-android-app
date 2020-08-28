@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "583424750029-thtpd5ircdgoeq7kvu85lnnmrqpbcaa7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prodev.moringaalumni",
+            "certificate_hash": "f5099b9a79cd4cd810bdebec8d9865f359751d27"
+          }
+        },
+        {
           "client_id": "583424750029-dcdtmqbu3gdc2pclan90uqs1mqgpgh96.apps.googleusercontent.com",
           "client_type": 3
         }
