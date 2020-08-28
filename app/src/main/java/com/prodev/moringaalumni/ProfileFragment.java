@@ -41,6 +41,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment {
@@ -362,6 +364,8 @@ public class ProfileFragment extends Fragment {
                         if (uriTask.isSuccessful()){
                             //image uploaded
                             //add/update url in user's data
+                            HashMap<String, Object> results = new HashMap<>();
+                            results.put(profileOrCoverPhoto, downloadUri.toString());
                         }
                         else{
                             //err
