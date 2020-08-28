@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +37,9 @@ public class ProfileFragment extends Fragment {
     ImageView avatarTv, coverTv;
     TextView nameTv, emailTv, phoneTv;
     FloatingActionButton fab;
+
+    //progress dialog
+    ProgressDialog pd;
 
 
     public ProfileFragment() {
@@ -62,6 +67,9 @@ public class ProfileFragment extends Fragment {
         emailTv = view.findViewById(R.id.emailTv);
         phoneTv = view.findViewById(R.id.phoneTv);
         fab = view.findViewById(R.id.fab);
+
+        //init progress dialog
+        pd = new ProgressDialog(getActivity());
 
         // get info of the currently signed in user using user's email
         // using  orderByChild query to show details from node
