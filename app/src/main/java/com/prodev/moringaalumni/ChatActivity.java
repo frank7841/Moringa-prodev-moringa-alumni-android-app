@@ -28,6 +28,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -115,6 +117,9 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String message) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender", myUid);
     }
 
     private void checkUserStatus() {
