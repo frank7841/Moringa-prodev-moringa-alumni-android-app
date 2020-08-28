@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -244,6 +245,27 @@ public class ProfileFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         // This method called when user press Allow or deny from permmisipon req dialog
         // handling perm cases
+
+        switch (requestCode){
+            case CAMERA_REQUEST_CODE:{
+                //picking from camera, first check if camera and storage permissions allowed or not
+                if(grantResults.length >0){
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && writeStorageAccepted){
+                        //permission enabled
+                        pickFromCamera();
+                    }
+                    else {
+                        //permission denied
+                        Toast.makeText(getActivity(), "Please Enable Camera & Storage Permision", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            case STORAGE_REQUEST_CODE:{
+                //picking from camera, first check if camera and storage permissions allowed or not
+            }
+        }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
