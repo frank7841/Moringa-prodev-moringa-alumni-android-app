@@ -259,7 +259,15 @@ public class ProfileFragment extends Fragment {
         editText.setHint("Enter" +key); //edit hint e.g Edit name
         linearLayout.addView(editText);
 
-        builder.setTitle()
+        builder.setView(linearLayout);
+
+        //add button in dialog
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        })
     }
 
     private void showImagePicDialog() {
