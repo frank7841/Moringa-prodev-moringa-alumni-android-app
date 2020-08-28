@@ -14,7 +14,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChatListActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.chat_recyclerview) RecyclerView recyclerview;
