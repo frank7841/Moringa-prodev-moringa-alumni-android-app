@@ -185,7 +185,7 @@ public class ProfileFragment extends Fragment {
         boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == (PackageManager.PERMISSION_GRANTED);
 
-                return result;
+        return result;
     }
     private void requestStoragePermission(){
         //request runtime storage permission
@@ -207,7 +207,7 @@ public class ProfileFragment extends Fragment {
     }
     private void requestCameraPermission(){
         //request runtime storage permission
-       ActivityCompat.requestPermissions(getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
+        ActivityCompat.requestPermissions(getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     private void showEditProfileDialog() {
@@ -226,7 +226,7 @@ public class ProfileFragment extends Fragment {
                 if (which == 0){
                     //edit profile clicked
                     pd.setMessage("Updating Profile Picture");
-                    profileOrCoverPhoto = "cover";// i.e changing cover photo, make sure to assign same value
+                    profileOrCoverPhoto = "image";// i.e changing cover photo, make sure to assign same value
                     showImagePicDialog();
                 }
                 else if (which == 1){
@@ -407,7 +407,7 @@ public class ProfileFragment extends Fragment {
 
                 uploadProfileCoverPhoto(image_uri);
             }
-            if(requestCode == IMAGE_PICK_GALLERY_CODE){
+            if(requestCode == IMAGE_PICK_CAMERA_CODE){
                 //image is picked from gallery, get uri of image
 
                 uploadProfileCoverPhoto(image_uri);
@@ -510,6 +510,9 @@ public class ProfileFragment extends Fragment {
         startActivityForResult(galleryIntent, IMAGE_PICK_GALLERY_CODE);
 
     }
+
+
+
     private void checkUserStatus(){
 //        get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
