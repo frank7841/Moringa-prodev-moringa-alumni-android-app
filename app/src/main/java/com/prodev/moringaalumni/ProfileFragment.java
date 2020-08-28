@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import static android.app.Activity.RESULT_OK;
@@ -44,6 +45,12 @@ public class ProfileFragment extends Fragment {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    //storage
+    StorageReference storageReference;
+    // path where images of user profile and cover will be stored
+    String storagePath = "Users_Profile_Cover_Imgs/";
+
 
     // views from xml
     ImageView avatarTv, coverTv;
@@ -67,8 +74,8 @@ public class ProfileFragment extends Fragment {
     Uri image_uri;
 
 
-
-
+    // for checking  profile or cover photo
+    String profileOrCoverPhoto;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -205,11 +212,14 @@ public class ProfileFragment extends Fragment {
                 if (which == 0){
                     //edit profile clicked
                     pd.setMessage("Updating Profile Picture");
+                    profileOrCoverPhoto = "cover";// i.e changing cover photo, make sure to assign same value
                     showImagePicDialog();
                 }
                 else if (which == 1){
                     //edit cover clicked
                     pd.setMessage("Updating Cover Photo");
+                    profileOrCoverPhoto = "cover";// i.e changing cover photo, make sure to assign same value
+                    showImagePicDialog();
                 }
                 else if (which == 2){
                     //edit name clicked
@@ -325,6 +335,10 @@ public class ProfileFragment extends Fragment {
     }
 
     private void uploadProfileCoverPhoto(Uri image_uri) {
+        // a function for both profile picture and cover photo
+        // image is key in each user containing url of user's profile pictures cover is the key in
+        //in each user
+
 
     }
 
