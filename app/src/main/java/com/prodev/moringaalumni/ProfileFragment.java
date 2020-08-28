@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import static android.app.Activity.RESULT_OK;
@@ -334,7 +336,7 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void uploadProfileCoverPhoto(Uri image_uri) {
+    private void uploadProfileCoverPhoto(Uri uri) {
         // show progress
         pd.show();
         // a function for both profile picture and cover photo
@@ -345,7 +347,13 @@ public class ProfileFragment extends Fragment {
         String filePathAndName = storagePath+ ""+ profileOrCoverPhoto + "_"+ user.getUid();
 
         StorageReference storageReference2nd = storageReference.child(filePathAndName);
-        storageReference2nd.putFile(image_uri);
+        storageReference2nd.putFile(uri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    }
+                })
 
 
     }
