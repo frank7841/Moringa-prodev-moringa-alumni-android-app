@@ -271,6 +271,16 @@ public class ProfileFragment extends Fragment {
                 //validate if user has entered sth or not
                 if (!TextUtils.isEmpty(value)){
                     pd.show();
+                    HashMap<String, Object> result = new HashMap<>();
+                    result.put(key, value);
+
+                    databaseReference.child(user.getUid()).updateChildren(result)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                }
+                            })
                 }
             }
         });
