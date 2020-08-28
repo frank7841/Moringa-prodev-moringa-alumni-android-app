@@ -263,9 +263,23 @@ public class ProfileFragment extends Fragment {
                 }
             }
             case STORAGE_REQUEST_CODE:{
-                //picking from camera, first check if camera and storage permissions allowed or not
+                //picking from gallery, first check if camera and storage permissions allowed or not
+                if(grantResults.length >0){
+                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (writeStorageAccepted){
+                        //permission enabled
+                        pickFromGallery();
+                    }
+                    else {
+                        //permission denied
+                        Toast.makeText(getActivity(), "Please Enable Camera & Storage Permision", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void pickFromCamera() {
     }
 }
