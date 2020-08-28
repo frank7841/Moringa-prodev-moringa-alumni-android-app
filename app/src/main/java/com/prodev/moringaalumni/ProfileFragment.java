@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -253,6 +254,12 @@ public class ProfileFragment extends Fragment {
         //set layout of dialog
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        // add edit text
+        EditText editText = new EditText(getActivity());
+        editText.setHint("Enter" +key); //edit hint e.g Edit name
+        linearLayout.addView(editText);
+
+        builder.setTitle()
     }
 
     private void showImagePicDialog() {
