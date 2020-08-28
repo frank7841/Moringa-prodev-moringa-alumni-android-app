@@ -99,6 +99,14 @@ public class ProfileFragment extends Fragment {
                         // if there is any exception while getting image then set default
                         Picasso.get().load(R.drawable.ic_default_img_white).into(avatarTv);
                     }
+                    try {
+                        // if image received then set
+                        Picasso.get().load(cover).into(coverTv);
+                    }
+                    catch (Exception e){
+                        // if there is any exception while getting image then set default
+
+                    }
                 }
             }
 
