@@ -52,7 +52,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return chatList.size();
     }
 
     @Override
@@ -62,7 +62,9 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         if (chatList.get(position).getSender().equals(fUser.getUid())){
             return MSG_TYPE_RIGHT;
         }
-        return super.getItemViewType(position);
+        else {
+            return MSG_TYPE_LEFT;
+        }
     }
     //View holder class
 
