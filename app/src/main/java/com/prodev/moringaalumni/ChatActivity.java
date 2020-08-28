@@ -130,6 +130,10 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         readMessages();
+        seenMessage();
+    }
+
+    private void seenMessage() {
     }
 
     private void readMessages() {
@@ -147,6 +151,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                     adapterChat = new AdapterChat(ChatActivity.this,chatList,hisImage);
                     adapterChat.notifyDataSetChanged();
+                    recyclerview.setAdapter(adapterChat);
                 }
             }
 
