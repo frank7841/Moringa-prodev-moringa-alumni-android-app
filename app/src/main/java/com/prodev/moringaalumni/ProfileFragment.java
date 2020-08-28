@@ -41,6 +41,18 @@ public class ProfileFragment extends Fragment {
     //progress dialog
     ProgressDialog pd;
 
+    //permissions constants
+    private static final int CAMERA_REQUEST_CODE = 100;
+    private static final int STORAGE_REQUEST_CODE = 200;
+    private static final int IMAGE_PICK_GALLERY_REQUEST_CODE = 300;
+    private static final int IMAGE_PICK_CAMERA_REQUEST_CODE = 400;
+
+    //ARRAYS of permission to be requseted
+    String cameraPermissions[];
+    String storagePermission[];
+
+
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -174,28 +186,18 @@ public class ProfileFragment extends Fragment {
         //alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // set title
-        builder.setTitle("Choose Action");
+        builder.setTitle("Pick Image From");
         //set items dialog
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 //handle dialog item clicks
                 if (which == 0){
-                    //edit profile clicked
-                    pd.setMessage("Updating Profile Picture");
-                    showImagePicDialog();
+                    //Camera clicked
+
                 }
                 else if (which == 1){
-                    //edit cover clicked
-                    pd.setMessage("Updating Cover Photo");
-                }
-                else if (which == 2){
-                    //edit name clicked
-                    pd.setMessage("Updating Name");
-                }
-                else if (which == 3){
-                    //edit phone clicked
-                    pd.setMessage("Updating Phone");
+                    //Gallery clicked
                 }
             }
         });
