@@ -30,6 +30,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -132,6 +133,28 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void readMessages() {
+        chatList = new ArrayList<>();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Chats");
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chatList.clear();
+                for (DataSnapshot ds:snapshot.getChildren()){
+                    ModelChat chat = ds.getValue(ModelChat.class);
+                    if (chat.getReceiver().equals(myUid)&& chat.getSender().equals(hisUid)||
+                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(myUid)){
+                        chatList.add(chat);
+                    }
+                    adapterChat = new AdapterChat(ChatActivity.this,chatList,hisImage);
+                    adapterChat.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void sendMessage(String message) {
