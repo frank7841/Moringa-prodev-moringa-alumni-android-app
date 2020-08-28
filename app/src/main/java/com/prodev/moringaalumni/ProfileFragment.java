@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -261,13 +262,25 @@ public class ProfileFragment extends Fragment {
 
         builder.setView(linearLayout);
 
-        //add button in dialog
+        //add button in dialog to update
         builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //input text from edit text
+                String value = editText.getText().toString().trim();
+                //validate if user has entered sth or not
+                if (!TextUtils.isEmpty(value)){
+                    pd.show();
+                }
+            }
+        });
+        //add button in dialog to cancel
+        builder.setPositiveButton("Upadte", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
-        })
+        });
     }
 
     private void showImagePicDialog() {
