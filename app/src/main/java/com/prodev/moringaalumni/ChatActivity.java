@@ -17,8 +17,12 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +65,32 @@ public class ChatActivity extends AppCompatActivity {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         usersDbRef = firebaseDatabase.getReference("Users");
+        //Searching Users to get their specific info
+        Query userQuery = usersDbRef.orderByChild("uid").equalTo(hisUid);
+        //getting the name and theg picture
+        userQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+           //loop through the list to get exact data requested
+           for (DataSnapshot ds: snapshot.getChildren()){
+               //getting data
+               String name = ""+ds.child("name").getValue();
+               String image = ""+ds.child("name").getValue();
+               //setting data in to the view
+               nameTv.setText(name);
+               try {
+
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
