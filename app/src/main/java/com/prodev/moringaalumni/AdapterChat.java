@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
@@ -19,6 +22,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
     Context context;
     List<ModelChat> chatList;
     String imageUrl;
+    FirebaseUser fUser;
 
     public AdapterChat(Context context, List<ModelChat> chatList, String imageUrl) {
         this.context = context;
@@ -34,9 +38,11 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
             View view = LayoutInflater.from(context).inflate(R.layout.row_chat_right, parent, false);
             return new MyHolder(view);
         }else {
+            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_left, parent, false);
+            return new MyHolder(view);
 
         }
-        return null;
+
     }
 
     @Override
@@ -49,6 +55,15 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         return 0;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        //getting curent signed in User
+        fUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (chatList.get(position).getSender().equals(fUser.getUid())){
+            return MSG_TYPE_RIGHT;
+        }
+        return super.getItemViewType(position);
+    }
     //View holder class
 
     class MyHolder extends RecyclerView.ViewHolder{
