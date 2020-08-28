@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -230,15 +231,28 @@ public class ProfileFragment extends Fragment {
                 else if (which == 2){
                     //edit name clicked
                     pd.setMessage("Updating Name");
+                    //calling metthod and pass key "name" as parameter to update it's value in database
+                    showNamePhoneUpdateDialog("name");
                 }
                 else if (which == 3){
                     //edit phone clicked
                     pd.setMessage("Updating Phone");
+                    showNamePhoneUpdateDialog("phone");
                 }
             }
         });
         //create and show dialog
         builder.create().show();
+    }
+
+    private void showNamePhoneUpdateDialog(String key) {
+
+        //custom dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Update" + key); //e.g update name
+        //set layout of dialog
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
     }
 
     private void showImagePicDialog() {
@@ -383,7 +397,7 @@ public class ProfileFragment extends Fragment {
                                             //url in database of user is added successfully
                                             //dismiss progress bar
                                             pd.dismiss();
-                                            Toast.makeText(getActivity(), "Image Updated...", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "Error Updating Image...", Toast.LENGTH_SHORT).show();
 
 
                                         }
