@@ -81,7 +81,7 @@ public class ChatActivity extends AppCompatActivity {
            for (DataSnapshot ds: snapshot.getChildren()){
                //getting data
                String name = ""+ds.child("name").getValue();
-               String image = ""+ds.child("name").getValue();
+               String image = ""+ds.child("image").getValue();
                //setting data in to the view
                nameTv.setText(name);
                try {
@@ -123,6 +123,8 @@ public class ChatActivity extends AppCompatActivity {
         hashMap.put("receiver",hisUid);
         hashMap.put("message", message);
         databaseReference.child("Chats").push().setValue(hashMap);
+        //reset EditText fild
+        messageEt.setText("");
     }
 
     private void checkUserStatus() {
@@ -136,6 +138,12 @@ public class ChatActivity extends AppCompatActivity {
             finish();
 
         }
+    }
+
+    @Override
+    protected void onStart() {
+        checkUserStatus();
+        super.onStart();
     }
 
     @Override
