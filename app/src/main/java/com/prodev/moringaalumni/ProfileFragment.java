@@ -335,9 +335,14 @@ public class ProfileFragment extends Fragment {
     }
 
     private void uploadProfileCoverPhoto(Uri image_uri) {
+        // show progress
+        pd.show();
         // a function for both profile picture and cover photo
         // image is key in each user containing url of user's profile pictures cover is the key in
         //in each user
+        //path and name of image to be stored in FB storage
+
+        String filePathAndName = storagePath+ ""+ profileOrCoverPhoto + "_"+ user.getUid();
 
 
     }
