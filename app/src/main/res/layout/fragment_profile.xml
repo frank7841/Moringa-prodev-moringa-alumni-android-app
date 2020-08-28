@@ -17,7 +17,8 @@
                 android:id="@+id/coverTv"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimaryDark"
+                android:scaleType="fitXY">
             </ImageView>
 
             <RelativeLayout

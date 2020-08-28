@@ -389,7 +389,6 @@ public class ProfileFragment extends Fragment {
             }
             break;
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
