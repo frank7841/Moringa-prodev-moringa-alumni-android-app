@@ -354,7 +354,20 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         //image is uploaded to storage, now get it's url and store inuser's db
-                        Task<Uri>
+                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while ( !uriTask.isSuccessful());
+                        Uri downloadUri = uriTask.getResult();
+
+                        //check if image is uploaded or not and the url is received
+                        if (uriTask.isSuccessful()){
+                            //image uploaded
+                            //add/update url in user's data
+                        }
+                        else{
+                            //err
+                            pd.dismiss();
+                            Toast.makeText(getActivity(), "Some Error Occured", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 })
