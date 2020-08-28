@@ -344,6 +344,9 @@ public class ProfileFragment extends Fragment {
 
         String filePathAndName = storagePath+ ""+ profileOrCoverPhoto + "_"+ user.getUid();
 
+        StorageReference storageReference2nd = storageReference.child(filePathAndName);
+        storageReference2nd.putFile(image_uri);
+
 
     }
 
