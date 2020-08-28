@@ -3,6 +3,7 @@ package com.prodev.moringaalumni;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,11 +47,18 @@ public class ChatActivity extends AppCompatActivity {
     EditText messageEt;
     ImageButton sendbtn;
 
+
+    ValueEventListener seenListener;
+    DatabaseReference userRefForSeen;
+    List<ModelChat> chatList;
+    AdapterChat adapterChat;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference usersDbRef;
     FirebaseAuth firebaseAuth;
     String hisUid;
     String myUid;
+    String hisImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,7 @@ public class ChatActivity extends AppCompatActivity {
          userStatusTv.findViewById(R.id.userStatusTv);
          messageEt.findViewById(R.id.messageEt);
          sendbtn.findViewById(R.id.sendBtn);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
          Intent intent = getIntent();
          hisUid = intent.getStringExtra("hisUid");
@@ -81,11 +92,11 @@ public class ChatActivity extends AppCompatActivity {
            for (DataSnapshot ds: snapshot.getChildren()){
                //getting data
                String name = ""+ds.child("name").getValue();
-               String image = ""+ds.child("image").getValue();
+               hisImage = ""+ds.child("image").getValue();
                //setting data in to the view
                nameTv.setText(name);
                try {
-                   Picasso.get().load(image).placeholder(R.drawable.ic_face).into(profileIv);
+                   Picasso.get().load(hisUid).placeholder(R.drawable.ic_face).into(profileIv);
 
                } catch (Exception e) {
                    Picasso.get().load(R.drawable.ic_face).into(profileIv);
