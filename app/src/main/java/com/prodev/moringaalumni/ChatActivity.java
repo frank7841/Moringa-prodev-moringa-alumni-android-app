@@ -73,7 +73,10 @@ public class ChatActivity extends AppCompatActivity {
          userStatusTv.findViewById(R.id.userStatusTv);
          messageEt.findViewById(R.id.messageEt);
          sendbtn.findViewById(R.id.sendBtn);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+         linearLayoutManager.setStackFromEnd(true);
+         recyclerview.setHasFixedSize(true);
+         recyclerview.setLayoutManager(linearLayoutManager);
 
          Intent intent = getIntent();
          hisUid = intent.getStringExtra("hisUid");
@@ -125,14 +128,21 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+        readMessages();
+    }
+
+    private void readMessages() {
     }
 
     private void sendMessage(String message) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        String timestamp = String.valueOf(System.currentTimeMillis());
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", myUid);
         hashMap.put("receiver",hisUid);
         hashMap.put("message", message);
+        hashMap.put("timestamp",timestamp);
+        hashMap.put("isSeen",false);
         databaseReference.child("Chats").push().setValue(hashMap);
         //reset EditText fild
         messageEt.setText("");
