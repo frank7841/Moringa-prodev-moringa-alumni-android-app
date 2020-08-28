@@ -107,11 +107,16 @@ public class ChatActivity extends AppCompatActivity {
                     Toast.makeText(ChatActivity.this, "Cannot send the empty message ...", Toast.LENGTH_SHORT).show();
 
                 }else {
+                    sendMessage(message);
 
                 }
             }
         });
     }
+
+    private void sendMessage(String message) {
+    }
+
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null){
