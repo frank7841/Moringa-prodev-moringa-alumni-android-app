@@ -374,7 +374,7 @@ public class ProfileFragment extends Fragment {
                                             //url in database of user is added successfully
                                             //dismiss progress bar
                                             pd.dismiss();
-
+                                            Toast.makeText(getActivity(), "Image Updated...", Toast.LENGTH_SHORT).show();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -382,6 +382,9 @@ public class ProfileFragment extends Fragment {
                                         public void onFailure(@NonNull Exception e) {
                                             //url in database of user is added successfully
                                             //dismiss progress bar
+                                            pd.dismiss();
+                                            Toast.makeText(getActivity(), "Image Updated...", Toast.LENGTH_SHORT).show();
+
 
                                         }
                                     });
