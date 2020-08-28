@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,6 +29,13 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType ==MSG_TYPE_RIGHT){
+        //inflate sender layout\
+            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_right, parent, false);
+            return new MyHolder(view);
+        }else {
+
+        }
         return null;
     }
 
