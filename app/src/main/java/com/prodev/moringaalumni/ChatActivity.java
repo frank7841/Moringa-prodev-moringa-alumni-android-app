@@ -120,6 +120,9 @@ public class ChatActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", myUid);
+        hashMap.put("receiver",hisUid);
+        hashMap.put("message", message);
+        databaseReference.child("Chats").push().setValue(hashMap);
     }
 
     private void checkUserStatus() {
