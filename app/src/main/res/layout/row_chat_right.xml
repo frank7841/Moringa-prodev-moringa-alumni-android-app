@@ -45,8 +45,7 @@
         android:id="@+id/isSeenTv"
         android:layout_gravity="end"
         android:textAlignment="textEnd"
-        android:text="delivered"
-        android:visibility="gone"/>
+        android:text="delivered" />
 
 
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.List;
@@ -57,6 +58,28 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(Long.parseLong(timestamp));
         String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+
+        holder.messageTv.setText(message);
+        holder.timeTV.setText(dateTime);
+
+        try{
+            Picasso.get().load(imageUrl).into(holder.profiletV);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //setting seen and delivered message status
+        if (position==chatList.size()-1){
+            if (chatList.get(position).isSeen()){
+                holder.isSeenTv.setText("seen");
+            }else {
+                holder.isSeenTv.setText("delivered");
+            }
+        }else {
+            holder.isSeenTv.setVisibility(View.GONE);
+        }
+
 
     }
 
