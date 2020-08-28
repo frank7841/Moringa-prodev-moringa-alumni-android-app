@@ -85,6 +85,7 @@ public class ProfileFragment extends Fragment {
                     String email = "" + ds.child("email").getValue();
                     String phone = "" + ds.child("phone").getValue();
                     String image = "" + ds.child("image").getValue();
+                    String cover = "" + ds.child("cover").getValue();
 
                     //set data
                     nameTv.setText(name);
@@ -96,7 +97,7 @@ public class ProfileFragment extends Fragment {
                     }
                     catch (Exception e){
                         // if there is any exception while getting image then set default
-                        Picasso.get().load(R.drawable.ic_add_image).into(avatarTv);
+                        Picasso.get().load(R.drawable.ic_default_img_white).into(avatarTv);
                     }
                 }
             }
