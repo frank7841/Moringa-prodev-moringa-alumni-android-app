@@ -15,7 +15,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/proiflev"
+            android:id="@+id/proifleIv"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"

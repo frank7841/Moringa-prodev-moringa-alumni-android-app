@@ -15,10 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ChatActivity extends AppCompatActivity {
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.chat_recyclerview) RecyclerView recyclerview;
-    @BindView(R.id.proiflev) ImageView proifilev;
+    @BindView(R.id.proifleIv) ImageView proifileIv;
     @BindView(R.id.nameTv) TextView nameTv;
     @BindView(R.id.userStatusTv) TextView userStatusTv;
     @BindView(R.id.messageEt) EditText messageEt;
