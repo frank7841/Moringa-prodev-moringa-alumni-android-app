@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,9 +83,10 @@ public class ChatActivity extends AppCompatActivity {
                //setting data in to the view
                nameTv.setText(name);
                try {
+                   Picasso.get().load(image).placeholder(R.drawable.ic_face).into(profileIv);
 
                } catch (Exception e) {
-                   e.printStackTrace();
+                   Picasso.get().load(R.drawable.ic_face).into(profileIv);
                }
            }
             }
@@ -89,6 +94,21 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        //send message on click
+        sendbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //getting text from the editText widget
+                String message = messageEt.getText().toString().trim();
+                //checking if message is empty
+                if (TextUtils.isEmpty(message)){
+                    Toast.makeText(ChatActivity.this, "Cannot send the empty message ...", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                }
             }
         });
     }
