@@ -184,7 +184,7 @@ public class ProfileFragment extends Fragment {
     }
     private void requestStoragePermission(){
         //request runtime storage permission
-        ActivityCompat.requestPermissions(getActivity(), storagePermission, STORAGE_REQUEST_CODE);
+        requestPermissions(storagePermission, STORAGE_REQUEST_CODE);
     }
 
 
@@ -202,7 +202,7 @@ public class ProfileFragment extends Fragment {
     }
     private void requestCameraPermission(){
         //request runtime storage permission
-        ActivityCompat.requestPermissions(getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
+       requestPermissions(cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     private void showEditProfileDialog() {
@@ -300,12 +300,15 @@ public class ProfileFragment extends Fragment {
             }
         });
         //add button in dialog to cancel
-        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         });
+
+        // create and show dialog
+        builder.create().show();
     }
 
     private void showImagePicDialog() {
