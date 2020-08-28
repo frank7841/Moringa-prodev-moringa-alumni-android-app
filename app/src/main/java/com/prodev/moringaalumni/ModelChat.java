@@ -2,15 +2,17 @@ package com.prodev.moringaalumni;
 
 public class ModelChat {
     String message,sender, receiver, timestamp;
+    boolean isSeen;
 
     public ModelChat() {
     }
 
-    public ModelChat(String message, String sender, String receiver, String timestamp) {
+    public ModelChat(String message, String sender, String receiver, String timestamp, boolean isSeen) {
         this.message = message;
         this.sender = sender;
         this.receiver = receiver;
         this.timestamp = timestamp;
+        this.isSeen = isSeen;
     }
 
     public String getMessage() {
@@ -43,5 +45,13 @@ public class ModelChat {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
     }
 }
