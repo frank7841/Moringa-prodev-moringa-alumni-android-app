@@ -16,8 +16,7 @@
             android:id="@+id/avartarIv"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_deafault_face"
-            />
+            android:src="@drawable/ic_deafault_face" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

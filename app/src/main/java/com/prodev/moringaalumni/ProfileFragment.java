@@ -40,6 +40,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -77,7 +78,7 @@ public class ProfileFragment extends Fragment {
 
     //ARRAYS of permission to be requseted
     String cameraPermissions[];
-    String storagePermission[];
+    String storagePermissions[];
 
     //uri of picked image
     Uri image_uri;
@@ -102,11 +103,11 @@ public class ProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
-//        storageReference = getInstance().getR
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         // init arrays of permissions
         cameraPermissions = new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        storagePermission = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         //init views
         avatarTv = view.findViewById(R.id.avatarIv);
@@ -185,11 +186,11 @@ public class ProfileFragment extends Fragment {
     }
     private void requestStoragePermission(){
         //request runtime storage permission
-        requestPermissions(storagePermission, STORAGE_REQUEST_CODE);
+        ActivityCompat.requestPermissions(getActivity(), storagePermissions, STORAGE_REQUEST_CODE);
     }
 
 
-    private boolean checkcameraPermission(){
+    private boolean checkCameraPermission(){
         //check if storage perm is allowed or not
         // return true if anabled
         //return false if not
@@ -203,7 +204,7 @@ public class ProfileFragment extends Fragment {
     }
     private void requestCameraPermission(){
         //request runtime storage permission
-       requestPermissions(cameraPermissions, CAMERA_REQUEST_CODE);
+       ActivityCompat.requestPermissions(getActivity(), cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     private void showEditProfileDialog() {
@@ -256,6 +257,7 @@ public class ProfileFragment extends Fragment {
         //set layout of dialog
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setPadding(10,10,10,10);
         // add edit text
         EditText editText = new EditText(getActivity());
         editText.setHint("Enter" +key); //edit hint e.g Edit name
@@ -301,7 +303,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         //add button in dialog to cancel
-        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -327,7 +329,7 @@ public class ProfileFragment extends Fragment {
                 if (which == 0){
                     //Camera clicked
 
-                    if(!checkcameraPermission()){
+                    if(!checkCameraPermission()){
                         requestCameraPermission();
                     }
                     else {
@@ -485,7 +487,7 @@ public class ProfileFragment extends Fragment {
     private void pickFromCamera() {
         //intent for picking image from device camera
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "Temporary Pic");
+        values.put(MediaStore.Images.Media.TITLE, "Temp Pic");
         values.put(MediaStore.Images.Media.DESCRIPTION, "Temp Description");
 
         // put image uri
@@ -501,6 +503,7 @@ public class ProfileFragment extends Fragment {
     private void pickFromGallery() {
         //pick from gallery
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, IMAGE_PICK_GALLERY_CODE);
 
     }
