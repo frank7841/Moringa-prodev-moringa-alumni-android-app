@@ -372,6 +372,7 @@ public class ProfileFragment extends Fragment {
                     }
                 }
             }
+            break;
             case STORAGE_REQUEST_CODE:{
                 //picking from gallery, first check if camera and storage permissions allowed or not
                 if(grantResults.length >0){
@@ -386,6 +387,7 @@ public class ProfileFragment extends Fragment {
                     }
                 }
             }
+            break;
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
