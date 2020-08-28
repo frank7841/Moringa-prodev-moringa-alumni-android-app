@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -12,9 +13,12 @@ import android.widget.TextView;
 
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.app.PendingIntent.getActivity;
 
 public class ChatActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -46,6 +50,15 @@ public class ChatActivity extends AppCompatActivity {
         firebaseAuth= FirebaseAuth.getInstance();
     }
     private void checkUserStatus() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null){
+
+
+        }else {
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+
+        }
 
     }
 }
