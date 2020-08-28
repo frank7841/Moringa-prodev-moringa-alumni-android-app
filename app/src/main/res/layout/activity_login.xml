@@ -55,19 +55,52 @@
         android:layout_height="wrap_content"
         android:drawablePadding="5dp"/>
         <!--android:drawableLeft="@drawable/ic_login_white"-->
-    <!--Textview click to go to loginActivity-->
-    <TextView
 
+    <TextView
+        android:id="@+id/recoverPassTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nothave_accountTv"
-        android:text="Don't have an account? Register"
         android:textAlignment="center"
+        android:text="Forgot Password? Recover"
         android:layout_below="@id/loginBtn"
-        android:layout_marginTop="30dp"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center_horizontal" />
 
+    <!--google sign in -->
+
+
+    <!--Textview click to go to loginActivity-->
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/recoverPassTv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp">
+
+    </com.google.android.gms.common.SignInButton>
+
+    <TextView
+
+        android:id="@+id/nothave_accountTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="108dp"
+        android:layout_marginBottom="-37dp"
+        android:gravity="center_horizontal"
+        android:text="Don't have an account? Register"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark" />
 
 
 </RelativeLayout>
