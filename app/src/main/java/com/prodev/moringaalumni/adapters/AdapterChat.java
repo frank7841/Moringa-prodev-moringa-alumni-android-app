@@ -1,4 +1,4 @@
-package com.prodev.moringaalumni;
+package com.prodev.moringaalumni.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.models.ModelChat;
+import com.prodev.moringaalumni.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;

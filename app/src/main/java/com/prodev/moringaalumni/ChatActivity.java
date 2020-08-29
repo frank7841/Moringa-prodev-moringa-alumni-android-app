@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.adapters.AdapterChat;
+import com.prodev.moringaalumni.models.ModelChat;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -38,9 +39,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static android.app.PendingIntent.getActivity;
 
