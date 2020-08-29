@@ -102,18 +102,29 @@ public class ChatActivity extends AppCompatActivity {
                //getting data
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
-               //get value of online status
-               String onlineStatus =""+ds.child("onlineStatus").getValue();
-               if (onlineStatus.equals("online")){
-                   userStatusTv.setText(onlineStatus);
+               String typingStatus = ""+ds.child("typingTo").getValue();
+
+               //check typing status
+
+               if (typingStatus.equals(myUid)){
+                   userStatusTv.setText("typing...");
                }
-               else{
-                   //convert timestamp to proper time date
-                   //converting timestamp to dd/mm/yy hh/mn am/pm
-                   Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
-                   cal.setTimeInMillis(Long.parseLong(onlineStatus));
-                   String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
-                   userStatusTv.setText("Last seen at: "+ dateTime);
+               else {
+                   String onlineStatus =""+ds.child("onlineStatus").getValue();
+                   if (onlineStatus.equals("online")){
+                       userStatusTv.setText(onlineStatus);
+                   }
+                   else {
+                       //convert timestamp to proper time date
+                       //converting timestamp to dd/mm/yy hh/mn am/pm
+                       Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                       cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                       String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+                       userStatusTv.setText("Last seen at: " + dateTime);
+                   }
+               }
+               //get value of online status
+
                    //add any time stamp
                }
                //setting data in to the view
@@ -151,12 +162,19 @@ public class ChatActivity extends AppCompatActivity {
         // check edit text change listener
         messageEt.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence s, int  start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() ==0){
+                    checkTypingStatus("noOne");
+                }
+                else {
+                    checkTypingStatus(hisUid);//uid of receiver
+
+                }
 
             }
 
