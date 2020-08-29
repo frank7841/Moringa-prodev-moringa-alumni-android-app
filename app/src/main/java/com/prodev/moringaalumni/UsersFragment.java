@@ -198,6 +198,9 @@ public class UsersFragment extends Fragment {
     public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu_main, menu);
 
+        // hide post action from this fragment
+        menu.findItem(R.id.action_add_post).setVisible(false);
+
         //search view
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
