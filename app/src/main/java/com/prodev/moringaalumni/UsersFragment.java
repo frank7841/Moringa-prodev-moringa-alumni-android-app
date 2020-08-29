@@ -74,20 +74,25 @@ public class UsersFragment extends Fragment {
 
     private void getAllUsers() {
         //getting the current user
-        FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
+      final FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userList.clear();
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    ModelUser modelUser = ds.getValue(ModelUser.class);
-                    if (!modelUser.getUid().equals(fUser.getUid())){
-                        userList.add(modelUser);
-                    }
+                     ModelUser modelUser = ds.getValue(ModelUser.class);
+                     if (!fUser.getUid().equals(modelUser.getUid())){
+                         userList.add(modelUser);
+                     }
+//
+//                     if(!fUser.getUid().equals(ModelUser.getUid())){
+//                        userList.add(modelUser);
+//                    }
                     //adapter
                     adapterUsers = new AdapterUsers(getActivity(),userList);
                     //setting adapter to recyclerView
+                    recyclerView.setAdapter(adapterUsers);
 
                 }
             }

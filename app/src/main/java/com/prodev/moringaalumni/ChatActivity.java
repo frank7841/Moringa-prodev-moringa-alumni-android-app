@@ -39,14 +39,14 @@ import butterknife.ButterKnife;
 
 import static android.app.PendingIntent.getActivity;
 
-public class ChatActivity extends AppCompatActivity {
+    public class ChatActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerview;
     ImageView profileIv;
     TextView nameTv;
     TextView userStatusTv;
     EditText messageEt;
-    ImageButton sendbtn;
+    ImageButton sendBtn;
 
 
     ValueEventListener seenListener;
@@ -65,22 +65,25 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-         setSupportActionBar(toolbar);
-         toolbar.setTitle("");
-         toolbar.findViewById(R.id.toolbar);
-         recyclerview.findViewById(R.id.chat_recyclerview);
-         profileIv.findViewById(R.id.proifleIv);
-         nameTv.findViewById(R.id.nameTv);
-         userStatusTv.findViewById(R.id.userStatusTv);
-         messageEt.findViewById(R.id.messageEt);
-         sendbtn.findViewById(R.id.sendBtn);
-         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-         linearLayoutManager.setStackFromEnd(true);
-         recyclerview.setHasFixedSize(true);
-         recyclerview.setLayoutManager(linearLayoutManager);
 
-         Intent intent = getIntent();
-         hisUid = intent.getStringExtra("hisUid");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+
+        recyclerview = findViewById(R.id.chat_recyclerview);
+        profileIv = findViewById(R.id.proifleIv);
+        nameTv = findViewById(R.id.nameTv);
+        userStatusTv = findViewById(R.id.userStatusTv);
+        messageEt = findViewById(R.id.messageEt);
+        sendBtn = findViewById(R.id.sendBtn);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setLayoutManager(linearLayoutManager);
+
+        Intent intent = getIntent();
+        hisUid = intent.getStringExtra("hisUid");
+//        myUid = firebaseAuth.getCurrentUser().getUid();
 
         //getting firebase auth
         firebaseAuth= FirebaseAuth.getInstance();
@@ -88,7 +91,7 @@ public class ChatActivity extends AppCompatActivity {
         usersDbRef = firebaseDatabase.getReference("Users");
         //Searching Users to get their specific info
         Query userQuery = usersDbRef.orderByChild("uid").equalTo(hisUid);
-        //getting the name and theg picture
+         //getting the name and theg picture
         userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -97,10 +100,10 @@ public class ChatActivity extends AppCompatActivity {
                //getting data
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
-               //setting data in to the view
+                 //setting data in to the view
                nameTv.setText(name);
                try {
-                   Picasso.get().load(hisUid).placeholder(R.drawable.ic_face).into(profileIv);
+                   Picasso.get().load(hisImage).placeholder(R.drawable.ic_face).into(profileIv);
 
                } catch (Exception e) {
                    Picasso.get().load(R.drawable.ic_face).into(profileIv);
@@ -114,7 +117,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         //send message on click
-        sendbtn.setOnClickListener(new View.OnClickListener() {
+        sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //getting text from the editText widget
@@ -164,8 +167,8 @@ public class ChatActivity extends AppCompatActivity {
                 chatList.clear();
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat = ds.getValue(ModelChat.class);
-                    if (chat.getReceiver().equals(myUid)&& chat.getSender().equals(hisUid)||
-                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(myUid)){
+                        if (chat.getReceiver().equals(firebaseAuth.getUid()) && chat.getSender().equals(hisUid)||
+                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(firebaseAuth.getUid())){
                         chatList.add(chat);
                     }
                     adapterChat = new AdapterChat(ChatActivity.this,chatList,hisImage);

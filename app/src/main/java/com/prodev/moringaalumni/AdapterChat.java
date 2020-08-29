@@ -57,13 +57,13 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         //converting timestamp to dd/mm/yy hh/mn am/pm
         Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(Long.parseLong(timestamp));
-        String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+        String dateTime = DateFormat.format("dd/mm/yyyy hh:mm aa", cal).toString();
 
         holder.messageTv.setText(message);
         holder.timeTV.setText(dateTime);
 
         try{
-            Picasso.get().load(imageUrl).into(holder.profiletV);
+            Picasso.get().load(imageUrl).into(holder.profileIv);
 
 
         } catch (Exception e) {
@@ -73,8 +73,9 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         if (position==chatList.size()-1){
             if (chatList.get(position).isSeen()){
                 holder.isSeenTv.setText("seen");
-            }else {
-                holder.isSeenTv.setText("delivered");
+            }
+            else {
+                holder.isSeenTv.setText("Delivered");
             }
         }else {
             holder.isSeenTv.setVisibility(View.GONE);
@@ -102,14 +103,14 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
     //View holder class
 
     class MyHolder extends RecyclerView.ViewHolder{
-        ImageView profiletV;
+        ImageView profileIv;
         TextView messageTv, timeTV, isSeenTv ;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //nitialising views
-            profiletV= itemView.findViewById(R.id.proifleIv);
+            profileIv= itemView.findViewById(R.id.proifleIv);
             messageTv= itemView.findViewById(R.id.messagegTv);
             timeTV= itemView.findViewById(R.id.timeTv);
             isSeenTv= itemView.findViewById(R.id.isSeenTv);

@@ -35,10 +35,10 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        String hisUID = userList.get(position).getUid();
+        final String hisUID = userList.get(position).getUid();
         String userImage = userList.get(position).getImage();
         String userName = userList.get(position).getName();
-        String userEmail = userList.get(position).getEmail();
+        final  String userEmail = userList.get(position).getEmail();
 
 
         //setting values
@@ -46,7 +46,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         holder.mEmailTv.setText(userEmail);
         try {
             Picasso.get().load(userImage)
-                    .placeholder(R.drawable.ic_face)
+                    .placeholder(R.drawable.ic_deafault_face)
                     .into(holder.mAvatarIv);
 
         } catch (Exception e) {
@@ -67,8 +67,9 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount()
+    {
+        return userList.size();
     }
 
 
