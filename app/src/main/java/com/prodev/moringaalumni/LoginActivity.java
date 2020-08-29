@@ -291,7 +291,7 @@ private FirebaseAuth mAuth;
                             HashMap<Object, String> hashMap = new HashMap<>();
                             //put info in hashmap
                             hashMap.put("email", email);
-                            hashMap.put("uid", email);
+                            hashMap.put("uid", uid);
                             hashMap.put("name", "");// baadae
                             hashMap.put("phone", "");
                             hashMap.put("image", "");

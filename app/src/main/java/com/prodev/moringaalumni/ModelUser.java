@@ -2,7 +2,7 @@ package com.prodev.moringaalumni;
 
 public class ModelUser {
 
-    String name, email, search, phone, image, cover,uid;
+    String name, email, search, phone, image, cover, uid;
      public ModelUser(){
      }
 
