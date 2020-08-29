@@ -97,6 +97,8 @@ public class ChatActivity extends AppCompatActivity {
                //getting data
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
+               //get value of online status
+               String onlineStatus =""+ds.child("onlineStatus").getValue();
                //setting data in to the view
                nameTv.setText(name);
                try {
@@ -207,18 +209,38 @@ public class ChatActivity extends AppCompatActivity {
 
         }
     }
+    private void checkOnlineStatus(String status){
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child(myUid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("OnlineStatus", status);
+        //update value of online status of current user
+        dbRef.updateChildren(hashMap);
+
+    }
 
     @Override
     protected void onStart() {
         checkUserStatus();
+        //set online
+        checkOnlineStatus("online");
         super.onStart();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        //get timestamp
+        String timeStamp = String.valueOf(System.currentTimeMillis());
+        //set offline with last seen time stap
+        checkOnlineStatus(timeStamp);
         userRefForSeen.removeEventListener(seenListener);
 
+    }
+    @Override
+    protected void onResume(){
+        //set online
+        checkOnlineStatus("online");
+        super.onResume();
     }
 
     @Override
