@@ -4,11 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class AddPostActivity extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
 
     ActionBar actionBar;
 
@@ -22,6 +28,25 @@ public class AddPostActivity extends AppCompatActivity {
         // enable back button in action bar
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkUserStatus();
+    }
+
+    private void checkUserStatus(){
+//        get current user
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user !=null){
+            // user is signed in stay here
+            // set email of logged in user
+            //mProfileTv.setText(user.getEmail());
+
+        }
+        else {
+            //user not signed in, go to main activity
+            startActivity(new Intent(this, MainActivity.class));
+             finish();
+        }
     }
 
     @Override
