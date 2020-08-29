@@ -1,21 +1,32 @@
 package com.prodev.moringaalumni;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -69,6 +80,35 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //click to show delete dialog
+        holder.messageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                //show delete message confirm dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Delete");
+                builder.setMessage("Are you sure you want to delete this message?");
+                //delete button
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+
+                    }
+                });
+                //cancel delete button
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        deleteMessage(position);
+
+
+                    }
+                });
+                //create and show dialog
+                builder.create().show();
+
+            }
+        });
         //setting seen and delivered message status
         if (position==chatList.size()-1){
             if (chatList.get(position).isSeen()){
@@ -81,6 +121,60 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
         }
 
 
+    }
+
+    private void deleteMessage(int position) {
+        String myUID =FirebaseAuth.getInstance().getCurrentUser().getUid();
+        /*Logic:
+        Get timestamp of clicked message
+        compare timestamp of clicked to all messages in chat
+        Where both values matches delete that message
+         */
+        String msgTimeStamp = chatList.get(position).getTimestamp();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Chats");
+        Query query = dbRef.orderByChild("timestamp").equalTo(msgTimeStamp);
+        query.addListenerForSingleValueEvent(new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot){
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    //if you want to allow snder to delete only his message when compared sender value to current user
+                    if (ds.child("sender").getValue().equals(myUID)){
+                           /*
+                    We can do one of two things here
+                    Remove message from chats
+                    set value of message this message was deleted
+                    so do whatever upu want
+                   //Remove message from chats
+                     */
+
+                           //You can use either one of the two methods below ds and hashmap
+                   // ds.getRef().removeValue();
+                    // Set the value of message "This message was deleted..."
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("message", "This message was deleted...");
+                    ds.getRef().updateChildren(hashMap);
+
+                        Toast.makeText(context, "message deleted...", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        Toast.makeText(context, "You can delete only your messages", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+
+
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError){
+
+            }
+
+
+        });
     }
 
     @Override
@@ -104,6 +198,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
     class MyHolder extends RecyclerView.ViewHolder{
         ImageView profiletV;
         TextView messageTv, timeTV, isSeenTv ;
+        LinearLayout messageLayout;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -113,6 +208,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
             messageTv= itemView.findViewById(R.id.messagegTv);
             timeTV= itemView.findViewById(R.id.timeTv);
             isSeenTv= itemView.findViewById(R.id.isSeenTv);
+            messageTv= itemView.findViewById(R.id.messageLayout);
 
         }
     }
