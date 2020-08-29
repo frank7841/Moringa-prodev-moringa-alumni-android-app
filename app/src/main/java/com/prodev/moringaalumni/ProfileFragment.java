@@ -157,7 +157,7 @@ public class ProfileFragment extends Fragment {
                     }
                     catch (Exception e){
                         // if there is any exception while getting image then set default
-
+                        Picasso.get().load(R.drawable.ic_default_img_white).into(coverTv);
                     }
                 }
             }
@@ -223,6 +223,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
                 //handle dialog item clicks
+
                 if (which == 0){
                     //edit profile clicked
                     pd.setMessage("Updating Profile Picture");

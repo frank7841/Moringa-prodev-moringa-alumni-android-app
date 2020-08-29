@@ -18,22 +18,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:background="@color/colorPrimaryDark"
+                android:src="@drawable/ic_default_img_white"
                 android:scaleType="fitXY">
             </ImageView>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/colorPrimaryDark">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:background="@color/colorPrimaryDark">-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary">
+<!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@color/colorPrimary">&ndash;&gt;-->
 
-                </ImageView>
+<!--&lt;!&ndash;                </ImageView>&ndash;&gt;-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
