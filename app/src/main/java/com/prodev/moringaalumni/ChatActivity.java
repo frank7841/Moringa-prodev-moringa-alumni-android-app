@@ -114,15 +114,14 @@ public class ChatActivity extends AppCompatActivity {
                    if (onlineStatus.equals("online")){
                        userStatusTv.setText(onlineStatus);
                    }
-                   else {
+                   else{
                        //convert timestamp to proper time date
                        //converting timestamp to dd/mm/yy hh/mn am/pm
-                       Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+                       Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
                        cal.setTimeInMillis(Long.parseLong(onlineStatus));
                        String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
-                       userStatusTv.setText("Last seen at: " + dateTime);
+                       userStatusTv.setText("Last seen at: "+ dateTime);
                    }
-               }
                //get value of online status
 
                    //add any time stamp
