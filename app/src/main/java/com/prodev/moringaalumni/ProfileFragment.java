@@ -157,7 +157,7 @@ public class ProfileFragment extends Fragment {
                     }
                     catch (Exception e){
                         // if there is any exception while getting image then set default
-                        Picasso.get().load(R.drawable.ic_default_img_white).into(coverTv);
+                        Picasso.get().load(R.drawable.ic_add_image).into(coverTv);
                     }
                 }
             }

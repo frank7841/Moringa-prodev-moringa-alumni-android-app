@@ -71,7 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
                             return true;
                         case R.id.nav_users:
                             //usres fragment transaction
-                            actionBar.setTitle("Users");// change actionbar title
+                            actionBar.setTitle("Alumnis");// change actionbar title
                             UsersFragment fragment3 = new UsersFragment();
                             FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
                             ft3.replace(R.id.content, fragment3, "");
