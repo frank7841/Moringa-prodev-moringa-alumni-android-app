@@ -15,7 +15,7 @@
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/profileIv"
+            android:id="@+id/proifleIv"
             app:civ_border_color="@null"
             android:visibility="gone"
             android:src="@drawable/ic_deafault_face"/>
