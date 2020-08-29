@@ -1,12 +1,14 @@
 package com.prodev.moringaalumni;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -33,6 +35,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -139,11 +142,13 @@ import static android.app.PendingIntent.getActivity;
     private void seenMessage() {
         userRefForSeen=FirebaseDatabase.getInstance().getReference("Chats");
         seenListener = userRefForSeen.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
             for (DataSnapshot ds: snapshot.getChildren()){
                 ModelChat chat = ds.getValue(ModelChat.class);
-                if (chat.getReceiver().equals(myUid)&&chat.getSender().equals(hisUid)){
+                assert chat != null;
+                if (Objects.equals(chat.getReceiver(), myUid) &&chat.getSender().equals(hisUid)){
                     HashMap<String, Object> hasSeenHashMap = new HashMap<>();
                     hasSeenHashMap.put("isSeen", true);
                     ds.getRef().updateChildren(hasSeenHashMap);
@@ -162,13 +167,15 @@ import static android.app.PendingIntent.getActivity;
         chatList = new ArrayList<>();
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Chats");
         dbRef.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 chatList.clear();
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat = ds.getValue(ModelChat.class);
-                        if (chat.getReceiver().equals(firebaseAuth.getUid()) && chat.getSender().equals(hisUid)||
-                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(firebaseAuth.getUid())){
+                    assert chat != null;
+                    if (Objects.equals(chat.getReceiver(), myUid) && chat.getSender().equals(hisUid)||
+                            Objects.equals(chat.getReceiver(), hisUid) && chat.getSender().equals(myUid)){
                         chatList.add(chat);
                     }
                     adapterChat = new AdapterChat(ChatActivity.this,chatList,hisImage);
