@@ -1,4 +1,4 @@
-package com.prodev.moringaalumni;
+package com.prodev.moringaalumni.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.prodev.moringaalumni.ChatActivity;
+import com.prodev.moringaalumni.models.ModelUser;
+import com.prodev.moringaalumni.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
