@@ -18,4 +18,10 @@ public class AddPostActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();//go to previous activity
+        return super.onSupportNavigateUp();
+    }
 }
