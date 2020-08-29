@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,6 +102,16 @@ public class ChatActivity extends AppCompatActivity {
                hisImage = ""+ds.child("image").getValue();
                //get value of online status
                String onlineStatus =""+ds.child("onlineStatus").getValue();
+               if (onlineStatus.equals("online")){
+                   userStatusTv.setText(onlineStatus);
+               }
+               else{
+                   //convert timestamp to proper time date
+                   //converting timestamp to dd/mm/yy hh/mn am/pm
+                   Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
+                   cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                   String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+               }
                //setting data in to the view
                nameTv.setText(name);
                try {
