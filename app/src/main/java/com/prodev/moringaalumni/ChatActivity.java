@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -146,6 +148,23 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+        // check edit text change listener
+        messageEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         readMessages();
         seenMessage();
     }
@@ -227,7 +246,15 @@ public class ChatActivity extends AppCompatActivity {
     private void checkOnlineStatus(String status){
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("OnlineStatus", status);
+        hashMap.put("onlineStatus", status);
+        //update value of online status of current user
+        dbRef.updateChildren(hashMap);
+
+    }
+    private void checkTypingStatus(String typing){
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("typingTo", typing);
         //update value of online status of current user
         dbRef.updateChildren(hashMap);
 
@@ -248,6 +275,7 @@ public class ChatActivity extends AppCompatActivity {
         String timeStamp = String.valueOf(System.currentTimeMillis());
         //set offline with last seen time stap
         checkOnlineStatus(timeStamp);
+        checkTypingStatus("noOne");
         userRefForSeen.removeEventListener(seenListener);
 
     }
