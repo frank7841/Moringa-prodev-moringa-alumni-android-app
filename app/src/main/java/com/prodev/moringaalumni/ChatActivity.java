@@ -111,6 +111,8 @@ public class ChatActivity extends AppCompatActivity {
                    Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
                    cal.setTimeInMillis(Long.parseLong(onlineStatus));
                    String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+                   userStatusTv.setText("Last seen at: "+ dateTime);
+                   //add any time stamp
                }
                //setting data in to the view
                nameTv.setText(name);
@@ -223,7 +225,7 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
     private void checkOnlineStatus(String status){
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child(myUid);
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("OnlineStatus", status);
         //update value of online status of current user
