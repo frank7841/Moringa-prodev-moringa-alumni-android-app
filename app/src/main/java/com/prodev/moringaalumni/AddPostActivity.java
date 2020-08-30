@@ -85,11 +85,16 @@ public class AddPostActivity extends AppCompatActivity {
         checkUserStatus();
 
         //get some info of current user to include in post
-        userDbRef = FirebaseDatabase.getInstance().getReference("Usres");
+        userDbRef = FirebaseDatabase.getInstance().getReference("Users");
         Query query = userDbRef.orderByChild("email").equalTo(email);
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    name = ""+ ds.child("name").getValue();
+                    email = ""+ds.child("email").getValue();
+                    dp = ""+ds.child("image").getValue();
+                }
 
             }
 
@@ -229,8 +234,8 @@ public class AddPostActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user !=null){
             // user is signed in stay here
-            // set email of logged in user
-            //mProfileTv.setText(user.getEmail());
+            email = user.getEmail();
+            uid = user.getUid();
 
         }
         else {
