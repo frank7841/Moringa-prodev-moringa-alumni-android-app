@@ -160,6 +160,8 @@ public class AddPostActivity extends AppCompatActivity {
         //for post-image name, post-id, post-publish time
         String timeStamp = String.valueOf(System.currentTimeMillis());
 
+        String filePathAndName = "Posts/" + "post_" + timeStamp;
+
         if(!uri.equals("noImage")){
 
         }
