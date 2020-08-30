@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -278,5 +279,27 @@ public class AddPostActivity extends AppCompatActivity {
             }
             break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //method to be called after picking image from camera or gallery
+        if(resultCode == RESULT_OK) {
+
+            if (requestCode == IMAGE_PICK_GALLERY_CODE){
+                //image is picked from gallery, get uri of image
+                image_rui = data.getData();
+
+                //set to Image view
+                imageIv.setImageURI(image_rui);
+            }else if (requestCode == IMAGE_PICK_CAMERA_CODE){
+                //image is picked from camera, get uri of image
+
+                imageIv.setImageURI(image_rui);
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }
