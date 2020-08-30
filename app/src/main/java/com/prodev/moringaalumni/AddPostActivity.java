@@ -24,6 +24,14 @@ public class AddPostActivity extends AppCompatActivity {
 
     ActionBar actionBar;
 
+    //permoissions constants
+    private  static final int CAMERA_REQUEST_CODE = 100;
+    private  static final int GALLERY_REQUEST_CODE = 100;
+
+    //permissions array
+    String[] cameraPermissions;
+    String[] storagePermissions;
+
     //views
     EditText titleEt, descriptionEt;
     ImageView imageIv;
