@@ -32,6 +32,10 @@ public class AddPostActivity extends AppCompatActivity {
     //permoissions constants
     private  static final int CAMERA_REQUEST_CODE = 100;
     private  static final int STORAGE_REQUEST_CODE = 200;
+    //image pick constants
+    private static final int IMAGE_PICK_CAMERA_CODE = 300;
+    private static final int IMAGE_PICK_GALLERY_CODE = 400;
+
 
     //permissions array
     String[] cameraPermissions;
