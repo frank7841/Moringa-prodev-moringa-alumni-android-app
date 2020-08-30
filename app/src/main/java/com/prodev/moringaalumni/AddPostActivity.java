@@ -113,7 +113,7 @@ public class AddPostActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    private boolean checkStoragepermission(){
+    private boolean checkStoragePermission(){
         //check if storage permission is enabled
         //return true if enabled
         //return false if not
@@ -124,6 +124,22 @@ public class AddPostActivity extends AppCompatActivity {
 
     private void  requestStoragePermission(){
             //request runtime storage permission
+        ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE);
+    }
+
+    private boolean checkCameraPermission(){
+        //check if camera permission is enabled
+        //return true if enabled
+        //return false if not
+        boolean result = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA) ==(PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) ==(PackageManager.PERMISSION_GRANTED);
+        return result && result1;
+    }
+
+    private void  requestCameraPermission(){
+        //request runtime storage permission
         ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE);
     }
 
