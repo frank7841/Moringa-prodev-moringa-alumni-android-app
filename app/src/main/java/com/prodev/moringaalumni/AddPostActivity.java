@@ -49,6 +49,15 @@ public class AddPostActivity extends AppCompatActivity {
         imageIv = findViewById(R.id.pImageIv);
         uploadBtn = findViewById(R.id.pUploadBtn);
 
+        //get image from camera/gaalery on click
+        imageIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // show image pick dialog
+                showImagePickDialog();
+            }
+        });
+
         //upload button click listener
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
