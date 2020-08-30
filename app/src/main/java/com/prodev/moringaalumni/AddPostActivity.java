@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class AddPostActivity extends AppCompatActivity {
 
     //permoissions constants
     private  static final int CAMERA_REQUEST_CODE = 100;
-    private  static final int GALLERY_REQUEST_CODE = 100;
+    private  static final int STORAGE_REQUEST_CODE = 100;
 
     //permissions array
     String[] cameraPermissions;
@@ -49,6 +50,11 @@ public class AddPostActivity extends AppCompatActivity {
         // enable back button in action bar
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //init permissions arrays
+        cameraPermissions = new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
