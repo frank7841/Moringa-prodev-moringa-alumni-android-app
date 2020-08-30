@@ -156,6 +156,16 @@ public class AddPostActivity extends AppCompatActivity {
 
         pd.setMessage("Publishing Post...");
         pd.show();
+
+        //for post-image name, post-id, post-publish time
+        String timeStamp = String.valueOf(System.currentTimeMillis());
+
+        if(!uri.equals("noImage")){
+
+        }
+        else{
+
+        }
     }
 
     private void showImagePickDialog() {
