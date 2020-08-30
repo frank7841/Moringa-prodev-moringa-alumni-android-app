@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -63,6 +64,8 @@ public class AddPostActivity extends AppCompatActivity {
 
     //image picked will be saved in this uri
     Uri image_rui = null;
+    //progress bar
+    ProgressDialog pd;
 
 
 
@@ -81,6 +84,7 @@ public class AddPostActivity extends AppCompatActivity {
         cameraPermissions = new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+        pd = new ProgressDialog(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
@@ -146,6 +150,12 @@ public class AddPostActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void uploaData(String title, String description, String uri) {
+
+        pd.setMessage("Publishing Post...");
+        pd.show();
     }
 
     private void showImagePickDialog() {
