@@ -137,6 +137,10 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     private void pickFromGallery() {
+        //intent to pick image from gallery
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/");
+        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
 
     }
 
