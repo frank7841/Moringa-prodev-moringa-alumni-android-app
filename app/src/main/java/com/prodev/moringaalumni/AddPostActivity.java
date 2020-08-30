@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -219,6 +220,19 @@ public class AddPostActivity extends AppCompatActivity {
 
         switch (requestCode){
             case CAMERA_REQUEST_CODE: {
+                if (grantResults.length>0){
+                    boolean cameraAccepted =grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && storageAccepted){
+                        pickFromCamera();
+                    }
+                    else {
+                        Toast.makeText(this, "Camera & Storage both permisions are necessary...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+
+                }
 
             }
             break;
