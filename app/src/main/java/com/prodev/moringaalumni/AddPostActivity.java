@@ -26,6 +26,8 @@ public class AddPostActivity extends AppCompatActivity {
     ImageView imageIv;
     Button uploadBtn;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,9 @@ public class AddPostActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
+
+        //init views
+        titleEt = findViewById(R.id.pTitleEt);
     }
 
     @Override
