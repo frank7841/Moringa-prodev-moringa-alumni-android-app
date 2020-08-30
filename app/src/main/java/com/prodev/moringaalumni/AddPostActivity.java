@@ -97,6 +97,8 @@ public class AddPostActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
 
+        actionBar.setSubtitle(email);
+
         //get some info of current user to include in post
         userDbRef = FirebaseDatabase.getInstance().getReference("Users");
         Query query = userDbRef.orderByChild("email").equalTo(email);
@@ -412,6 +414,7 @@ public class AddPostActivity extends AppCompatActivity {
 
 
         menu.findItem(R.id.action_add_post).setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
