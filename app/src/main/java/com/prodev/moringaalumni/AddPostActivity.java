@@ -26,10 +26,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class AddPostActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
+    DatabaseReference userDbRef;
 
     ActionBar actionBar;
 
@@ -50,8 +52,11 @@ public class AddPostActivity extends AppCompatActivity {
     ImageView imageIv;
     Button uploadBtn;
 
+    //user info
+    String name, email, uid, dp;
+
     //image picked will be saved in this uri
-    Uri image_rui;
+    Uri image_rui = null;
 
 
 
