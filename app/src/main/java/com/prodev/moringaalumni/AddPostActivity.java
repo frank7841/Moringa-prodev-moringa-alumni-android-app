@@ -41,6 +41,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+
 public class AddPostActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
@@ -183,6 +185,18 @@ public class AddPostActivity extends AppCompatActivity {
 
                             if (uriTask.isSuccessful()){
 
+                                //url is received upload post to firebase
+                                HashMap<Object, String> hashMap =new HashMap<>();
+                                //put post info
+                                hashMap.put("uid", uid);
+                                hashMap.put("uName", name);
+                                hashMap.put("uEmail", email);
+                                hashMap.put("uDp", dp);
+                                hashMap.put("pId", timeStamp);
+                                hashMap.put("pTitle", title);
+                                hashMap.put("pDescr", description);
+                                hashMap.put("pImage", downloadUri);
+                                hashMap.put("pTime", timeStamp);
                             }
 
                         }
