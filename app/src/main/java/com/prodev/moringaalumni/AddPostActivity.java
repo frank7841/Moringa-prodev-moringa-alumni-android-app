@@ -237,7 +237,20 @@ public class AddPostActivity extends AppCompatActivity {
             }
             break;
             case STORAGE_REQUEST_CODE: {
+                if(grantResults.length>0){
+                    boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if (storageAccepted){
+                        //storage permission granted
+                        pickFromGallery();
+                    }
+                    else {
+                        //camera or gallery or both permissions were denied
+                        Toast.makeText(this, "Storage Permissions Necessary...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
 
+                }
             }
             break;
         }
