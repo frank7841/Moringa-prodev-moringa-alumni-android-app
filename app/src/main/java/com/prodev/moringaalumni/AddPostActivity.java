@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -126,6 +127,23 @@ public class AddPostActivity extends AppCompatActivity {
                 //get data(title, description from EditTexts
                 String title = titleEt.getText().toString().trim();
                 String description = descriptionEt.getText().toString().trim();
+                if (TextUtils.isEmpty(title)){
+                    Toast.makeText(AddPostActivity.this, "Enter Title...", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if ((TextUtils.isEmpty(description))){
+                    Toast.makeText(AddPostActivity.this, "Enter Description", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (image_rui==null){
+                    //post without image
+                    uploaData(title, description, "noImage");
+                }
+                else {
+                    //post with image
+                    uploaData(title, description, String.valueOf(image_rui));
+
+                }
             }
         });
     }
