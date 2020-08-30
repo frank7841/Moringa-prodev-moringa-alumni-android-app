@@ -2,7 +2,13 @@ package com.prodev.moringaalumni.models;
 
 public class ModelUser {
 
-    String name, email, search, phone, image, cover, uid;
+    String name;
+    String email;
+    String search;
+    String phone;
+    String image;
+    String cover;
+    String uid;
      public ModelUser(){
      }
 
@@ -64,7 +70,7 @@ public class ModelUser {
         this.cover = cover;
     }
 
-    public String getUid() {
+    public  String getUid() {
         return uid;
     }
 
