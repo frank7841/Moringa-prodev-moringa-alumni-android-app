@@ -197,6 +197,34 @@ public class AddPostActivity extends AppCompatActivity {
                                 hashMap.put("pDescr", description);
                                 hashMap.put("pImage", downloadUri);
                                 hashMap.put("pTime", timeStamp);
+
+                                //path to store post data
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+                                //put data in this ref
+                                ref.child(timeStamp).setValue(hashMap)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                // added in FB
+                                                pd.dismiss();
+                                                Toast.makeText(AddPostActivity.this, "Post Published", Toast.LENGTH_SHORT).show();
+
+                                                //reset views
+                                                titleEt.setText("");
+                                                descriptionEt.setText("");
+                                                imageIv.setImageURI(null);
+                                                image_rui = null;
+
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                //failed adding post to FB
+                                                pd.dismiss();
+                                                Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
 
                         }
@@ -206,11 +234,53 @@ public class AddPostActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             //failed uploading image
                             pd.dismiss();
+                            Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
         }
         else{
+            //post without image
+            //url is received upload post to firebase
+            HashMap<Object, String> hashMap =new HashMap<>();
+            //put post info
+            hashMap.put("uid", uid);
+            hashMap.put("uName", name);
+            hashMap.put("uEmail", email);
+            hashMap.put("uDp", dp);
+            hashMap.put("pId", timeStamp);
+            hashMap.put("pTitle", title);
+            hashMap.put("pDescr", description);
+            hashMap.put("pImage", "noImage");
+            hashMap.put("pTime", timeStamp);
+
+            //path to store post data
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+            //put data in this ref
+            ref.child(timeStamp).setValue(hashMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // added in FB
+                            pd.dismiss();
+                            Toast.makeText(AddPostActivity.this, "Post Published", Toast.LENGTH_SHORT).show();
+
+                            //reset views
+                            titleEt.setText("");
+                            descriptionEt.setText("");
+                            imageIv.setImageURI(null);
+                            image_rui = null;
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //failed adding post to FB
+                            pd.dismiss();
+                            Toast.makeText(AddPostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
     }
