@@ -2,8 +2,10 @@ package com.prodev.moringaalumni;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -67,6 +69,31 @@ public class AddPostActivity extends AppCompatActivity {
                 String description = descriptionEt.getText().toString().trim();
             }
         });
+    }
+
+    private void showImagePickDialog() {
+        //options (camera, gallery) to show in dialog
+        String[] options = {"Camera", "Gallery"};
+
+        //dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Image From");
+        //set options to dialog
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                //item click handle
+                if (which == 0){
+                    //camera clicked
+                }
+                if (which == 1){
+                    //gallery clicked
+                }
+
+            }
+        });
+        //create and show dialog
+        builder.create().show();
     }
 
     @Override
