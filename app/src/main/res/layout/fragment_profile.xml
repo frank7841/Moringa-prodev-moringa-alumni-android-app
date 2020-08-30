@@ -19,7 +19,7 @@
                 android:layout_height="180dp"
                 android:background="@color/colorPrimaryDark"
                 android:src="@drawable/ic_add_image"
-                android:scaleType="fitCenter">
+                android:scaleType="fitXY">
             </ImageView>
 
 

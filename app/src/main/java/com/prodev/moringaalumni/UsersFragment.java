@@ -26,12 +26,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.adapters.AdapterUsers;
+import com.prodev.moringaalumni.models.ModelUser;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,10 +47,47 @@ public class UsersFragment extends Fragment {
     FirebaseAuth firebaseAuth;
 
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
     public UsersFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment UsersFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static UsersFragment newInstance(String param1, String param2) {
+        UsersFragment fragment = new UsersFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+   /* @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +99,7 @@ public class UsersFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //initialising userList
         userList = new ArrayList<>();
@@ -74,25 +110,20 @@ public class UsersFragment extends Fragment {
 
     private void getAllUsers() {
         //getting the current user
-      final FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userList.clear();
                 for (DataSnapshot ds: snapshot.getChildren()){
-                     ModelUser modelUser = ds.getValue(ModelUser.class);
-                     if (!fUser.getUid().equals(modelUser.getUid())){
-                         userList.add(modelUser);
-                     }
-//
-//                     if(!fUser.getUid().equals(ModelUser.getUid())){
-//                        userList.add(modelUser);
-//                    }
+                    ModelUser modelUser = ds.getValue(ModelUser.class);
+                    if (!modelUser.getUid().equals(fUser.getUid())){
+                        userList.add(modelUser);
+                    }
                     //adapter
                     adapterUsers = new AdapterUsers(getActivity(),userList);
                     //setting adapter to recyclerView
-                    recyclerView.setAdapter(adapterUsers);
 
                 }
             }
@@ -165,9 +196,6 @@ public class UsersFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu_main, menu);
-
-        // hide post action from this fragment
-        menu.findItem(R.id.action_add_post).setVisible(false);
 
         //search view
         MenuItem item = menu.findItem(R.id.action_search);

@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,25 +30,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.adapters.AdapterChat;
+import com.prodev.moringaalumni.models.ModelChat;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.Locale;
 
 import static android.app.PendingIntent.getActivity;
 
-    public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerview;
     ImageView profileIv;
     TextView nameTv;
     TextView userStatusTv;
     EditText messageEt;
-    ImageButton sendBtn;
+    ImageButton sendbtn;
 
 
     ValueEventListener seenListener;
@@ -65,25 +68,22 @@ import static android.app.PendingIntent.getActivity;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+         setSupportActionBar(toolbar);
+         toolbar.setTitle("");
+         toolbar.findViewById(R.id.toolbar);
+         recyclerview.findViewById(R.id.chat_recyclerview);
+         profileIv.findViewById(R.id.proifleIv);
+         nameTv.findViewById(R.id.nameTv);
+         userStatusTv.findViewById(R.id.userStatusTv);
+         messageEt.findViewById(R.id.messageEt);
+         sendbtn.findViewById(R.id.sendBtn);
+         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+         linearLayoutManager.setStackFromEnd(true);
+         recyclerview.setHasFixedSize(true);
+         recyclerview.setLayoutManager(linearLayoutManager);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-
-        recyclerview = findViewById(R.id.chat_recyclerview);
-        profileIv = findViewById(R.id.proifleIv);
-        nameTv = findViewById(R.id.nameTv);
-        userStatusTv = findViewById(R.id.userStatusTv);
-        messageEt = findViewById(R.id.messageEt);
-        sendBtn = findViewById(R.id.sendBtn);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setStackFromEnd(true);
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(linearLayoutManager);
-
-        Intent intent = getIntent();
-        hisUid = intent.getStringExtra("hisUid");
-//        myUid = firebaseAuth.getCurrentUser().getUid();
+         Intent intent = getIntent();
+         hisUid = intent.getStringExtra("hisUid");
 
         //getting firebase auth
         firebaseAuth= FirebaseAuth.getInstance();
@@ -91,7 +91,7 @@ import static android.app.PendingIntent.getActivity;
         usersDbRef = firebaseDatabase.getReference("Users");
         //Searching Users to get their specific info
         Query userQuery = usersDbRef.orderByChild("uid").equalTo(hisUid);
-         //getting the name and theg picture
+        //getting the name and theg picture
         userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,10 +100,34 @@ import static android.app.PendingIntent.getActivity;
                //getting data
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
-                 //setting data in to the view
+               String typingStatus = ""+ds.child("typingTo").getValue();
+
+               //check typing status
+
+               if (typingStatus.equals(myUid)){
+                   userStatusTv.setText("typing...");
+               }
+               else {
+                   String onlineStatus =""+ds.child("onlineStatus").getValue();
+                   if (onlineStatus.equals("online")){
+                       userStatusTv.setText(onlineStatus);
+                   }
+                   else{
+                       //convert timestamp to proper time date
+                       //converting timestamp to dd/mm/yy hh/mn am/pm
+                       Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
+                       cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                       String dateTime = DateFormat.format("dd/mm/yyyy hh:mm am", cal).toString();
+                       userStatusTv.setText("Last seen at: "+ dateTime);
+                   }
+               //get value of online status
+
+                   //add any time stamp
+               }
+               //setting data in to the view
                nameTv.setText(name);
                try {
-                   Picasso.get().load(hisImage).placeholder(R.drawable.ic_face).into(profileIv);
+                   Picasso.get().load(hisUid).placeholder(R.drawable.ic_face).into(profileIv);
 
                } catch (Exception e) {
                    Picasso.get().load(R.drawable.ic_face).into(profileIv);
@@ -117,7 +141,7 @@ import static android.app.PendingIntent.getActivity;
             }
         });
         //send message on click
-        sendBtn.setOnClickListener(new View.OnClickListener() {
+        sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //getting text from the editText widget
@@ -130,6 +154,30 @@ import static android.app.PendingIntent.getActivity;
                     sendMessage(message);
 
                 }
+            }
+        });
+        // check edit text change listener
+        messageEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int  start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().trim().length() ==0){
+                    checkTypingStatus("noOne");
+                }
+                else {
+                    checkTypingStatus(hisUid);//uid of receiver
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
         readMessages();
@@ -167,8 +215,8 @@ import static android.app.PendingIntent.getActivity;
                 chatList.clear();
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat = ds.getValue(ModelChat.class);
-                        if (chat.getReceiver().equals(firebaseAuth.getUid()) && chat.getSender().equals(hisUid)||
-                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(firebaseAuth.getUid())){
+                    if (chat.getReceiver().equals(myUid)&& chat.getSender().equals(hisUid)||
+                            chat.getReceiver().equals(hisUid)&& chat.getSender().equals(myUid)){
                         chatList.add(chat);
                     }
                     adapterChat = new AdapterChat(ChatActivity.this,chatList,hisImage);
@@ -210,18 +258,47 @@ import static android.app.PendingIntent.getActivity;
 
         }
     }
+    private void checkOnlineStatus(String status){
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("onlineStatus", status);
+        //update value of online status of current user
+        dbRef.updateChildren(hashMap);
+
+    }
+    private void checkTypingStatus(String typing){
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("typingTo", typing);
+        //update value of online status of current user
+        dbRef.updateChildren(hashMap);
+
+    }
 
     @Override
     protected void onStart() {
         checkUserStatus();
+        //set online
+        checkOnlineStatus("online");
         super.onStart();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        //get timestamp
+        String timeStamp = String.valueOf(System.currentTimeMillis());
+        //set offline with last seen time stap
+        checkOnlineStatus(timeStamp);
+        checkTypingStatus("noOne");
         userRefForSeen.removeEventListener(seenListener);
 
+    }
+    @Override
+    protected void onResume(){
+        //set online
+        checkOnlineStatus("online");
+        super.onResume();
     }
 
     @Override

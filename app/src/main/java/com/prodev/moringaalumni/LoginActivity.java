@@ -293,6 +293,8 @@ private FirebaseAuth mAuth;
                             hashMap.put("email", email);
                             hashMap.put("uid", uid);
                             hashMap.put("name", "");// baadae
+                            hashMap.put("onlineStatus", "online");
+                            hashMap.put("typingTo", "noOne");
                             hashMap.put("phone", "");
                             hashMap.put("image", "");
                             hashMap.put("cover", "");
