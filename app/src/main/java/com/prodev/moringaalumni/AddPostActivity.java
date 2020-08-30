@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -108,6 +110,19 @@ public class AddPostActivity extends AppCompatActivity {
         });
         //create and show dialog
         builder.create().show();
+    }
+
+    private boolean checkStoragepermission(){
+        //check if storage permission is enabled
+        //return true if enabled
+        //return false if not
+        boolean result = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) ==(PackageManager.PERMISSION_GRANTED);
+        return result;
+    }
+
+    private void  requestStoragePermission(){
+
     }
 
     @Override
