@@ -30,7 +30,7 @@ public class AddPostActivity extends AppCompatActivity {
 
     //permoissions constants
     private  static final int CAMERA_REQUEST_CODE = 100;
-    private  static final int STORAGE_REQUEST_CODE = 100;
+    private  static final int STORAGE_REQUEST_CODE = 200;
 
     //permissions array
     String[] cameraPermissions;
@@ -102,15 +102,33 @@ public class AddPostActivity extends AppCompatActivity {
                 //item click handle
                 if (which == 0){
                     //camera clicked
+                    if(!checkCameraPermission()){
+                        requestCameraPermission();
+                    }
+                    else {
+                        pickFromCamera();
+                    }
                 }
                 if (which == 1){
                     //gallery clicked
+                    if (!checkStoragePermission()){
+                        requestStoragePermission();
+                    }
+                    else {
+                        pickFromGallery();
+                    }
                 }
 
             }
         });
         //create and show dialog
         builder.create().show();
+    }
+
+    private void pickFromGallery() {
+    }
+
+    private void pickFromCamera() {
     }
 
     private boolean checkStoragePermission(){
@@ -189,5 +207,25 @@ public class AddPostActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    //handle permission results
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // this method is called when user press Allow or deny from permission requset dialog
+        //handling permission cases
+
+        switch (requestCode){
+            case CAMERA_REQUEST_CODE: {
+
+            }
+            break;
+            case STORAGE_REQUEST_CODE: {
+
+            }
+            break;
+        }
     }
 }
