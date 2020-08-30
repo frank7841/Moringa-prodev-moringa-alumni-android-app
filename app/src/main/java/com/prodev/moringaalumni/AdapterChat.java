@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.prodev.moringaalumni.models.ModelChat;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;

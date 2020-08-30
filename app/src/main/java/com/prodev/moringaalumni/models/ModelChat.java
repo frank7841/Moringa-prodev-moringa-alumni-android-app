@@ -1,4 +1,4 @@
-package com.prodev.moringaalumni;
+package com.prodev.moringaalumni.models;
 
 public class ModelChat {
     String message,sender, receiver, timestamp;
