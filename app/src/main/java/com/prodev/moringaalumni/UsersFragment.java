@@ -99,7 +99,7 @@ public class UsersFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = view.findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //initialising userList
         userList = new ArrayList<>();
@@ -110,7 +110,7 @@ public class UsersFragment extends Fragment {
 
     private void getAllUsers() {
         //getting the current user
-        FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser fUser= FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
