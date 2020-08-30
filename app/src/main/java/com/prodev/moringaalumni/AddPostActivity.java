@@ -140,7 +140,7 @@ public class AddPostActivity extends AppCompatActivity {
 
     private void  requestCameraPermission(){
         //request runtime storage permission
-        ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     @Override
