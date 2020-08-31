@@ -63,6 +63,8 @@ public class HomeFragment extends Fragment {
         //show newest post
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
+        //set layput to recycler view
+        recyclerView.setLayoutManager(layoutManager);
 
         //init post list
         postList = new ArrayList<>();
