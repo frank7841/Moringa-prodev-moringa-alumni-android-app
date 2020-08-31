@@ -92,6 +92,30 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
             }
         });
+        myHolder.likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //will implement later
+                Toast.makeText(context, "Like", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        myHolder.commentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //will implement later
+                Toast.makeText(context, "Comment", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        myHolder.shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //will implement later
+                Toast.makeText(context, "Share", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
     }
 
