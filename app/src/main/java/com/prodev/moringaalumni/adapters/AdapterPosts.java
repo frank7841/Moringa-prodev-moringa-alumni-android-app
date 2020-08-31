@@ -14,8 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.prodev.moringaalumni.R;
 import com.prodev.moringaalumni.models.ModelPost;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
@@ -51,8 +56,19 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         String pTimeStamp = postList.get(i).getpTime();
 
         //convert timestamp to dd/mm/yyyy hh:mm am/pm
+        Calendar calendar = Calendar.getInstance(Locale.getDefault());
+        calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
+//        String pTime = DateFormat.format("dd/MM/YYY hh:mm aa", calendar).toString();
 
+        //set user dp
+        try{
+            Picasso.get().load(uDp).placeholder(R.drawable.ic_deafault_face).into(myHolder.uPictureIv);
+        }
+        catch (Exception e){
 
+        }
+
+        //set post image
     }
 
     @Override
