@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +61,12 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
 //        String pTime = DateFormat.format("dd/MM/YYY hh:mm aa", calendar).toString();
 
+        // set data
+        myHolder.uNametv.setText(uName);
+//        myHolder.pTimeTv.setText(pTimeStamp);
+        myHolder.pTitleTv.setText(pTitle);
+        myHolder.pDescriptionTv.setText(pDescription);
+
         //set user dp
         try{
             Picasso.get().load(uDp).placeholder(R.drawable.ic_deafault_face).into(myHolder.uPictureIv);
@@ -75,6 +82,17 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         catch (Exception e){
 
         }
+
+        // handle button clicks
+        myHolder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //will implement later
+                Toast.makeText(context, "More", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 
     @Override
