@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,7 +29,10 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //inflate layout row_post.xml
+        View view = LayoutInflater.from(context).inflate(R.layout.row_posts, viewGroup, false);
+
         return null;
     }
 
@@ -39,7 +43,7 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return postList.size();
     }
 
     //view holder class
