@@ -153,9 +153,9 @@ public class UsersFragment extends Fragment {
                     user not current user
                     the user name or email contains text entered in search view
                      */
-                    if (!modelUser.getUid().equals(fUser.getUid())){
+                    if (!fUser.getUid().equals(modelUser.getUid())){
                         if(modelUser.getName().toLowerCase().contains(query.toLowerCase()) ||
-                                modelUser.getEmail().toLowerCase().contains(query.toLowerCase())){
+                                fUser.getEmail().toLowerCase().contains(query.toLowerCase())){
                             userList.add(modelUser);
                         }
 
