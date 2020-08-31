@@ -69,6 +69,12 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         }
 
         //set post image
+        try{
+            Picasso.get().load(pImage).into(myHolder.pImageIv);
+        }
+        catch (Exception e){
+
+        }
     }
 
     @Override
