@@ -33,11 +33,25 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         //inflate layout row_post.xml
         View view = LayoutInflater.from(context).inflate(R.layout.row_posts, viewGroup, false);
 
-        return null;
+        return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+
+        //get data
+        String uid = postList.get(i).getUid();
+        String uEmail = postList.get(i).getuEmail();
+        String uName = postList.get(i).getuName();
+        String uDp = postList.get(i).getuDp();
+        String pId = postList.get(i).getpId();
+        String pTitle = postList.get(i).getpTitle();
+        String pDescription = postList.get(i).getpDescr();
+        String pImage = postList.get(i).getpImage();
+        String pTimeStamp = postList.get(i).getpTime();
+
+        //convert timestamp to dd/mm/yyyy hh:mm am/pm
+
 
     }
 

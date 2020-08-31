@@ -2,13 +2,13 @@ package com.prodev.moringaalumni.models;
 
 public class ModelPost {
     // use same name as uploading post
-    String pId, pTitle, pDescr, pImage, uid, uEmail, uDp, uName;
+    String pId, pTitle, pDescr,pTime,  pImage, uid, uEmail, uDp, uName;
 
     public ModelPost(){
 
     }
 
-    public ModelPost(String pId, String pTitle, String pDescr, String pImage, String uid, String uEmail, String uDp, String uName) {
+    public ModelPost(String pId, String pTitle, String pDescr, String pImage, String uid, String uEmail, String uDp, String uName, String pTime) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pDescr = pDescr;
@@ -17,6 +17,7 @@ public class ModelPost {
         this.uEmail = uEmail;
         this.uDp = uDp;
         this.uName = uName;
+        this.pTime = pTime;
     }
 
     public String getpId() {
@@ -51,6 +52,9 @@ public class ModelPost {
         this.pImage = pImage;
     }
 
+    public String getpTime(){
+        return pTime;
+    }
     public String getUid() {
         return uid;
     }
