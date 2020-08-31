@@ -76,12 +76,22 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
         }
 
         //set post image
-        try{
-            Picasso.get().load(pImage).into(myHolder.pImageIv);
-        }
-        catch (Exception e){
+        //if there is no image i.e pImage.equals("noImage") then hide Imageview
+        if(pImage.equals("noImage")){
+            //hide image view
+            myHolder.pImageIv.setVisibility(View.GONE);
 
         }
+        else{
+            try{
+                Picasso.get().load(pImage).into(myHolder.pImageIv);
+            }
+            catch (Exception e){
+
+            }
+
+        }
+
 
         // handle button clicks
         myHolder.moreBtn.setOnClickListener(new View.OnClickListener() {
