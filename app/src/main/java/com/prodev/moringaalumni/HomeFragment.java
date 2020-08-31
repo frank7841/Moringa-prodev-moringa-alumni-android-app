@@ -152,7 +152,41 @@ public class HomeFragment extends Fragment {
                 return false;
             }
 
-            private void searchPosts(String s) {
+            private void searchPosts(String searchQuery) {
+
+                //path of all posts
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+                //get all data from this ref
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        postList.clear();
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            ModelPost modelPost = ds.getValue(ModelPost.class);
+
+                            if(modelPost.getpTitle().toLowerCase().contains(searchQuery.toLowerCase()) ||
+                                modelPost.getpDescr().toLowerCase().contains(searchQuery.toLowerCase())){
+
+                                postList.add(modelPost);
+                            };
+
+
+
+                            //adapter
+                            adapterPosts = new AdapterPosts(getActivity(), postList);
+                            //set adapter to recyclerview
+                            recyclerView.setAdapter(adapterPosts);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // in case of error
+                        Toast.makeText(getActivity(), ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
 
             @Override
