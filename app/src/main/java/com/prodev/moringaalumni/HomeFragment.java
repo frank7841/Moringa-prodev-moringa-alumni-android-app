@@ -17,9 +17,12 @@ import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.prodev.moringaalumni.adapters.AdapterPosts;
 import com.prodev.moringaalumni.models.ModelPost;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,8 +62,20 @@ public class HomeFragment extends Fragment {
         //show newest post
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
+
+        //init post list
+        postList = new ArrayList<>();
+
+        loadPosts();
+
       return view;
     }
+
+    private void loadPosts() {
+        //path of all posts
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    }
+
     private void checkUserStatus(){
 //        get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
