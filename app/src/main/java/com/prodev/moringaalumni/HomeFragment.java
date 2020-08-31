@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -135,20 +136,38 @@ public class HomeFragment extends Fragment {
         //searchview to search posts by post
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        super.onCreateOptionsMenu(menu, inflater);
+
 
         //search listener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                //called when user press search button
+                if(!TextUtils.isEmpty(s)){
+                    searchPosts(s);
+                }
+                else{
+                    loadPosts();
+                }
                 return false;
+            }
+
+            private void searchPosts(String s) {
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                if(!TextUtils.isEmpty(s)){
+                    searchPosts(s);
+                }
+                else{
+                    loadPosts();
+                }
                 return false;
             }
         });
+
+        super.onCreateOptionsMenu(menu, inflater);
 
     }
     @Override
