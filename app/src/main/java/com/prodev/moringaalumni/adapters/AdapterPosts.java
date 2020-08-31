@@ -2,6 +2,7 @@ package com.prodev.moringaalumni.adapters;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +20,27 @@ public class AdapterPosts  extends RecyclerView.Adapter<AdapterPosts.MyHolder>{
 
     Context context;
     List<ModelPost> postList;
+
+    public AdapterPosts(Context context, List<ModelPost> postList) {
+        this.context = context;
+        this.postList = postList;
+    }
+
+    @NonNull
+    @Override
+    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
 
     //view holder class
     class MyHolder extends RecyclerView.ViewHolder{
