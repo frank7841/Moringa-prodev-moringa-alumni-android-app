@@ -120,6 +120,7 @@ import static android.app.PendingIntent.getActivity;
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
                  //setting data in to the view
+               String  onlineStatus = "" + ds.child("onlineStatus").getValue();
                nameTv.setText(name);
                try {
                    Picasso.get().load(hisImage).placeholder(R.drawable.ic_face).into(profileIv);
