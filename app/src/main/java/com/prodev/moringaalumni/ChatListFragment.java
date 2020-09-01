@@ -95,14 +95,23 @@ public class ChatListFragment extends Fragment {
                         }
                     }
                     adapterChatlist = new AdapterChatlist(getContext(), userList);
+                    recyclerView.setAdapter(adapterChatlist);
+                    //set last message
+                    for (int i=0; i<userList.size();i++){
+                        lastMessage(userList.get(i).getUid());
+                    }
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error)
+            public void onCancelled(@NonNull DatabaseError error){
 
             }
+
         });
+    }
+
+    private void lastMessage(String uid) {
     }
 
     private void checkUserStatus(){
