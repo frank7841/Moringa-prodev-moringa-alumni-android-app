@@ -305,14 +305,24 @@ import static android.app.PendingIntent.getActivity;
     @Override
     protected void onStart() {
         checkUserStatus();
+        //set online
+        checkOnlineStatus("online");
         super.onStart();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        String timeStamp = String.valueOf(System.currentTimeMillis());
+        //set offline status with last seen time stamp
         userRefForSeen.removeEventListener(seenListener);
 
+    }
+    @Override
+    protected  void onResume(){
+        //set online
+        checkOnlineStatus("online");
+        super.onResume();
     }
 
     @Override
