@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,8 +42,10 @@ import com.prodev.moringaalumni.notifications.Token;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -121,7 +124,19 @@ import static android.app.PendingIntent.getActivity;
                hisImage = ""+ds.child("image").getValue();
                  //setting data in to the view
                String  onlineStatus = "" + ds.child("onlineStatus").getValue();
+               if (onlineStatus.equals("online")){
+                   userStatusTv.setText(onlineStatus);
+               }
+               else {
+                   //convert timeStamp to proper date
+                   //converting timestamp to dd/mm/yy hh/mn am/pm
+                   Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
+                   cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                   String dateTime = DateFormat.format("dd/mm/yyyy hh:mm aa", cal).toString();
+                   userStatusTv.setText("Last seen at " + dateTime);
+               }
                nameTv.setText(name);
+
                try {
                    Picasso.get().load(hisImage).placeholder(R.drawable.ic_face).into(profileIv);
 
@@ -294,7 +309,7 @@ import static android.app.PendingIntent.getActivity;
 
     }
         private void checkOnlineStatus (String status){
-            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child(myUid);
+            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("onlineStatus", status);
             //update value of online status
