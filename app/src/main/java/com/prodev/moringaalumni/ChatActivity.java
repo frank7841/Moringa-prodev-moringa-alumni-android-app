@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -122,19 +124,27 @@ import static android.app.PendingIntent.getActivity;
                //getting data
                String name = ""+ds.child("name").getValue();
                hisImage = ""+ds.child("image").getValue();
+               String typingStatus= ""+ds.child("typingTo").getValue();
+               if (typingStatus.equals(myUid)){
+                   userStatusTv.setText("typing...");
+               }
+               else{
+                   String  onlineStatus = "" + ds.child("onlineStatus").getValue();
+                   if (onlineStatus.equals("online")){
+                       userStatusTv.setText(onlineStatus);
+                   }
+                   else {
+                       //convert timeStamp to proper date
+                       //converting timestamp to dd/mm/yy hh/mn am/pm
+                       Calendar cal=Calendar.getInstance(Locale.ENGLISH);
+                       cal.setTimeInMillis(Long.parseLong(onlineStatus));
+                       String dateTime= DateFormat.format("dd/MM/yyyy hh:mm aa",cal).toString();
+                       userStatusTv.setText("Last seen at: "+ dateTime);
+                   }
+
+               }
                  //setting data in to the view
-               String  onlineStatus = "" + ds.child("onlineStatus").getValue();
-               if (onlineStatus.equals("online")){
-                   userStatusTv.setText(onlineStatus);
-               }
-               else {
-                   //convert timeStamp to proper date
-                   //converting timestamp to dd/mm/yy hh/mn am/pm
-                   Calendar cal =  Calendar.getInstance(Locale.ENGLISH);
-                   cal.setTimeInMillis(Long.parseLong(onlineStatus));
-                   String dateTime = DateFormat.format("dd/mm/yyyy hh:mm aa", cal).toString();
-                   userStatusTv.setText("Last seen at " + dateTime);
-               }
+
                nameTv.setText(name);
 
                try {
@@ -169,6 +179,28 @@ import static android.app.PendingIntent.getActivity;
 
                 messageEt.setText("");
             }
+        });
+        //check edit text change listener
+        messageEt.addTextChangedListener(new TextWatcher(){
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+                if (s.toString().trim().length() ==0){
+                    checkTypingStatus("noOne");
+                }
+                else{
+                    checkTypingStatus(hisUid);//uid of receiver
+                }
+
+            }
+            @Override
+            public void afterTextChanged(Editable s){
+
+            }
+
         });
         readMessages();
         seenMessage();
@@ -317,6 +349,15 @@ import static android.app.PendingIntent.getActivity;
             dbRef.updateChildren(hashMap);
 
         }
+        private void checkTypingStatus (String typing){
+            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("typingTo", typing);
+            //update value of online status
+
+            dbRef.updateChildren(hashMap);
+
+        }
 
     @Override
     protected void onStart() {
@@ -330,6 +371,8 @@ import static android.app.PendingIntent.getActivity;
     protected void onPause() {
         super.onPause();
         String timeStamp = String.valueOf(System.currentTimeMillis());
+        checkOnlineStatus(timeStamp);
+        checkTypingStatus("noOne");
         //set offline status with last seen time stamp
         userRefForSeen.removeEventListener(seenListener);
 
