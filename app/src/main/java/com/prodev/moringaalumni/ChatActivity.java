@@ -31,8 +31,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.prodev.moringaalumni.models.ModelChat;
+import com.prodev.moringaalumni.models.ModelUser;
 import com.prodev.moringaalumni.notifications.APIService;
 import com.prodev.moringaalumni.notifications.Client;
+import com.prodev.moringaalumni.notifications.Data;
+import com.prodev.moringaalumni.notifications.Response;
+import com.prodev.moringaalumni.notifications.Sender;
+import com.prodev.moringaalumni.notifications.Token;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,6 +47,8 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -213,9 +220,62 @@ import static android.app.PendingIntent.getActivity;
         databaseReference.child("Chats").push().setValue(hashMap);
         //reset EditText fild
         messageEt.setText("");
+
+        String msg = message;
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ModelUser user = dataSnapshot.getValue(ModelUser.class);
+
+                if(notify){
+                    sendNotification(hisUid, user.getName(), message);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-    private void checkUserStatus() {
+        private void sendNotification(final String hisUid, final String name, final String message) {
+        DatabaseReference allTokens = FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = allTokens.orderByKey().equalTo(hisUid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds:snapshot.getChildren()){
+                    Token token=ds.getValue(Token.class);
+                    Data data=new Data(myUid, name + ":" + message, "New Message", hisUid, R.drawable.ic_default_img);
+
+                    Sender sender=new Sender(data,token.getToken());
+                    apiService.sendNotification(sender)
+                            .enqueue(new Callback<Response>() {
+                                @Override
+                                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                                    Toast.makeText(ChatActivity.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<Response> call, Throwable t) {
+
+                                }
+                            });
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+        }
+
+        private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null){
             myUid= user.getUid();
