@@ -78,6 +78,8 @@ public class ChatListFragment extends Fragment {
     }
 
     private void loadChats() {
+        userList = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
     }
 
     private void checkUserStatus(){
