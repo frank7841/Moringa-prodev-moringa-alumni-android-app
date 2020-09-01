@@ -1,5 +1,6 @@
 package com.prodev.moringaalumni.adapters;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,8 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.prodev.moringaalumni.R;
+import com.prodev.moringaalumni.models.ModelChatlist;
+import com.prodev.moringaalumni.models.ModelUser;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHolder> {
+    Context context;
+    List<ModelUser> userList;// getting user inforamtion
+    private HashMap<String, String> lastMessageMap;
+
+    public AdapterChatlist(Context context, List<ModelUser> userList, HashMap<String, String> lastMessageMap) {
+        this.context = context;
+        this.userList = userList;
+        this.lastMessageMap = lastMessageMap;
+    }
+
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
