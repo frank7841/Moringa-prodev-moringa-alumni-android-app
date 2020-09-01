@@ -1,6 +1,17 @@
 package com.prodev.moringaalumni.notifications;
 
 public class Sender {
+
+    private Data data;
+    private String to;
+
+    public Sender(){
+
+    }
+    public Sender(Data data, String to){
+        this.data =data;
+        this.to = to;
+    }
     public Data getData() {
         return data;
     }
@@ -17,15 +28,6 @@ public class Sender {
         this.to = to;
     }
 
-    private Data data;
-    private String to;
 
-    public Sender(){
-
-    }
-    public Sender(Data data, String to){
-        this.data =data;
-        this.to = to;
-    }
 
 }
