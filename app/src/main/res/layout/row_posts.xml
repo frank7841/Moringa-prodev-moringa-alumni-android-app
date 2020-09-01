@@ -70,7 +70,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:text="Title"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"/>
@@ -78,7 +78,7 @@
         <TextView
             android:id="@+id/pDescriptionTv"
             android:text="The Descriptiom of the post"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="all"/>
