@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +21,7 @@ public class ChatListFragment extends Fragment {
     // firebase auth
 
     FirebaseAuth firebaseAuth;
+    RecyclerView recyclerView;
 
 
     public ChatListFragment() {
@@ -35,6 +37,7 @@ public class ChatListFragment extends Fragment {
 
         //init
         firebaseAuth = FirebaseAuth.getInstance();
+        recyclerView = view.findViewById(R.id.recyclerView);
 
         return view;
     }
