@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="3dp">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileIv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_deafault_face"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/onlineStatusIv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="His Name"
+            android:layout_marginStart="4dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_toEndOf="@id/profileIv"
+            android:layout_toRightOf="@id/profileIv"
+            android:layout_marginLeft="3dp" />
+        <TextView
+            android:id="@+id/lastMessageTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="the last Message"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/profileIv"
+            android:layout_toRightOf="@id/profileIv"
+            android:layout_below="@id/nameTv"
+            android:layout_marginLeft="4dp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
