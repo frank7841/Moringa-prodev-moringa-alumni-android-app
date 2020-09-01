@@ -40,7 +40,7 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
 
     @Override
     public int getItemCount() {
-        return 0;
+        return userList.size();
     }
 
     class MyHolder extends RecyclerView.ViewHolder{
