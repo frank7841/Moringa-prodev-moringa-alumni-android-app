@@ -190,6 +190,8 @@ import static android.app.PendingIntent.getActivity;
 
             }
         });
+        //Created Chatlist node
+        DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("Chatlist");
     }
 
     private void sendMessage(String message) {
