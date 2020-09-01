@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -113,6 +114,11 @@ public class DashboardActivity extends AppCompatActivity {
             // set email of logged in user
              //mProfileTv.setText(user.getEmail());ID =
             mUID = user.getUid();
+
+            SharedPreferences sp =getSharedPreferences("SP_USER", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("Current_USERID", mUID);
+            editor.apply();
 
         }
         else {
