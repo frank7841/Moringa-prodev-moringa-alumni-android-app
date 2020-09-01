@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.adapters.AdapterChatlist;
 import com.prodev.moringaalumni.models.ModelChatlist;
 import com.prodev.moringaalumni.models.ModelUser;
 
@@ -37,6 +38,7 @@ public class ChatListFragment extends Fragment {
     List<ModelUser>userList;
     DatabaseReference databaseReference;
     FirebaseUser currentUser;
+    AdapterChatlist adapterChatlist;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -80,6 +82,27 @@ public class ChatListFragment extends Fragment {
     private void loadChats() {
         userList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    ModelUser user = ds.getValue(ModelUser.class);
+                    for (ModelChatlist chatlist: chatlistList) {
+                        if (user.getUid() != null && user.getUid().equals(chatlist.getId())) {
+                            userList.add(user);
+                            break;
+                        }
+                    }
+                    adapterChatlist = new AdapterChatlist(getContext(), userList);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+
+            }
+        });
     }
 
     private void checkUserStatus(){
