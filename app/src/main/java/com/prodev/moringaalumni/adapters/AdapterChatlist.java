@@ -25,10 +25,10 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
     List<ModelUser> userList;// getting user inforamtion
     private HashMap<String, String> lastMessageMap;
 
-    public AdapterChatlist(Context context, List<ModelUser> userList, HashMap<String, String> lastMessageMap) {
+    public AdapterChatlist(Context context, List<ModelUser> userList) {
         this.context = context;
         this.userList = userList;
-        this.lastMessageMap = lastMessageMap;
+        lastMessageMap = new HashMap<>();
     }
 
     @NonNull
@@ -82,6 +82,10 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
                 context.startActivity(intent);
             }
         });
+
+    }
+    public void setLastMessageMap(String userId, String lastMessage){
+        lastMessageMap.put(userId,lastMessage);
     }
 
     @Override
