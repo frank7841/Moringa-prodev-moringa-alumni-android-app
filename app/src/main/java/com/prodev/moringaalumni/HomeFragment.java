@@ -1,6 +1,8 @@
 package com.prodev.moringaalumni;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,9 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.prodev.moringaalumni.adapters.AdapterPost;
 import com.prodev.moringaalumni.models.ModelPost;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,8 +80,32 @@ public class HomeFragment extends Fragment {
         //show newest post first, for this load from last
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
+        
+        //init post
+        postList = new ArrayList<>();
+        
+        loadPosts();
+        
         return view;
     }
+
+    private void loadPosts() {
+        //path of all posts
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        //get all data from this ref
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void checkUserStatus(){
 //        get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
