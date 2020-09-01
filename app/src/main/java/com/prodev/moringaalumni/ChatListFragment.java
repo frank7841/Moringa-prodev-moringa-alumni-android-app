@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.prodev.moringaalumni.models.ModelChatlist;
+import com.prodev.moringaalumni.models.ModelUser;
+
+import java.util.List;
 
 public class ChatListFragment extends Fragment {
 
@@ -22,7 +27,10 @@ public class ChatListFragment extends Fragment {
 
     FirebaseAuth firebaseAuth;
     RecyclerView recyclerView;
-
+    List<ModelChatlist> chatlistList;
+    List<ModelUser>userList;
+    DatabaseReference databaseReference;
+    FirebaseUser currentUser;
 
     public ChatListFragment() {
         // Required empty public constructor
@@ -37,6 +45,7 @@ public class ChatListFragment extends Fragment {
 
         //init
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser= FirebaseAuth.getInstance().getCurrentUser();
         recyclerView = view.findViewById(R.id.recyclerView);
 
         return view;
