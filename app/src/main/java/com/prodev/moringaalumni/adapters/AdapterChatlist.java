@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,7 +31,10 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        //inflating the Layout
+        View view = LayoutInflater.from(context).inflate(R.layout.row_chatlist, parent,false);
+
+        return new MyHolder(view);
     }
 
     @Override
