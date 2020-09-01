@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.prodev.moringaalumni.R;
 import com.prodev.moringaalumni.models.ModelChatlist;
 import com.prodev.moringaalumni.models.ModelUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,11 +44,25 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
         String hisUid = userList.get(position).getUid();
         String userImage = userList.get(position).getImage();
         String userName = userList.get(position).getName();
-        String latsMessage = lastMessageMap.get(hisUid);
+        String lastMessage = lastMessageMap.get(hisUid);
 
         //setting data
         holder.nameTv.setText(userName);
+        if (lastMessage == null || lastMessage.equals("default")){
+            holder.lastMessageTv.setVisibility(View.GONE);
+        }
+        else {
+            holder.lastMessageTv.setVisibility(View.VISIBLE);
 
+            holder.lastMessageTv.setText(lastMessage);
+
+        }
+        try {
+            Picasso.get().load(userImage).placeholder(R.drawable.ic_deafault_face).into(holder.profileIv);
+        } catch (Exception e) {
+
+            Picasso.get().load(R.drawable.ic_deafault_face).into(holder.profileIv);
+        }
     }
 
     @Override
