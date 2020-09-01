@@ -9,16 +9,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.prodev.moringaalumni.models.ModelChatlist;
 import com.prodev.moringaalumni.models.ModelUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatListFragment extends Fragment {
@@ -47,8 +53,31 @@ public class ChatListFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
         recyclerView = view.findViewById(R.id.recyclerView);
+        chatlistList = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Chatlist").child(currentUser.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                chatlistList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    ModelChatlist chatlist= ds.getValue(ModelChatlist.class);
+                    chatlistList.add(chatlist);
+                }
+                loadChats();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return view;
+    }
+
+    private void loadChats() {
     }
 
     private void checkUserStatus(){
