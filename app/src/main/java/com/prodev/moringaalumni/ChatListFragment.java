@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prodev.moringaalumni.adapters.AdapterChatlist;
+import com.prodev.moringaalumni.models.ModelChat;
 import com.prodev.moringaalumni.models.ModelChatlist;
 import com.prodev.moringaalumni.models.ModelUser;
 
@@ -111,7 +112,40 @@ public class ChatListFragment extends Fragment {
         });
     }
 
-    private void lastMessage(String uid) {
+    private void lastMessage(String userId) {
+        DatabaseReference reference =FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String theLastMessage = "default";
+                for (DataSnapshot ds:snapshot.getChildren()){
+                    ModelChat chat = ds.getValue(ModelChat.class);
+                    if (chat==null){
+                        continue;
+                    }
+                    String sender = chat.getSender();
+                    String receiver= chat.getReceiver();
+                    if (sender == null || receiver == null){
+                        continue;
+                    }
+                    if (chat.getReceiver().equals(currentUser.getUid()) &&
+                            chat.getSender().equals(userId) ||
+                    chat.getReceiver().equals(userId) &&
+                    chat.getReceiver().equals(currentUser.getUid())){
+                        theLastMessage = chat.getMessage();
+
+                    }
+                }
+                adapterChatlist.setLastMessageMap(userId, theLastMessage);
+                adapterChatlist.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void checkUserStatus(){

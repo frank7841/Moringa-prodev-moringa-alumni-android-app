@@ -13,11 +13,11 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profileIv"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/ic_deafault_face"/>
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <ImageView
             android:id="@+id/onlineStatusIv"
             android:layout_width="25dp"
             android:layout_height="25dp"/>
@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="the last Message"
+            android:maxLines="2"
             android:layout_marginStart="4dp"
             android:layout_toEndOf="@id/profileIv"
             android:layout_toRightOf="@id/profileIv"

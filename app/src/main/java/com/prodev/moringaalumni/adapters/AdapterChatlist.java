@@ -67,10 +67,10 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
         }
         //setting online status
         if (userList.get(position).getOnlineStatus().equals("online")){
-            Picasso.get().load(R.drawable.circle_online).into(holder.onlineStatusIv);
+            holder.onlineStatusIv.setImageResource(R.drawable.circle_online);
         }
         else {
-            Picasso.get().load(R.drawable.circle_offline).into(holder.onlineStatusIv);
+            holder.onlineStatusIv.setImageResource(R.drawable.circle_offline);
         }
         //handling item clicks on user chatlist
         holder.itemView.setOnClickListener(new View.OnClickListener() {
