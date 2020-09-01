@@ -1,6 +1,7 @@
 package com.prodev.moringaalumni.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.prodev.moringaalumni.ChatActivity;
 import com.prodev.moringaalumni.R;
 import com.prodev.moringaalumni.models.ModelChatlist;
 import com.prodev.moringaalumni.models.ModelUser;
@@ -70,6 +72,16 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
         else {
             Picasso.get().load(R.drawable.circle_offline).into(holder.onlineStatusIv);
         }
+        //handling item clicks on user chatlist
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //start chatActivity with that user
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("hisUid",hisUid);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
