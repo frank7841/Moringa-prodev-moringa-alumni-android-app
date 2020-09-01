@@ -63,6 +63,13 @@ public class AdapterChatlist extends  RecyclerView.Adapter<AdapterChatlist.MyHol
 
             Picasso.get().load(R.drawable.ic_deafault_face).into(holder.profileIv);
         }
+        //setting online status
+        if (userList.get(position).getOnlineStatus().equals("online")){
+            Picasso.get().load(R.drawable.circle_online).into(holder.onlineStatusIv);
+        }
+        else {
+            Picasso.get().load(R.drawable.circle_offline).into(holder.onlineStatusIv);
+        }
     }
 
     @Override
