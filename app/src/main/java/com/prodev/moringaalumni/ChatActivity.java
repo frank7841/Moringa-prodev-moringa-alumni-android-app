@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.prodev.moringaalumni.models.ModelChat;
+import com.prodev.moringaalumni.notifications.APIService;
+import com.prodev.moringaalumni.notifications.Client;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -65,6 +67,9 @@ import static android.app.PendingIntent.getActivity;
     String myUid;
     String hisImage;
 
+        APIService apiService;
+        boolean notify = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +89,9 @@ import static android.app.PendingIntent.getActivity;
         linearLayoutManager.setStackFromEnd(true);
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(linearLayoutManager);
+
+
+        apiService = Client.getRetrofit("https://fcm.googlepis.com").create(APIService.class);
 
         Intent intent = getIntent();
         hisUid = intent.getStringExtra("hisUid");
@@ -121,19 +129,20 @@ import static android.app.PendingIntent.getActivity;
             }
         });
         //send message on click
+        //send message on click
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //getting text from the editText widget
-                String message = messageEt.getText().toString().trim();
-                //checking if message is empty
-                if (TextUtils.isEmpty(message)){
-                    Toast.makeText(ChatActivity.this, "Cannot send the empty message ...", Toast.LENGTH_SHORT).show();
+                notify=true;
 
+                String message=messageEt.getText().toString().trim();
+                if (TextUtils.isEmpty(message)){
+                    Toast.makeText(ChatActivity.this, "Cannot send the empty message.....", Toast.LENGTH_SHORT).show();
                 }else {
                     sendMessage(message);
 
                 }
+                messageEt.setText("");
             }
         });
         readMessages();

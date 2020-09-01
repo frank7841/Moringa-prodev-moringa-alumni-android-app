@@ -29,11 +29,11 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
 
-        SharedPreferences sp=getSharedPreferences("SP_USER",MODE_PRIVATE);
-        String savedCurrentUser=sp.getString("Current_USERID","None");
+        SharedPreferences sp = getSharedPreferences("SP_USER",MODE_PRIVATE);
+        String savedCurrentUser = sp.getString("Current_USERID","None");
 
-        String sent=remoteMessage.getData().get("sent");
-        String user=remoteMessage.getData().get("user");
+        String sent = remoteMessage.getData().get("sent");
+        String user = remoteMessage.getData().get("user");
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (fUser!= null && sent.equals(fUser.getUid())){
