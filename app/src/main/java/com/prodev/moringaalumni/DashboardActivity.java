@@ -14,6 +14,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.prodev.moringaalumni.notifications.Token;
 
 public class DashboardActivity extends AppCompatActivity {
     // firebase auth
@@ -21,6 +25,8 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     ActionBar actionBar;
+
+    String mUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,15 @@ public class DashboardActivity extends AppCompatActivity {
         ft1.replace(R.id.content, fragment1, "");
         ft1.commit();
 
+        //update token
+        updateToken(FirebaseInstanceId.getInstance().getToken());
+
+
+    }
+    public void updateToken(String token){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token mToken = new Token(token);
+        ref.child(mUID).setValue(mToken);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
@@ -96,7 +111,8 @@ public class DashboardActivity extends AppCompatActivity {
         if (user !=null){
             // user is signed in stay here
             // set email of logged in user
-             //mProfileTv.setText(user.getEmail());
+             //mProfileTv.setText(user.getEmail());ID =
+            mUID = user.getUid();
 
         }
         else {
