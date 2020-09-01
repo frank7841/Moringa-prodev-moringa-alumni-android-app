@@ -149,6 +149,8 @@ import static android.app.PendingIntent.getActivity;
                     sendMessage(message);
 
                 }
+                //reset editText after sending message;
+
                 messageEt.setText("");
             }
         });
@@ -222,7 +224,7 @@ import static android.app.PendingIntent.getActivity;
         messageEt.setText("");
 
         String msg = message;
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -231,6 +233,7 @@ import static android.app.PendingIntent.getActivity;
                 if(notify){
                     sendNotification(hisUid, user.getName(), message);
                 }
+                notify = false;
             }
 
             @Override
@@ -286,7 +289,18 @@ import static android.app.PendingIntent.getActivity;
             finish();
 
         }
+
+
     }
+        private void checkOnlineStatus (String status){
+            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child(myUid);
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("onlineStatus", status);
+            //update value of online status
+
+            dbRef.updateChildren(hashMap);
+
+        }
 
     @Override
     protected void onStart() {
