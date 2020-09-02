@@ -74,8 +74,6 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
 
         }
 
-//        holder.blockIv.setImageResource(R.drawable.ic_unblock);
-//        checkIsBlock(hisUid,holder,position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,45 +99,15 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
             }
         });
 
-//        holder.blockIv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                if (userList.get(position).isBlocked()){
-//                    umBlockUser(hisUid);
-//
-//                }else {
-//                    blockUser(hisUid);
-//                }
-//
-//            }
-//        });
     }
 
     private void openChat(final String hisUID){
 
-//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
-//        ref.child(hisUID).child("BlockedUser").orderByChild("uid").equalTo(myUid)
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for (DataSnapshot ds:snapshot.getChildren()){
-//                            if (ds.exists()){
-//                                Toast.makeText(context, "You're blocked by that user, can't send message", Toast.LENGTH_SHORT).show();
-//                                return;
-//                            }
-//                        }
                         Intent intent=new Intent(context, ChatActivity.class);
                         intent.putExtra("hisUid",hisUID);
                         context.startActivity(intent);
 
                     }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
 
 
     private void checkIsBlock(String hisUid, final myHolder holder, final int position) {
