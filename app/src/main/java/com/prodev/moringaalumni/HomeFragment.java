@@ -4,16 +4,21 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -80,12 +85,14 @@ public class HomeFragment extends Fragment {
         //show newest post first, for this load from last
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
-        
+//        //set layout to recycler view
+//        recyclerView.setLayoutManager(layoutManager);
+
         //init post
         postList = new ArrayList<>();
-        
+
         loadPosts();
-        
+
         return view;
     }
 
@@ -95,15 +102,62 @@ public class HomeFragment extends Fragment {
         //get all data from this ref
         ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    ModelPost modelPost = ds.getValue(ModelPost.class);
 
+                    postList.add(modelPost);
+
+                    //adapter
+                    adapterPost = new AdapterPost(getActivity(), postList);
+                    //set adater to recycler view
+                    recyclerView.setAdapter(adapterPost);
+                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //incase of error
+                Toast.makeText(getActivity(), ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+
+    private void searchPosts (String searchQuery){
+
+        //path of all posts
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+        //get all data from this ref
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    ModelPost modelPost = ds.getValue(ModelPost.class);
+
+                    if (modelPost.getpTitle().toLowerCase().contains(searchQuery) || modelPost.getpDescr().contains(searchQuery)){
+                        postList.add(modelPost);
+                    }
+
+                    postList.add(modelPost);
+
+                    //adapter
+                    adapterPost = new AdapterPost(getActivity(), postList);
+                    //set adater to recycler view
+                    recyclerView.setAdapter(adapterPost);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //incase of error
+                Toast.makeText(getActivity(), ""+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     private void checkUserStatus(){
@@ -128,6 +182,38 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu_main, menu);
+
+        //search view to search posts by post title
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
+        //search listener
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                //called when user press search button
+                if (!TextUtils.isEmpty(s)){
+                    searchPosts(s);
+                }
+                else{
+                    loadPosts();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //called as add when user press any
+                if (!TextUtils.isEmpty(s)){
+                    searchPosts(s);
+                }
+                else{
+                    loadPosts();
+                }
+
+                return false;
+            }
+        });
         super.onCreateOptionsMenu(menu, inflater);
     }
     @Override
