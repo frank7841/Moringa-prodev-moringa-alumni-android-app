@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
+
 import com.prodev.moringaalumni.ChatActivity;
 import com.prodev.moringaalumni.Models.ModelUser;
 import com.prodev.moringaalumni.R;
@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
@@ -235,7 +236,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
 
     class myHolder extends RecyclerView.ViewHolder {
 
-        CircularImageView mAvatarIv;
+        CircleImageView mAvatarIv;
         ImageView blockIv;
         TextView mNameTv,mEmailTv;
 
