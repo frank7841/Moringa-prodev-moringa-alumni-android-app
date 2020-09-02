@@ -94,7 +94,9 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
                             context.startActivity(intent);
 
                         }
-                        if (i==1) imBlockedOrNot(hisUid);
+                        if (i==1) {
+                            imBlockedOrNot(hisUid);
+                        }
 
                     }
                 });
@@ -126,7 +128,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot ds:snapshot.getChildren()){
                             if (ds.exists()){
-                                Toast.makeText(context, "Ypu're blocked by that user, can't send message", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "You're blocked by that user, can't send message", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
