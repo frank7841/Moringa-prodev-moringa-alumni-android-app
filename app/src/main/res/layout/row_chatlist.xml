@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileIv"
             android:src="@drawable/ic_default_img"
             android:layout_width="70dp"

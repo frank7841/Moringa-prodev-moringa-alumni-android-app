@@ -9,7 +9,7 @@
     android:background="#eee"
     tools:context=".GroupEditActivity">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/groupIconIv"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"

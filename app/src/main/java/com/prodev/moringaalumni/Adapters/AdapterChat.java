@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.prodev.moringaalumni.Models.ModelChat;
 import com.prodev.moringaalumni.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.myHolder>
@@ -199,7 +199,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.myHolder>
 
     class myHolder extends RecyclerView.ViewHolder{
 
-        CircularImageView profileIv;
+        CircleImageView profileIv;
         ImageView messageIv;
         TextView messageTv,timeTv,isSeenTv;
         LinearLayout messageLayout;
