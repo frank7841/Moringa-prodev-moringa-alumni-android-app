@@ -39,7 +39,7 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/uPictureIv"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_default_img"
