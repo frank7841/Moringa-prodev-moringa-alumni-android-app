@@ -35,7 +35,6 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.myHolder>
 {
     private static final int MSG_TYPE_LEFT=0;

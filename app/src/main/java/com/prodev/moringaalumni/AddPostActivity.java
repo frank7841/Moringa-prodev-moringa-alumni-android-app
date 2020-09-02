@@ -595,7 +595,6 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     private void sendPostNotification(JSONObject notificationJo) {
-        //Firebase Cloud Messaging HTTP protocol
 
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJo, new Response.Listener<JSONObject>() {
             @Override
@@ -614,7 +613,7 @@ public class AddPostActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers=new HashMap<>();
                 headers.put("Content-Type","application/json");
-                headers.put("Authorization","key=AAAAh9bTMc0:APA91bE3oHb40M_vq2fvMLSldI8LmGeFUPJjfIobbQQ1hgdVOM_eSjvDQ0bT2QEWNG30ZSFXT0Ht549FfX42G2oAzAZm7xh6tn2YxzUV240TwCV85rew8qG09rb9oDVnosI75geZCSsT");
+                headers.put("Authorization","key=AAAA4eezF3s:APA91bG_OWaPn4PMAx1jl4DFZnQWngmsOx4VPiW6tE0xzGte-IIlLWTP7efxwxHBSJXTxoRUQAhKKwcgIg5sT7j4UAdyk3fEylcZi3RNEjghCPcwXMchpZ04fCpq19p30ivcj14aWE7p");
 
                 return headers;
             }

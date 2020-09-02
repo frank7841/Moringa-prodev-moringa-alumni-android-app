@@ -86,7 +86,7 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot ds:snapshot.getChildren()){
-                            String message=""+ds.child("message").getValue();
+                            String messgae=""+ds.child("message").getValue();
                             String timestamp=""+ds.child("timestamp").getValue();
                             String sender=""+ds.child("sender").getValue();
                             String messageType=""+ds.child("type").getValue();
@@ -99,7 +99,7 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
                                 holder.messageTV.setText("Sent Photo");
 
                             }else {
-                                holder.messageTV.setText(message);
+                                holder.messageTV.setText(messgae);
                             }
                             holder.timeTV.setText(dateTime);
 
