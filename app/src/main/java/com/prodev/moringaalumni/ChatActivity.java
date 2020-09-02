@@ -76,7 +76,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-
 public class ChatActivity extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -242,114 +241,114 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
-        blockIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (isBlocked){
-                    umBlockUser();
-
-                }else {
-                    blockUser();
-                }
-
-            }
-        });
+//
+//        blockIv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (isBlocked){
+//                    umBlockUser();
+//
+//                }else {
+//                    blockUser();
+//                }
+//
+//            }
+//        });
 
         readMessage();
 
-        checkIsBlock();
+//        checkIsBlock();
 
         seenMessage();
 
     }
 
 
-    private void checkIsBlock() {
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(firebaseAuth.getUid()).child("BlockedUser").orderByChild("uid").equalTo(hisUid)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds:snapshot.getChildren()){
-                            if (ds.exists()){
-                                blockIv.setImageResource(R.drawable.ic_block);
-                                isBlocked=true;
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-    }
-
-    private void blockUser( ) {
-
-        HashMap<String,String> hashMap=new HashMap<>();
-        hashMap.put("uid",hisUid);
-
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(myUid).child("BlockedUser").child(hisUid).setValue(hashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(ChatActivity.this, "Blocked Successfully.....", Toast.LENGTH_SHORT).show();
-                        blockIv.setImageResource(R.drawable.ic_block);
-
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-    private void umBlockUser() {
-
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(myUid).child("BlockedUser").orderByChild("uid").equalTo(hisUid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds:snapshot.getChildren()){
-                            if (ds.exists()){
-                                ds.getRef().removeValue()
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-
-                                                Toast.makeText(ChatActivity.this, "Unblocked Successfully.....", Toast.LENGTH_SHORT).show();
-                                                blockIv.setImageResource(R.drawable.ic_unblock);
-
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(ChatActivity.this, "Failed.."+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                                            }
-                                        });
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-    }
+//    private void checkIsBlock() {
+//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
+//        ref.child(firebaseAuth.getUid()).child("BlockedUser").orderByChild("uid").equalTo(hisUid)
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for (DataSnapshot ds:snapshot.getChildren()){
+//                            if (ds.exists()){
+//                                blockIv.setImageResource(R.drawable.ic_block);
+//                                isBlocked=true;
+//                            }
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//
+//    }
+//
+//    private void blockUser( ) {
+//
+//        HashMap<String,String> hashMap=new HashMap<>();
+//        hashMap.put("uid",hisUid);
+//
+//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
+//        ref.child(myUid).child("BlockedUser").child(hisUid).setValue(hashMap)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(ChatActivity.this, "Blocked Successfully.....", Toast.LENGTH_SHORT).show();
+//                        blockIv.setImageResource(R.drawable.ic_block);
+//
+//
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(ChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//    }
+//
+//    private void umBlockUser() {
+//
+//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
+//        ref.child(myUid).child("BlockedUser").orderByChild("uid").equalTo(hisUid)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for (DataSnapshot ds:snapshot.getChildren()){
+//                            if (ds.exists()){
+//                                ds.getRef().removeValue()
+//                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                            @Override
+//                                            public void onSuccess(Void aVoid) {
+//
+//                                                Toast.makeText(ChatActivity.this, "Unblocked Successfully.....", Toast.LENGTH_SHORT).show();
+//                                                blockIv.setImageResource(R.drawable.ic_unblock);
+//
+//                                            }
+//                                        })
+//                                        .addOnFailureListener(new OnFailureListener() {
+//                                            @Override
+//                                            public void onFailure(@NonNull Exception e) {
+//                                                Toast.makeText(ChatActivity.this, "Failed.."+e.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                                            }
+//                                        });
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//
+//    }
 
 
     private void showImagePicDialog() {
@@ -506,6 +505,7 @@ public class ChatActivity extends AppCompatActivity {
                 ModelUser user=snapshot.getValue(ModelUser.class);
                 if (notify)
                 {
+                    assert user != null;
                     sentNotification(hisUid,user.getName(),message);
                 }
                 notify=false;
