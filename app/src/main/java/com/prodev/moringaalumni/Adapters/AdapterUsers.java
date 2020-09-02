@@ -92,7 +92,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
 
                         }
                         if (i==1) {
-                            openChat()(hisUid);
+                            openChat(hisUid);
                         }
 
                     }
@@ -101,47 +101,46 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
             }
         });
 
-        holder.blockIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (userList.get(position).isBlocked()){
-                    umBlockUser(hisUid);
-
-                }else {
-                    blockUser(hisUid);
-                }
-
-            }
-        });
+//        holder.blockIv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (userList.get(position).isBlocked()){
+//                    umBlockUser(hisUid);
+//
+//                }else {
+//                    blockUser(hisUid);
+//                }
+//
+//            }
+//        });
     }
 
-    private void imBlockedOrNot(final String hisUID){
+    private void openChat(final String hisUID){
 
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(hisUID).child("BlockedUser").orderByChild("uid").equalTo(myUid)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds:snapshot.getChildren()){
-                            if (ds.exists()){
-                                Toast.makeText(context, "You're blocked by that user, can't send message", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        }
+//        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
+//        ref.child(hisUID).child("BlockedUser").orderByChild("uid").equalTo(myUid)
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for (DataSnapshot ds:snapshot.getChildren()){
+//                            if (ds.exists()){
+//                                Toast.makeText(context, "You're blocked by that user, can't send message", Toast.LENGTH_SHORT).show();
+//                                return;
+//                            }
+//                        }
                         Intent intent=new Intent(context, ChatActivity.class);
                         intent.putExtra("hisUid",hisUID);
                         context.startActivity(intent);
 
                     }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-    }
 
     private void checkIsBlock(String hisUid, final myHolder holder, final int position) {
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");

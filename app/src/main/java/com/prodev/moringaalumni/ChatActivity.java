@@ -434,7 +434,7 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat=ds.getValue(ModelChat.class);
                     assert chat != null;
-                    if (chat.getReceiver().equals(myUid)&&chat.getSender().equals(hisUid)){
+                    if (Objects.equals(chat.getReceiver(), myUid) && Objects.equals(chat.getSender(), hisUid)){
                         HashMap<String,Object> seenHashMap=new HashMap<>();
                         seenHashMap.put("isSeen",true);
                         ds.getRef().updateChildren(seenHashMap);
