@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ChatListFragment extends Fragment {
@@ -136,10 +137,10 @@ public class ChatListFragment extends Fragment {
                     if (sender==null||receiver==null){
                         continue;
                     }
-                    if (chat.getReceiver().equals(currentuser.getUid()) &&
-                            chat.getSender().equals(userId)||
-                            chat.getReceiver().equals(userId) &&
-                                    chat.getSender().equals(currentuser.getUid())){
+                    if (Objects.equals(chat.getReceiver(), currentuser.getUid()) &&
+                            Objects.equals(chat.getSender(), userId) ||
+                            Objects.equals(chat.getReceiver(), userId) &&
+                                    Objects.equals(chat.getSender(), currentuser.getUid())){
 
                         if (chat.getType().equals("image"))
                         {
