@@ -465,7 +465,7 @@ public class ChatActivity extends AppCompatActivity {
                         } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
                             chatList.add(chat);
                         }
-                    } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
+                    } else if (Objects.equals(chat.getReceiver(), myUid) && Objects.equals(chat.getSender(), hisUid)) {
                         chatList.add(chat);
                     }
                     adapterChat=new AdapterChat(ChatActivity.this,chatList,hisImage);

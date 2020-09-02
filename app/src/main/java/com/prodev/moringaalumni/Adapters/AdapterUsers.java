@@ -53,11 +53,8 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
     @Override
     public myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.row_users,parent,false);
-
-
         return new myHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull myHolder holder, final int position) {
@@ -77,8 +74,8 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
 
         }
 
-        holder.blockIv.setImageResource(R.drawable.ic_unblock);
-        checkIsBlock(hisUid,holder,position);
+//        holder.blockIv.setImageResource(R.drawable.ic_unblock);
+//        checkIsBlock(hisUid,holder,position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +92,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
 
                         }
                         if (i==1) {
-                            imBlockedOrNot(hisUid);
+                            openChat()(hisUid);
                         }
 
                     }
