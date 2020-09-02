@@ -29,8 +29,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
 import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -56,8 +56,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import okhttp3.Response;
 
 public class AddPostActivity extends AppCompatActivity {
 
@@ -458,7 +456,7 @@ public class AddPostActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
                             while (!uriTask.isSuccessful());
-                                String downloadUri=uriTask.getResult().toString();
+                            String downloadUri=uriTask.getResult().toString();
                             if (uriTask.isSuccessful()){
 
                                 HashMap<Object,String> hashMap=new HashMap<>();
@@ -771,7 +769,7 @@ public class AddPostActivity extends AppCompatActivity {
 
                     if (cameraAccepted&&writeStorageAccepted){
                         pickFromCamera();
-                }else {
+                    }else {
                         Toast.makeText(this, "Please Enable Camera & Storage Permission", Toast.LENGTH_SHORT).show();
                     }
                 }else {
