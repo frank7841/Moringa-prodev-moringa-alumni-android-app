@@ -31,6 +31,7 @@ import com.prodev.moringaalumni.models.ModelUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,13 +154,13 @@ public class UsersFragment extends Fragment {
                     user not current user
                     the user name or email contains text entered in search view
                      */
-                    if (!fUser.getUid().equals(modelUser.getUid())){
-                        if(modelUser.getName().toLowerCase().contains(query.toLowerCase()) ||
-                                fUser.getEmail().toLowerCase().contains(query.toLowerCase())){
+                    assert modelUser != null;
+                    assert fUser != null;
+                    if (!fUser.getUid().equals(modelUser.getUid()))
+                        if (modelUser.getName().toLowerCase().contains(query.toLowerCase()) ||
+                                Objects.requireNonNull(fUser.getEmail()).toLowerCase().contains(query.toLowerCase())) {
                             userList.add(modelUser);
                         }
-
-                    }
                     //adapter
                     adapterUsers = new AdapterUsers(getActivity(),userList);
                     //refresh adapter

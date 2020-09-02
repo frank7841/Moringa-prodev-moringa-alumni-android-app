@@ -164,9 +164,6 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder> {
                     }
 
 
-
-
-
                 }
 
             }
