@@ -94,10 +94,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.myHolder>{
                             context.startActivity(intent);
 
                         }
-                        if (i==1){
-                           imBlockedOrNot(hisUid);
-
-                        }
+                        if (i==1) imBlockedOrNot(hisUid);
 
                     }
                 });
