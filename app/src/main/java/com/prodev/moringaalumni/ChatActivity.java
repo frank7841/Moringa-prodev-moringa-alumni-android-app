@@ -434,7 +434,7 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat=ds.getValue(ModelChat.class);
                     assert chat != null;
-                    if (chat.getReceiver().equals(myUid)&&chat.getSender().equals(hisUid)){
+                    if (Objects.equals(chat.getReceiver(), myUid) && Objects.equals(chat.getSender(), hisUid)){
                         HashMap<String,Object> seenHashMap=new HashMap<>();
                         seenHashMap.put("isSeen",true);
                         ds.getRef().updateChildren(seenHashMap);
@@ -465,7 +465,7 @@ public class ChatActivity extends AppCompatActivity {
                         } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
                             chatList.add(chat);
                         }
-                    } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
+                    } else if (Objects.equals(chat.getReceiver(), myUid) && Objects.equals(chat.getSender(), hisUid)) {
                         chatList.add(chat);
                     }
                     adapterChat=new AdapterChat(ChatActivity.this,chatList,hisImage);
