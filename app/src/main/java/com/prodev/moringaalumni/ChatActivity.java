@@ -74,6 +74,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -458,8 +459,13 @@ public class ChatActivity extends AppCompatActivity {
                 for (DataSnapshot ds:snapshot.getChildren()){
                     ModelChat chat=ds.getValue(ModelChat.class);
                     assert chat != null;
-                    if (chat.getReceiver().equals(myUid)&&chat.getSender().equals(hisUid) ||
-                            chat.getReceiver().equals(hisUid)&&chat.getSender().equals(myUid) ){
+                    if (Objects.equals(chat.getReceiver(), hisUid)) {
+                        if (chat.getSender().equals(myUid)) {
+                            chatList.add(chat);
+                        } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
+                            chatList.add(chat);
+                        }
+                    } else if (chat.getReceiver().equals(myUid) && Objects.equals(chat.getSender(), hisUid)) {
                         chatList.add(chat);
                     }
                     adapterChat=new AdapterChat(ChatActivity.this,chatList,hisImage);
