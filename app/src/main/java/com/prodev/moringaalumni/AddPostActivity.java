@@ -456,7 +456,7 @@ public class AddPostActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
                             while (!uriTask.isSuccessful());
-                                String downloadUri=uriTask.getResult().toString();
+                            String downloadUri=uriTask.getResult().toString();
                             if (uriTask.isSuccessful()){
 
                                 HashMap<Object,String> hashMap=new HashMap<>();
@@ -769,7 +769,7 @@ public class AddPostActivity extends AppCompatActivity {
 
                     if (cameraAccepted&&writeStorageAccepted){
                         pickFromCamera();
-                }else {
+                    }else {
                         Toast.makeText(this, "Please Enable Camera & Storage Permission", Toast.LENGTH_SHORT).show();
                     }
                 }else {

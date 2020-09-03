@@ -134,7 +134,7 @@ public class GroupEditActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.dismiss();
-                            Toast.makeText(GroupEditActivity.this, "group Info Updated.....", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GroupEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -173,7 +173,7 @@ public class GroupEditActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 progressDialog.dismiss();
-                                                Toast.makeText(GroupEditActivity.this, "group Info Updated.....", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(GroupEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {

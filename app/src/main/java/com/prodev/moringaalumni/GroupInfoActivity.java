@@ -97,12 +97,12 @@ public class GroupInfoActivity extends AppCompatActivity {
                 String dialogDescription="";
                 String dialogPostiveButton="";
                 if (mygroupRole.equals("creator")){
-                    dialogTitle="Delete Group";
-                    dialogDescription="Are you sure want to delete group permanently?";
+                    dialogTitle="Delete Cohort";
+                    dialogDescription="Are you sure want to delete cohort permanently?";
                     dialogPostiveButton="DELETE";
                 }
                 else {
-                    dialogTitle="Leave Group";
+                    dialogTitle="Leave Cohort";
                     dialogDescription="Are you sure want to delete leave permanently?";
                     dialogPostiveButton="LEAVE";
                 }
@@ -139,7 +139,7 @@ public class GroupInfoActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(GroupInfoActivity.this, "Group Left Successfully......", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GroupInfoActivity.this, "Cohort Left Successfully......", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(GroupInfoActivity.this,DashboardActivity.class));
                         finish();
                     }
@@ -159,7 +159,7 @@ public class GroupInfoActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(GroupInfoActivity.this, "Group Successfully Deleted....", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GroupInfoActivity.this, "Cohorts Successfully Deleted....", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(GroupInfoActivity.this,DashboardActivity.class));
                         finish();
                     }

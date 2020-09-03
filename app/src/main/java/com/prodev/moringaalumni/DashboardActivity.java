@@ -102,7 +102,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                 case R.id.nav_users:
 
-                    actionBar.setTitle("Users");
+                    actionBar.setTitle("Alumnis");
                     UsersFragment fragment3=new UsersFragment();
                     FragmentTransaction ft3=getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.content,fragment3,"");
@@ -132,7 +132,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void showMoreOption() {
         PopupMenu popupMenu=new PopupMenu(this,bottomNavigationView, Gravity.END);
         popupMenu.getMenu().add(Menu.NONE,0,0,"Notification");
-        popupMenu.getMenu().add(Menu.NONE,1,0,"Group Chat");
+        popupMenu.getMenu().add(Menu.NONE,1,0,"Cohort Chat");
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -147,7 +147,7 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else if (id==1){
 
-                    actionBar.setTitle("Group Chat");
+                    actionBar.setTitle("Cohort Chat");
                     GroupChatFragment fragment6=new GroupChatFragment();
                     FragmentTransaction ft6=getSupportFragmentManager().beginTransaction();
                     ft6.replace(R.id.content,fragment6,"");
