@@ -97,13 +97,13 @@ public class GroupCreateActivity extends AppCompatActivity {
 
     private void startCreatingGroup() {
          progressDialog=new ProgressDialog(this);
-         progressDialog.setMessage("Creating Group");
+         progressDialog.setMessage("Creating Cohort");
 
          final String groupTitle=groupTitleET.getText().toString().trim();
          final String groupDescription=groupDescriptionEt.getText().toString().trim();
          
          if (TextUtils.isEmpty(groupTitle)){
-             Toast.makeText(this, "Please enter group title.....", Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, "Please enter cohort title.....", Toast.LENGTH_SHORT).show();
              return;
          }
 //         else if (TextUtils.isEmpty(groupDescription)){
