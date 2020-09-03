@@ -48,11 +48,11 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
 
@@ -66,7 +66,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
     public AdapterPost(Context context, List<ModelPost> postList) {
         this.context = context;
         this.postList = postList;
-        myUid= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        myUid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         likeRef=FirebaseDatabase.getInstance().getReference().child("Likes");
         postRef=FirebaseDatabase.getInstance().getReference().child("Posts");
     }
@@ -105,8 +105,8 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
         holder.pTimeTv.setText(pTime);
         holder.pTitletv.setText(pTitle);
         holder.pDescriptionTv.setText(pDerscription);
-        holder.pLikeTv.setText(pLikes+" Likes");
-        holder.pCommentsTv.setText(pComments+" Comments");
+        holder.pLikeTv.setText(MessageFormat.format("{0} Likes", pLikes));
+        holder.pCommentsTv.setText(MessageFormat.format("{0} Comments", pComments));
 
          setLiked(holder,pId);
 
