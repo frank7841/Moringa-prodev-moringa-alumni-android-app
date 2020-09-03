@@ -52,6 +52,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
 
@@ -65,7 +66,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
     public AdapterPost(Context context, List<ModelPost> postList) {
         this.context = context;
         this.postList = postList;
-        myUid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myUid= Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         likeRef=FirebaseDatabase.getInstance().getReference().child("Likes");
         postRef=FirebaseDatabase.getInstance().getReference().child("Posts");
     }
