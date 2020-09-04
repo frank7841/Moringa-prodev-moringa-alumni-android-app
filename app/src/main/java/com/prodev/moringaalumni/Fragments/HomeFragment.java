@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -39,6 +38,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ *
+ */
 public class HomeFragment extends Fragment {
 
     FirebaseAuth firebaseAuth;
@@ -56,6 +58,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+
 
         firebaseAuth=FirebaseAuth.getInstance();
 

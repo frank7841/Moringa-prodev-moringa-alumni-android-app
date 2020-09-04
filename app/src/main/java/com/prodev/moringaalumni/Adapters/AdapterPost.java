@@ -27,12 +27,6 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prodev.moringaalumni.AddPostActivity;
-import com.prodev.moringaalumni.Models.ModelPost;
-import com.prodev.moringaalumni.PostDetailsActivity;
-import com.prodev.moringaalumni.PostLikedByActivity;
-import com.prodev.moringaalumni.R;
-import com.prodev.moringaalumni.TheirProfileActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,11 +38,16 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.prodev.moringaalumni.AddPostActivity;
+import com.prodev.moringaalumni.Models.ModelPost;
+import com.prodev.moringaalumni.PostDetailsActivity;
+import com.prodev.moringaalumni.PostLikedByActivity;
+import com.prodev.moringaalumni.R;
+import com.prodev.moringaalumni.TheirProfileActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -98,17 +97,19 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
         String pComments=postList.get(position).getpComments();
 
         Calendar calendar=Calendar.getInstance(Locale.getDefault());
-        calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
+//        calendar.setTimeInMillis (Calendar.LONG);
+        calendar.setTimeInMillis(Long.parseLong ( pTimeStamp ) );
+//        calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
         String pTime= DateFormat.format("dd/MM/yyyy hh:mm aa",calendar).toString();
 
         holder.uNameTv.setText(uName);
         holder.pTimeTv.setText(pTime);
         holder.pTitletv.setText(pTitle);
         holder.pDescriptionTv.setText(pDerscription);
-        holder.pLikeTv.setText(MessageFormat.format("{0} Likes", pLikes));
-        holder.pCommentsTv.setText(MessageFormat.format("{0} Comments", pComments));
+        holder.pLikeTv.setText(pLikes+" Likes");
+        holder.pCommentsTv.setText(pComments+" Comments");
 
-         setLiked(holder,pId);
+        setLiked(holder,pId);
 
         try{
             Picasso.get().load(uDp).placeholder(R.drawable.ic_default_img).into(holder.uPictureIv);
@@ -280,7 +281,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
             bitmap.compress(Bitmap.CompressFormat.PNG,90,outputStream);
             outputStream.flush();
             outputStream.close();
-            uri= FileProvider.getUriForFile(context,"com.prodev.moringaalumni.fileprovider",file);
+            uri= FileProvider.getUriForFile(context,"com.firebase.socialblogs.fileprovider",file);
 
         }catch (Exception e){
             Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -462,7 +463,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
             likeBtn=itemView.findViewById(R.id.likeBtn);
             commentBtn=itemView.findViewById(R.id.commentBtn);
             shareBtn=itemView.findViewById(R.id.shareBtn);
-            profileLayout=itemView.findViewById(R.id.profileLayout);
+            profileLayout=itemView.findViewById( R.id.profileLayout);
         }
     }
 }
