@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prodev.moringaalumni.Adapters.AdapterPost;
@@ -56,13 +57,16 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+//        TextView tv = (TextView) convertView.findViewById(R.id.button_id);
 
         firebaseAuth=FirebaseAuth.getInstance();
 
         recyclerView=view.findViewById(R.id.postRecyclerView);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
+
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
