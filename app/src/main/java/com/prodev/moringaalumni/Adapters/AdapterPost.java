@@ -27,12 +27,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prodev.moringaalumni.AddPostActivity;
-import com.prodev.moringaalumni.Models.ModelPost;
-import com.prodev.moringaalumni.PostDetailsActivity;
-import com.prodev.moringaalumni.PostLikedByActivity;
-import com.prodev.moringaalumni.R;
-import com.prodev.moringaalumni.TheirProfileActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +39,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.prodev.moringaalumni.AddPostActivity;
+import com.prodev.moringaalumni.Models.ModelPost;
+import com.prodev.moringaalumni.PostDetailsActivity;
+import com.prodev.moringaalumni.PostLikedByActivity;
+import com.prodev.moringaalumni.R;
+import com.prodev.moringaalumni.TheirProfileActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -52,6 +53,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
 
@@ -107,7 +110,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
         holder.pLikeTv.setText(pLikes+" Likes");
         holder.pCommentsTv.setText(pComments+" Comments");
 
-         setLiked(holder,pId);
+        setLiked(holder,pId);
 
         try{
             Picasso.get().load(uDp).placeholder(R.drawable.ic_default_img).into(holder.uPictureIv);
@@ -279,7 +282,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
             bitmap.compress(Bitmap.CompressFormat.PNG,90,outputStream);
             outputStream.flush();
             outputStream.close();
-            uri= FileProvider.getUriForFile(context,"com.prodev.moringaalumni.fileprovider",file);
+            uri= FileProvider.getUriForFile(context,"com.firebase.socialblogs.fileprovider",file);
 
         }catch (Exception e){
             Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();

@@ -29,7 +29,7 @@
             <TextView
                 android:id="@+id/groupTitleTV"
                 android:layout_toEndOf="@+id/groupIconIv"
-                android:text="Group Title"
+                android:text="Cohort Title"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
