@@ -15,6 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.PopupMenu;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.prodev.moringaalumni.Fragments.ChatListFragment;
 import com.prodev.moringaalumni.Fragments.GroupChatFragment;
 import com.prodev.moringaalumni.Fragments.HomeFragment;
@@ -22,12 +28,7 @@ import com.prodev.moringaalumni.Fragments.NotificationsFragment;
 import com.prodev.moringaalumni.Fragments.ProfileFragment;
 import com.prodev.moringaalumni.Fragments.UsersFragment;
 import com.prodev.moringaalumni.Notification.Token;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
+
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -102,7 +103,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                 case R.id.nav_users:
 
-                    actionBar.setTitle("Alumnis");
+                    actionBar.setTitle("Users");
                     UsersFragment fragment3=new UsersFragment();
                     FragmentTransaction ft3=getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.content,fragment3,"");
@@ -132,7 +133,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void showMoreOption() {
         PopupMenu popupMenu=new PopupMenu(this,bottomNavigationView, Gravity.END);
         popupMenu.getMenu().add(Menu.NONE,0,0,"Notification");
-        popupMenu.getMenu().add(Menu.NONE,1,0,"Cohort Chat");
+        popupMenu.getMenu().add(Menu.NONE,1,0,"Group Chat");
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -147,7 +148,7 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 else if (id==1){
 
-                    actionBar.setTitle("Cohort Chat");
+                    actionBar.setTitle("Group Chat");
                     GroupChatFragment fragment6=new GroupChatFragment();
                     FragmentTransaction ft6=getSupportFragmentManager().beginTransaction();
                     ft6.replace(R.id.content,fragment6,"");
@@ -179,7 +180,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         }
         else {
-            startActivity(new Intent(DashboardActivity.this,MainActivity.class));
+            startActivity(new Intent(DashboardActivity.this, MainActivity.class));
             finish();
         }
     }

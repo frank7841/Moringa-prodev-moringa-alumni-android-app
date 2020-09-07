@@ -27,6 +27,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
 
@@ -97,9 +100,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
         String pComments=postList.get(position).getpComments();
 
         Calendar calendar=Calendar.getInstance(Locale.getDefault());
-//        calendar.setTimeInMillis (Calendar.LONG);
-        calendar.setTimeInMillis(Long.parseLong ( pTimeStamp ) );
-//        calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
+        calendar.setTimeInMillis(Long.parseLong(pTimeStamp));
         String pTime= DateFormat.format("dd/MM/yyyy hh:mm aa",calendar).toString();
 
         holder.uNameTv.setText(uName);
@@ -463,7 +464,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.myHolder> {
             likeBtn=itemView.findViewById(R.id.likeBtn);
             commentBtn=itemView.findViewById(R.id.commentBtn);
             shareBtn=itemView.findViewById(R.id.shareBtn);
-            profileLayout=itemView.findViewById( R.id.profileLayout);
+            profileLayout=itemView.findViewById(R.id.profileLayout);
         }
     }
 }

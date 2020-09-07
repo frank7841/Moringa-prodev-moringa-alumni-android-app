@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/groupTitleET"
-        android:hint="Group Title"
+        android:hint="Cohort Title"
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/groupIconIv"
@@ -29,7 +29,7 @@
 
     <EditText
         android:id="@+id/groupDescriptionEt"
-        android:hint="Group Description"
+        android:hint="Cohort Description"
         android:minHeight="100dp"
         android:gravity="top"
         android:inputType="textMultiLine|textCapSentences"
