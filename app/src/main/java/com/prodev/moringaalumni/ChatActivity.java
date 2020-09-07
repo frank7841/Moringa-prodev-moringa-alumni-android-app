@@ -874,6 +874,9 @@ public class ChatActivity extends AppCompatActivity {
             firebaseAuth.signOut();
             checkUserStatus();
         }
+        else if(id==R.id.action_settings){
+            startActivity(new Intent(this, SettingActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }

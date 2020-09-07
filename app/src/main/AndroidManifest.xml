@@ -23,7 +23,12 @@
         <activity android:name=".PostLikedByActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".PostDetailsActivity" />
-        <activity android:name=".TheirProfileActivity" />
+        <activity android:name=".TheirProfileActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.prodev.moringaalumni.ChatActivity">
+        </meta-data>
+        </activity>
         <activity android:name=".AddPostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
