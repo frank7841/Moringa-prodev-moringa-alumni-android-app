@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     tools:context=".MainActivity"
+    android:background="@drawable/bg"
     tools:ignore="ExtraText">
 
 
@@ -56,6 +57,6 @@
         android:gravity="center"
         android:text="The Moringa Alumni community is an exclusive network of the next generation Global Tech Leaders"
         android:textStyle="bold"
-        android:textSize="22sp"/>
+        android:textSize="25sp"/>
 
 </RelativeLayout>
