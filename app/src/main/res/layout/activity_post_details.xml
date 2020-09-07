@@ -30,7 +30,8 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <LinearLayout
                         android:id="@+id/profileLayout"
@@ -224,7 +225,8 @@
             android:background="@color/colorWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"/>
 
     </RelativeLayout>
 
