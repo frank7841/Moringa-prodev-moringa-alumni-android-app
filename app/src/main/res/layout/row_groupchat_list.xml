@@ -13,14 +13,15 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/groupIconIv"
-            android:src="@drawable/ic_groupicon_primary"
             android:layout_width="70dp"
-            android:layout_height="70dp"/>
+            android:layout_height="70dp"
+            android:background="#8f9948"
+            android:src="@drawable/ic_groupicon_white" />
         
         <TextView
             android:id="@+id/groupTitleTV"
             android:layout_marginLeft="4dp"
-            android:text="Group Title"
+            android:text="Cohort Title"
             android:layout_toEndOf="@+id/groupIconIv"
             android:textSize="18sp"
             android:textColor="@color/colorBlack"
