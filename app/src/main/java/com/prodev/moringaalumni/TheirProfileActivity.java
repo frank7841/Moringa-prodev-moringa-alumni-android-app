@@ -17,8 +17,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.prodev.moringaalumni.Adapters.AdapterPost;
-import com.prodev.moringaalumni.Models.ModelPost;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.prodev.moringaalumni.Adapters.AdapterPost;
+import com.prodev.moringaalumni.Models.ModelPost;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -260,6 +260,9 @@ public class TheirProfileActivity extends AppCompatActivity {
 
             firebaseAuth.signOut();
             checkUserStatus();
+        }
+        else if(id==R.id.action_settings){
+            startActivity(new Intent(this, SettingActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
