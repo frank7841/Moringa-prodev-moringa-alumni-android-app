@@ -1,35 +1,20 @@
 package com.prodev.moringaalumni;
 
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
-class DashboardActivityTest {
-
-    @Test
-    void onCreate() {
-
-
-    }
-
-
-
-    @Test
-    void firebaseUpdatesToken() {
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Tokens");
-
-        assertEquals("Tokens", FirebaseDatabase.getInstance("Tokens"));
-    }
-
-    @Test
-    void onBackPressed() {
-    }
-
-    @Test
-    void onStart() {
-    }
-}
+//@RunWith(RobolectricTestRunner.class)
+//@RunWith(RobolectricTestRunner.class)
+//@Config(sdk = 28, manifest = "src/main/AndroidManifest.xml", packageName = "com.prodev.moringaalumni")
+//public class DashboardActivityTest {
+//
+//    @Test
+//    public void bottom_nav_navigates_correctly() throws Exception {
+//        DashboardActivity activity = Robolectric.setupActivity(DashboardActivity.class);
+//
+//        Button button = (Button) activity.findViewById(R.id.nav_home);
+//        TextView results = (TextView) activity.findViewById(R.id.nav_more);
+//
+//        button.performClick();
+//        assertEquals("nav_more","nav_profile");
+//
+//    }
+//}
