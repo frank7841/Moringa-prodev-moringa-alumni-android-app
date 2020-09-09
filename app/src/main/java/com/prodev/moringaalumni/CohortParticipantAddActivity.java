@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class GroupParticipantAddActivity extends AppCompatActivity {
+public class CohortParticipantAddActivity extends AppCompatActivity {
 
     private RecyclerView usersRV;
     private ActionBar actionBar;
@@ -65,7 +65,7 @@ public class GroupParticipantAddActivity extends AppCompatActivity {
 
                     }
                 }
-                adapterParticipantAdd=new AdapterParticipantAdd(GroupParticipantAddActivity.this,userslist,""+groupId,""+myGrouprole);
+                adapterParticipantAdd=new AdapterParticipantAdd( CohortParticipantAddActivity.this,userslist,""+groupId,""+myGrouprole);
                 usersRV.setAdapter(adapterParticipantAdd);
             }
 

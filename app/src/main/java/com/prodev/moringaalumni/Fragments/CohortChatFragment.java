@@ -18,12 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.prodev.moringaalumni.Adapters.AdapterGroupChatList;
-import com.prodev.moringaalumni.GroupCreateActivity;
+import com.prodev.moringaalumni.Adapters.AdapterCohortChatList;
+import com.prodev.moringaalumni.CohortCreateActivity;
 import com.prodev.moringaalumni.MainActivity;
-import com.prodev.moringaalumni.Models.ModelGroupChatList;
+import com.prodev.moringaalumni.Models.ModelCohortChatList;
 import com.prodev.moringaalumni.R;
-import com.prodev.moringaalumni.SettingActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,14 +34,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class GroupChatFragment extends Fragment {
+public class CohortChatFragment extends Fragment {
 
     RecyclerView groupRV;
     FirebaseAuth firebaseAuth;
-    private ArrayList<ModelGroupChatList> groupChatLists;
-    private AdapterGroupChatList adapterGroupChatList;
+    private ArrayList<ModelCohortChatList> groupChatLists;
+    private AdapterCohortChatList adapterCohortChatList;
 
-    public GroupChatFragment() {
+    public CohortChatFragment() {
         // Required empty public constructor
     }
 
@@ -73,13 +72,13 @@ public class GroupChatFragment extends Fragment {
                 for (DataSnapshot ds:snapshot.getChildren()){
 
                     if (ds.child("Participants").child(firebaseAuth.getUid()).exists()){
-                        ModelGroupChatList model=ds.getValue(ModelGroupChatList.class);
+                        ModelCohortChatList model=ds.getValue( ModelCohortChatList.class);
                         groupChatLists.add(model);
 
                     }
                 }
-                adapterGroupChatList=new AdapterGroupChatList(getActivity(),groupChatLists);
-                groupRV.setAdapter(adapterGroupChatList);
+                adapterCohortChatList =new AdapterCohortChatList (getActivity(),groupChatLists);
+                groupRV.setAdapter( adapterCohortChatList );
             }
 
             @Override
@@ -101,14 +100,14 @@ public class GroupChatFragment extends Fragment {
                 for (DataSnapshot ds:snapshot.getChildren()){
                     if (ds.child("Participants").child(firebaseAuth.getUid()).exists()){
                         if (ds.child("groupTitle").toString().toLowerCase().contains(query.toLowerCase())){
-                            ModelGroupChatList model=ds.getValue(ModelGroupChatList.class);
+                            ModelCohortChatList model=ds.getValue( ModelCohortChatList.class);
                             groupChatLists.add(model);
 
                         }
                     }
                 }
-                adapterGroupChatList=new AdapterGroupChatList(getActivity(),groupChatLists);
-                groupRV.setAdapter(adapterGroupChatList);
+                adapterCohortChatList =new AdapterCohortChatList (getActivity(),groupChatLists);
+                groupRV.setAdapter( adapterCohortChatList );
             }
 
             @Override
@@ -181,7 +180,7 @@ public class GroupChatFragment extends Fragment {
             checkUserStatus();
         }
         else if(id==R.id.action_create_group){
-            startActivity(new Intent(getContext(), GroupCreateActivity.class));
+            startActivity(new Intent(getContext(), CohortCreateActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

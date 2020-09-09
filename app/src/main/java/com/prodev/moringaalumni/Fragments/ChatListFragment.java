@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.prodev.moringaalumni.Adapters.AdapterChatlist;
-import com.prodev.moringaalumni.GroupCreateActivity;
+import com.prodev.moringaalumni.CohortCreateActivity;
 import com.prodev.moringaalumni.MainActivity;
 import com.prodev.moringaalumni.Models.ModelChat;
 import com.prodev.moringaalumni.Models.ModelChatlist;
@@ -211,7 +211,7 @@ public class ChatListFragment extends Fragment {
             startActivity(new Intent(getContext(), SettingActivity.class));
         }
         else if(id==R.id.action_create_group){
-            startActivity(new Intent(getContext(), GroupCreateActivity.class));
+            startActivity(new Intent(getContext(), CohortCreateActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prodev.moringaalumni.GroupChatActivity;
-import com.prodev.moringaalumni.Models.ModelGroupChatList;
+import com.prodev.moringaalumni.CohortChatActivity;
+import com.prodev.moringaalumni.Models.ModelCohortChatList;
 import com.prodev.moringaalumni.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatList.HolderGroupChatList> {
+public class AdapterCohortChatList extends RecyclerView.Adapter<AdapterCohortChatList.HolderGroupChatList> {
 
     private Context context;
-    private ArrayList<ModelGroupChatList> groupChatLists;
+    private ArrayList<ModelCohortChatList> groupChatLists;
 
-    public AdapterGroupChatList(Context context, ArrayList<ModelGroupChatList> groupChatLists) {
+    public AdapterCohortChatList(Context context, ArrayList<ModelCohortChatList> groupChatLists) {
         this.context = context;
         this.groupChatLists = groupChatLists;
     }
@@ -49,7 +49,7 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
     @Override
     public void onBindViewHolder(@NonNull HolderGroupChatList holder, int position) {
 
-        ModelGroupChatList model=groupChatLists.get(position);
+        ModelCohortChatList model=groupChatLists.get(position);
         final String groupId=model.getGroupId();
         String groupIcon=model.getGroupIcon();
         String groupTitle=model.getGroupTitle();
@@ -71,7 +71,7 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, GroupChatActivity.class);
+                Intent intent=new Intent(context, CohortChatActivity.class);
                 intent.putExtra("groupId",groupId);
                 context.startActivity(intent);
             }
@@ -79,7 +79,7 @@ public class AdapterGroupChatList extends RecyclerView.Adapter<AdapterGroupChatL
 
     }
 
-    private void loadLastMessage(ModelGroupChatList model, final HolderGroupChatList holder) {
+    private void loadLastMessage(ModelCohortChatList model, final HolderGroupChatList holder) {
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Groups");
         ref.child(model.getGroupId()).child("Messages").limitToLast(1)
                 .addValueEventListener(new ValueEventListener() {

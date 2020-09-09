@@ -1,13 +1,13 @@
 package com.prodev.moringaalumni.Models;
 
-public class ModelGroupChat {
+public class ModelCohortChat {
 
     String message,sender,timestamp,type;
 
-    public ModelGroupChat() {
+    public ModelCohortChat() {
     }
 
-    public ModelGroupChat(String message, String sender, String timestamp, String type) {
+    public ModelCohortChat(String message, String sender, String timestamp, String type) {
         this.message = message;
         this.sender = sender;
         this.timestamp = timestamp;

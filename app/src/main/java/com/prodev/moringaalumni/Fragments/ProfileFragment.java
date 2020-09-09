@@ -36,7 +36,7 @@ import android.widget.Toast;
 
 import com.prodev.moringaalumni.Adapters.AdapterPost;
 import com.prodev.moringaalumni.AddPostActivity;
-import com.prodev.moringaalumni.GroupCreateActivity;
+import com.prodev.moringaalumni.CohortCreateActivity;
 import com.prodev.moringaalumni.MainActivity;
 import com.prodev.moringaalumni.Models.ModelPost;
 import com.prodev.moringaalumni.R;
@@ -811,7 +811,7 @@ public class ProfileFragment extends Fragment {
             startActivity(new Intent(getContext(), SettingActivity.class));
         }
         else if(id==R.id.action_create_group){
-            startActivity(new Intent(getContext(), GroupCreateActivity.class));
+            startActivity(new Intent(getContext(), CohortCreateActivity.class));
         }
 
 

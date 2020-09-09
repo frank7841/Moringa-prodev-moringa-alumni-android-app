@@ -29,8 +29,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.prodev.moringaalumni.Adapters.AdapterGroupChat;
-import com.prodev.moringaalumni.Models.ModelGroupChat;
+import com.prodev.moringaalumni.Adapters.AdapterCohortChat;
+import com.prodev.moringaalumni.Models.ModelCohortChat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +50,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GroupChatActivity extends AppCompatActivity {
+public class CohortChatActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     private String groupId,myGroupRole="";
@@ -73,8 +73,8 @@ public class GroupChatActivity extends AppCompatActivity {
 
     private Uri image_uri=null;
 
-    private ArrayList<ModelGroupChat> groupChatslist;
-    private AdapterGroupChat adapterGroupChat;
+    private ArrayList<ModelCohortChat> groupChatslist;
+    private AdapterCohortChat adapterCohortChat;
 
     private boolean notify=false;
 
@@ -109,7 +109,7 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String message=messageET.getText().toString().trim();
                 if (TextUtils.isEmpty(message)){
-                    Toast.makeText(GroupChatActivity.this, "Can't send empty message....", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( CohortChatActivity.this, "Can't send empty message....", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     sendMessage(message);
@@ -225,11 +225,11 @@ public class GroupChatActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         groupChatslist.clear();
                         for (DataSnapshot ds:snapshot.getChildren()){
-                            ModelGroupChat model=ds.getValue(ModelGroupChat.class);
+                            ModelCohortChat model=ds.getValue( ModelCohortChat.class);
                             groupChatslist.add(model);
                         }
-                        adapterGroupChat=new AdapterGroupChat(GroupChatActivity.this,groupChatslist);
-                        chatRV.setAdapter(adapterGroupChat);
+                        adapterCohortChat =new AdapterCohortChat ( CohortChatActivity.this,groupChatslist);
+                        chatRV.setAdapter( adapterCohortChat );
 
                     }
 
@@ -261,7 +261,7 @@ public class GroupChatActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(GroupChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText( CohortChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -348,7 +348,7 @@ public class GroupChatActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             progressDialog.dismiss();
-                                            Toast.makeText(GroupChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText( CohortChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                         }
                                     });
@@ -358,7 +358,7 @@ public class GroupChatActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(GroupChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText( CohortChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });
@@ -386,12 +386,12 @@ public class GroupChatActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if (id==R.id.action_add_participant){
-            Intent intent=new Intent(this,GroupParticipantAddActivity.class);
+            Intent intent=new Intent(this, CohortParticipantAddActivity.class);
             intent.putExtra("groupId",groupId);
             startActivity(intent);
         }
         else if (id==R.id.action_groupinfo){
-            Intent intent=new Intent(this,GroupInfoActivity.class);
+            Intent intent=new Intent(this, CohortInfoActivity.class);
             intent.putExtra("groupId",groupId);
             startActivity(intent);
         }

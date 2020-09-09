@@ -37,7 +37,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
-public class GroupCreateActivity extends AppCompatActivity {
+public class CohortCreateActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private FirebaseAuth firebaseAuth;
@@ -148,7 +148,7 @@ public class GroupCreateActivity extends AppCompatActivity {
                          @Override
                          public void onFailure(@NonNull Exception e) {
                              progressDialog.dismiss();
-                             Toast.makeText(GroupCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                             Toast.makeText( CohortCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                          }
                      });
@@ -181,7 +181,7 @@ public class GroupCreateActivity extends AppCompatActivity {
                                @Override
                                public void onSuccess(Void aVoid) {
                                    progressDialog.dismiss();
-                                   Toast.makeText(GroupCreateActivity.this, "Group Created.....", Toast.LENGTH_SHORT).show();
+                                   Toast.makeText( CohortCreateActivity.this, "Group Created.....", Toast.LENGTH_SHORT).show();
 
                                }
                            })
@@ -189,7 +189,7 @@ public class GroupCreateActivity extends AppCompatActivity {
                                @Override
                                public void onFailure(@NonNull Exception e) {
                                    progressDialog.dismiss();
-                                   Toast.makeText(GroupCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                   Toast.makeText( CohortCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                                }
                            });
@@ -198,7 +198,7 @@ public class GroupCreateActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-                    Toast.makeText(GroupCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText( CohortCreateActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             });

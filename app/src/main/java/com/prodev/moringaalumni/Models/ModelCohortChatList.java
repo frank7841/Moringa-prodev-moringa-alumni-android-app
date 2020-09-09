@@ -1,13 +1,13 @@
 package com.prodev.moringaalumni.Models;
 
-public class ModelGroupChatList {
+public class ModelCohortChatList {
 
     String groupId,groupTitle,groupDescription,groupIcon,timestamp,createdBy;
 
-    public ModelGroupChatList() {
+    public ModelCohortChatList() {
     }
 
-    public ModelGroupChatList(String groupId, String groupTitle, String groupDescription, String groupIcon, String timestamp, String createdBy) {
+    public ModelCohortChatList(String groupId, String groupTitle, String groupDescription, String groupIcon, String timestamp, String createdBy) {
         this.groupId = groupId;
         this.groupTitle = groupTitle;
         this.groupDescription = groupDescription;

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class GroupInfoActivity extends AppCompatActivity {
+public class CohortInfoActivity extends AppCompatActivity {
 
     private String groupId;
     private String mygroupRole="";
@@ -75,7 +75,7 @@ public class GroupInfoActivity extends AppCompatActivity {
         addParticipantTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(GroupInfoActivity.this,GroupParticipantAddActivity.class);
+                Intent intent=new Intent( CohortInfoActivity.this, CohortParticipantAddActivity.class);
                 intent.putExtra("groupId",groupId);
                 startActivity(intent);
             }
@@ -84,7 +84,7 @@ public class GroupInfoActivity extends AppCompatActivity {
         editGroupTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(GroupInfoActivity.this,GroupEditActivity.class);
+                Intent intent=new Intent( CohortInfoActivity.this, CohortEditActivity.class);
                 intent.putExtra("groupId",groupId);
                 startActivity(intent);
             }
@@ -107,7 +107,7 @@ public class GroupInfoActivity extends AppCompatActivity {
                     dialogPostiveButton="LEAVE";
                 }
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(GroupInfoActivity.this);
+                AlertDialog.Builder builder=new AlertDialog.Builder( CohortInfoActivity.this);
                 builder.setTitle(dialogTitle)
                 .setMessage(dialogDescription)
                         .setPositiveButton(dialogPostiveButton, new DialogInterface.OnClickListener() {
@@ -139,15 +139,15 @@ public class GroupInfoActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(GroupInfoActivity.this, "Cohort Left Successfully......", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(GroupInfoActivity.this,DashboardActivity.class));
+                        Toast.makeText( CohortInfoActivity.this, "Cohort Left Successfully......", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent( CohortInfoActivity.this,DashboardActivity.class));
                         finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(GroupInfoActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText( CohortInfoActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -159,15 +159,15 @@ public class GroupInfoActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(GroupInfoActivity.this, "Cohorts Successfully Deleted....", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(GroupInfoActivity.this,DashboardActivity.class));
+                        Toast.makeText( CohortInfoActivity.this, "Cohorts Successfully Deleted....", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent( CohortInfoActivity.this,DashboardActivity.class));
                         finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(GroupInfoActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText( CohortInfoActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -288,7 +288,7 @@ public class GroupInfoActivity extends AppCompatActivity {
 
                                                 userList.add(model);
                                             }
-                                            adapterParticipantAdd=new AdapterParticipantAdd(GroupInfoActivity.this,userList,groupId,mygroupRole);
+                                            adapterParticipantAdd=new AdapterParticipantAdd( CohortInfoActivity.this,userList,groupId,mygroupRole);
                                             participantsTV.setText("Participants ("+userList.size()+")");
                                             participantsRV.setAdapter(adapterParticipantAdd);
                                         }

@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.prodev.moringaalumni.Adapters.AdapterUsers;
-import com.prodev.moringaalumni.GroupCreateActivity;
+import com.prodev.moringaalumni.CohortCreateActivity;
 import com.prodev.moringaalumni.MainActivity;
 import com.prodev.moringaalumni.Models.ModelUser;
 import com.prodev.moringaalumni.R;
@@ -227,7 +227,7 @@ public class UsersFragment extends Fragment {
             startActivity(new Intent(getContext(), SettingActivity.class));
         }
         else if(id==R.id.action_create_group){
-            startActivity(new Intent(getContext(), GroupCreateActivity.class));
+            startActivity(new Intent(getContext(), CohortCreateActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

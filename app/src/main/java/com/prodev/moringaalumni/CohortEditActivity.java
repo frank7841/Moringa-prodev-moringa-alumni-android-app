@@ -44,7 +44,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class GroupEditActivity extends AppCompatActivity {
+public class CohortEditActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String groupId;
@@ -134,14 +134,14 @@ public class GroupEditActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.dismiss();
-                            Toast.makeText(GroupEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( CohortEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(GroupEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText( CohortEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -173,14 +173,14 @@ public class GroupEditActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 progressDialog.dismiss();
-                                                Toast.makeText(GroupEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText( CohortEditActivity.this, "Cohort Info Updated.....", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 progressDialog.dismiss();
-                                                Toast.makeText(GroupEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText( CohortEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
 
@@ -192,7 +192,7 @@ public class GroupEditActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(GroupEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText( CohortEditActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }

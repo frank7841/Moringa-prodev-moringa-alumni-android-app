@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.prodev.moringaalumni.Fragments.ChatListFragment;
-import com.prodev.moringaalumni.Fragments.GroupChatFragment;
+import com.prodev.moringaalumni.Fragments.CohortChatFragment;
 import com.prodev.moringaalumni.Fragments.HomeFragment;
 import com.prodev.moringaalumni.Fragments.NotificationsFragment;
 import com.prodev.moringaalumni.Fragments.ProfileFragment;
@@ -152,7 +152,7 @@ public class DashboardActivity extends AppCompatActivity {
                 else if (id==1){
 
                     actionBar.setTitle("Group Chat");
-                    GroupChatFragment fragment6=new GroupChatFragment();
+                    CohortChatFragment fragment6=new CohortChatFragment ();
                     FragmentTransaction ft6=getSupportFragmentManager().beginTransaction();
                     ft6.replace(R.id.content,fragment6,"");
                     ft6.commit();

@@ -76,14 +76,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    Toolbar toolbar;
-    RecyclerView recyclerView;
-    ImageView profileIv,blockIv;
-    TextView nameTv,userStatusTv;
-    EditText messageEt;
-    ImageButton sendBtn,attachBtn;
+public class ChatActivity extends AppCompatActivity {
+    @BindView(R.id.chat_recyclerView)RecyclerView recyclerView;
+    @BindView(R.id.profileIv)ImageView profileIv;
+    @BindView(R.id.blockIv)ImageView blockIv;
+    @BindView(R.id.userStatusTv)TextView userStatusTv;
+    @BindView(R.id.nameTv)TextView nameTv;
+    @BindView(R.id.messageEt)EditText messageEt;
+    @BindView(R.id.sendBtn)ImageButton sendBtn;
+    @BindView(R.id.attachBtn)ImageButton attachBtn;
+    @BindView ( R.id.toolbar )Toolbar toolbar;
+
     String hisUid,myUid,hisImage;
 
     FirebaseAuth firebaseAuth;
@@ -121,17 +127,7 @@ public class ChatActivity extends AppCompatActivity {
        Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
-
-        recyclerView=findViewById(R.id.chat_recyclerView);
-
-
-        profileIv=findViewById(R.id.profileIv);
-        blockIv=findViewById(R.id.blockIv);
-        nameTv=findViewById(R.id.nameTv);
-        userStatusTv=findViewById(R.id.userStatusTv);
-        messageEt=findViewById(R.id.messageEt);
-        sendBtn=findViewById(R.id.sendBtn);
-        attachBtn=findViewById(R.id.attachBtn);
+        ButterKnife.bind ( this );
 
         cameraPermission=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};

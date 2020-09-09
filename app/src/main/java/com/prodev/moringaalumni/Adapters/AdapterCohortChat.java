@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.prodev.moringaalumni.Models.ModelGroupChat;
-import com.prodev.moringaalumni.Notification.Data;
+import com.prodev.moringaalumni.Models.ModelCohortChat;
 import com.prodev.moringaalumni.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,17 +25,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.HolderGroupChat> {
+public class AdapterCohortChat extends RecyclerView.Adapter<AdapterCohortChat.HolderGroupChat> {
     private static final int MSG_TYPE_left=0;
     private static final int MSG_TYPE_RIGHT=1;
 
     private Context context;
-    private ArrayList<ModelGroupChat> modelGroupChatslist;
+    private ArrayList<ModelCohortChat> modelCohortChatslist;
     private FirebaseAuth firebaseAuth;
 
-    public AdapterGroupChat(Context context, ArrayList<ModelGroupChat> modelGroupChatslist) {
+    public AdapterCohortChat(Context context, ArrayList<ModelCohortChat> modelCohortChatslist) {
         this.context = context;
-        this.modelGroupChatslist = modelGroupChatslist;
+        this.modelCohortChatslist = modelCohortChatslist;
         firebaseAuth=FirebaseAuth.getInstance();
     }
 
@@ -56,7 +54,7 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
 
     @Override
     public void onBindViewHolder(@NonNull HolderGroupChat holder, int position) {
-        ModelGroupChat model=modelGroupChatslist.get(position);
+        ModelCohortChat model= modelCohortChatslist.get(position);
         String message=model.getMessage();
         String senderUid=model.getSender();
         String timestamp=model.getTimestamp();
@@ -91,7 +89,7 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
 
     }
 
-    private void setUserName(ModelGroupChat model, final HolderGroupChat holder) {
+    private void setUserName(ModelCohortChat model, final HolderGroupChat holder) {
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("uid").equalTo(model.getSender())
                 .addValueEventListener(new ValueEventListener() {
@@ -112,12 +110,12 @@ public class AdapterGroupChat extends RecyclerView.Adapter<AdapterGroupChat.Hold
 
     @Override
     public int getItemCount() {
-        return modelGroupChatslist.size();
+        return modelCohortChatslist.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (modelGroupChatslist.get(position).getSender().equals(firebaseAuth.getUid())){
+        if (modelCohortChatslist.get(position).getSender().equals(firebaseAuth.getUid())){
             return MSG_TYPE_RIGHT;
         }else {
             return MSG_TYPE_left;
