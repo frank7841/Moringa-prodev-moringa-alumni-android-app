@@ -37,10 +37,21 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN =100;
     GoogleSignInClient mGoogleSignInClient;
+//    @BindView ( R.id.emailEt )EditText mEmailEt;
+//    @BindView ( R.id.passwordEt )EditText mPasswordEt;
+//    @BindView ( R.id.login_btn )Button mLoginBtn;
+//    @BindView ( R.id.not_have_account )TextView notHaveAccount;
+//    @BindView ( R.id.forget )TextView mForget;
+//    @BindView ( R.id.google )SignInButton mGoogle;
+
+
 
     EditText mEmailEt,mPasswordEt;
     Button mLoginBtn;
@@ -57,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Login Account");
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -69,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
+//        ButterKnife.bind ( this );
 
         mEmailEt=findViewById(R.id.emailEt);
         mPasswordEt=findViewById(R.id.passwordEt);
