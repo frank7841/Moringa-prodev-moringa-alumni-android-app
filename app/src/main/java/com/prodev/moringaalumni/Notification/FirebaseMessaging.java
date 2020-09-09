@@ -31,6 +31,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Random;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 public class FirebaseMessaging extends FirebaseMessagingService {
     private static final String ADMIN_CHANNEL_ID = "admin_channel";
 
@@ -76,7 +78,7 @@ public class FirebaseMessaging extends FirebaseMessagingService {
 
     private void showPostNotification(String pId, String pTitle, String pDescription) {
 
-        NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager=(NotificationManager)getSystemService( NOTIFICATION_SERVICE);
         int notificationId=new Random().nextInt(3000);
 
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
@@ -107,7 +109,7 @@ public class FirebaseMessaging extends FirebaseMessagingService {
         CharSequence channelName="New Notification";
         String channeldescription="Device to Device post notification";
 
-        NotificationChannel adminChannel=new NotificationChannel(ADMIN_CHANNEL_ID,channelName,notificationManager.IMPORTANCE_HIGH);
+        NotificationChannel adminChannel=new NotificationChannel(ADMIN_CHANNEL_ID,channelName, NotificationManager.IMPORTANCE_HIGH );
         adminChannel.setDescription( channeldescription);
         adminChannel.enableLights(true);
         adminChannel.setLightColor(Color.RED);
@@ -141,7 +143,7 @@ public class FirebaseMessaging extends FirebaseMessagingService {
                 .setSound(defSoundUri)
                 .setContentIntent(pIntent);
 
-        NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager=(NotificationManager)getSystemService( NOTIFICATION_SERVICE);
         int j=0;
         if (i>0){
             j=1;

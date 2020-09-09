@@ -110,7 +110,7 @@ public class ChatActivity extends AppCompatActivity {
     String[] storagePermission;
 
     Uri image_uri=null;
-
+//    APIService apiService;
     private boolean notify=false;
 
     @Override
@@ -146,6 +146,7 @@ public class ChatActivity extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
         usersDbRef=firebaseDatabase.getReference("Users");
+//        apiService = Client.getRetrofit ( "https://fcm.googleapis.com/" ).create (APIService.class);
 
         Intent intent=getIntent();
         hisUid=intent.getStringExtra("hisUid");
@@ -706,7 +707,7 @@ public class ChatActivity extends AppCompatActivity {
 
                                 Map<String,String> header=new HashMap<>();
                                 header.put("Content-Type","application/json");
-                                header.put("Authorization","key=AAAAAdFB0xs:APA91bHyOLG09Dsvc1VVzWU_RDqgO6LwHkl3nYlSajASahvsMLpJVQug9jbkeyMjuHKixfNyII51r1b1N9yXQ1Lq5_KYyABLgj3kjX7arUnIHD4QDwfDggVuJPk4lGj0zPjP2FR_6oQ1");
+                                header.put("Authorization","key=AAAAh9bTMc0:APA91bE3oHb40M_vq2fvMLSldI8LmGeFUPJjfIobbQQ1hgdVOM_eSjvDQ0bT2QEWNG30ZSFXT0Ht549FfX42G2oAzAZm7xh6tn2YxzUV240TwCV85rew8qG09rb9oDVnosI75geZCSsT");
 
 
                                 return header;

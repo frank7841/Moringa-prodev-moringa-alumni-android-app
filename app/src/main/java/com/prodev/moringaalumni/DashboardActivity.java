@@ -36,6 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
     ActionBar actionBar;
     String mUid;
     BottomNavigationView bottomNavigationView;
+//    private FirebaseUser user=FirebaseAuth.getInstance ().getCurrentUser();
 
 
     @Override
@@ -45,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         actionBar=getSupportActionBar();
         actionBar.setTitle("Profile");
-
+//        String mUid = user.getUid ();
         firebaseAuth=FirebaseAuth.getInstance();
 
         bottomNavigationView=findViewById(R.id.navigation);
@@ -60,7 +61,7 @@ public class DashboardActivity extends AppCompatActivity {
         FirebaseUser fuser=firebaseAuth.getCurrentUser();
 
         checkUserStatus();
-
+//        updateToken(FirebaseInstanceId.getInstance().getToken());
 
 
     }
@@ -72,10 +73,12 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void updateToken(String token){
-
+//        FirebaseUser user=firebaseAuth.getCurrentUser();
+//        assert user != null;
+//        String mUid = user.getUid ();
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Tokens");
         Token mToken=new Token(token);
-        ref.child(mUid).setValue(mToken);
+        ref.child (mUid).setValue ( mToken );
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener
@@ -168,7 +171,7 @@ public class DashboardActivity extends AppCompatActivity {
         if (user!=null)
         {
             mUid=user.getUid();
-
+            //save User id of currrent user in shared prefference
             SharedPreferences sp=getSharedPreferences("SP_USER",MODE_PRIVATE);
             SharedPreferences.Editor editor=sp.edit();
             editor.putString("Current_USERID",mUid);
