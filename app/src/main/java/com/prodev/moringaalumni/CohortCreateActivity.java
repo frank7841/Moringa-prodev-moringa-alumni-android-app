@@ -37,13 +37,20 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CohortCreateActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private FirebaseAuth firebaseAuth;
-    ImageView groupIconIv;
-    EditText groupTitleET,groupDescriptionEt;
-    FloatingActionButton createGroupBtn;
+    @BindView ( R.id.groupIconIv )ImageView groupIconIv;
+    @BindView ( R.id.groupTitleET )EditText groupTitleET;
+    @BindView ( R.id.groupDescriptionEt )EditText groupDescriptionEt;
+    @BindView ( R.id.createGroupBtn )FloatingActionButton createGroupBtn;
+//    ImageView groupIconIv;
+//    EditText groupTitleET,groupDescriptionEt;
+//    FloatingActionButton createGroupBtn;
 
     private static final int CAMERA_REQUEST_CODE=100;
     private static final int STORAGE_REQUEST_CODE=200;
@@ -61,16 +68,18 @@ public class CohortCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_create);
+        ButterKnife.bind ( this );
 
         actionBar=getSupportActionBar();
         actionBar.setTitle("Create Group");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        groupIconIv=findViewById(R.id.groupIconIv);
-        groupTitleET=findViewById(R.id.groupTitleET);
-        groupDescriptionEt=findViewById(R.id.groupDescriptionEt);
-        createGroupBtn=findViewById(R.id.createGroupBtn);
+
+//        groupIconIv=findViewById(R.id.groupIconIv);
+//        groupTitleET=findViewById(R.id.groupTitleET);
+//        groupDescriptionEt=findViewById(R.id.groupDescriptionEt);
+//        createGroupBtn=findViewById(R.id.createGroupBtn);
 
         cameraPermission=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
