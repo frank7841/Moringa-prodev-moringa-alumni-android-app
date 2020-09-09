@@ -57,6 +57,9 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AddPostActivity extends AppCompatActivity {
 
     ActionBar actionBar;
@@ -74,9 +77,11 @@ public class AddPostActivity extends AppCompatActivity {
     String[] cameraPermission;
     String[] storagePermission;
 
-    EditText titleEt,descriptionEt;
-    ImageView imageIv;
-    Button uploadBtn;
+    @BindView ( R.id.pTitleEt ) EditText titleEt;
+    @BindView ( R.id.pDescriptionEt ) EditText descriptionEt;
+    @BindView ( R.id.pImageIv )ImageView imageIv;
+    @BindView ( R.id.pUploadBtn )Button uploadBtn;
+
 
     String name,email,uid,dp;
     ProgressDialog pd;
@@ -87,6 +92,7 @@ public class AddPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
+        ButterKnife.bind ( this );
 
         actionBar=getSupportActionBar();
         actionBar.setTitle("Add New Post");
@@ -98,11 +104,7 @@ public class AddPostActivity extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
         checkUserStatus();
 
-        titleEt=findViewById(R.id.pTitleEt);
-        descriptionEt=findViewById(R.id.pDescriptionEt);
-        imageIv=findViewById(R.id.pImageIv);
-        uploadBtn=findViewById(R.id.pUploadBtn);
-
+//
         Intent intent=getIntent();
 
         String action=intent.getAction();
