@@ -31,6 +31,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CohortInfoActivity extends AppCompatActivity {
 
     private String groupId;
@@ -38,6 +41,15 @@ public class CohortInfoActivity extends AppCompatActivity {
     private ActionBar actionBar;
 
     private FirebaseAuth firebaseAuth;
+
+//    @BindView ( R.id.groupIconIv )ImageView groupIconIv;
+//    @BindView ( R.id.recyclerView )RecyclerView participantsRV;
+//    @BindView ( R.id.descriptionTV )TextView descriptionTV;
+//    @BindView ( R.id.createdByTv )TextView createdByTv;
+//    @BindView ( R.id.editGroupTV )TextView editGroupTV;
+//    @BindView ( R.id.addParticipantTV )TextView addParticipantTV;
+//    @BindView ( R.id.participantsTV )TextView participantsTV;
+//    @BindView ( R.id.leaveGroupTV )TextView leaveGroupTV;
 
     private ImageView groupIconIv;
     private TextView descriptionTV,createdByTv,editGroupTV,addParticipantTV,leaveGroupTV,participantsTV;
@@ -51,7 +63,9 @@ public class CohortInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_info);
 
+
         groupId=getIntent().getStringExtra("groupId");
+        ButterKnife.bind ( this );
 
         groupIconIv=findViewById(R.id.groupIconIv);
         descriptionTV=findViewById(R.id.descriptionTV);
