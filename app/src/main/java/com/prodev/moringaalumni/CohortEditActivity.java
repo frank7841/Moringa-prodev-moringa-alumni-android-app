@@ -44,14 +44,21 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CohortEditActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private String groupId;
     private FirebaseAuth firebaseAuth;
-    ImageView groupIconIv;
-    EditText groupTitleET,groupDescriptionEt;
-    FloatingActionButton updateGroupBtn;
+    @BindView ( R.id.groupIconIv )ImageView groupIconIv;
+    @BindView ( R.id.groupTitleET )EditText groupTitleET;
+    @BindView ( R.id.groupDescriptionEt )EditText groupDescriptionEt;
+    @BindView ( R.id. updateGroupBtn)FloatingActionButton updateGroupBtn;
+//    ImageView groupIconIv;
+//    EditText groupTitleET,groupDescriptionEt;
+//    FloatingActionButton updateGroupBtn;
 
     private static final int CAMERA_REQUEST_CODE=100;
     private static final int STORAGE_REQUEST_CODE=200;
@@ -69,16 +76,17 @@ public class CohortEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_edit);
+        ButterKnife.bind ( this );
 
         actionBar=getSupportActionBar();
-        actionBar.setTitle("Edit Group");
+        actionBar.setTitle("Edit Cohort");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        groupIconIv=findViewById(R.id.groupIconIv);
-        groupTitleET=findViewById(R.id.groupTitleET);
-        groupDescriptionEt=findViewById(R.id.groupDescriptionEt);
-        updateGroupBtn=findViewById(R.id.updateGroupBtn);
+//        groupIconIv=findViewById(R.id.groupIconIv);
+//        groupTitleET=findViewById(R.id.groupTitleET);
+//        groupDescriptionEt=findViewById(R.id.groupDescriptionEt);
+//        updateGroupBtn=findViewById(R.id.updateGroupBtn);
 
         groupId=getIntent().getStringExtra("groupId");
 
@@ -116,10 +124,10 @@ public class CohortEditActivity extends AppCompatActivity {
         final String groupDescription=groupDescriptionEt.getText().toString().trim();
 
         if (TextUtils.isEmpty(groupTitle)){
-            Toast.makeText(this, "Group Title is required....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cohort Title is required....", Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog.setMessage("Updating Group Info....");
+        progressDialog.setMessage("Updating Cohort Info....");
         progressDialog.show();
 
         if (image_uri==null){
