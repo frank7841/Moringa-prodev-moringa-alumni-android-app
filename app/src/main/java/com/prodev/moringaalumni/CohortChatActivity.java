@@ -50,16 +50,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CohortChatActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     private String groupId,myGroupRole="";
-    TextView groupTitleTV;
-    private ImageButton attachBtn,sendBtn;
-    private EditText messageET;
-    private ImageView groupIconIv;
-    private RecyclerView chatRV;
-    Toolbar toolbar;
+     @BindView ( R.id.attachBtn )ImageButton attachBtn;
+     @BindView ( R.id.sendBtn )ImageButton sendBtn;
+     @BindView ( R.id.groupTitleTV) TextView groupTitleTV;
+     @BindView ( R.id.groupIconIv )ImageView groupIconIv;
+     @BindView ( R.id.messageET )EditText messageET;
+     @BindView ( R.id.chatRV )RecyclerView chatRV;
+     @BindView ( R.id.toolbar )Toolbar toolbar;
+
+
+//    TextView groupTitleTV;
+//    private ImageButton attachBtn,sendBtn;
+//    private EditText messageET;
+//    private ImageView groupIconIv;
+//    private RecyclerView chatRV;
+//    Toolbar toolbar;
 
     private static final int CAMERA_REQUEST_CODE=100;
     private static final int STORAGE_REQUEST_CODE=200;
@@ -82,14 +94,15 @@ public class CohortChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_chat);
+        ButterKnife.bind (this);
 
-        toolbar = findViewById(R.id.toolbar);
-        groupIconIv=findViewById(R.id.groupIconIv);
-        attachBtn=findViewById(R.id.attachBtn);
-        sendBtn=findViewById(R.id.sendBtn);
-        messageET=findViewById(R.id.messageET);
-        groupTitleTV=findViewById(R.id.groupTitleTV);
-        chatRV=findViewById(R.id.chatRV);
+//        toolbar = findViewById(R.id.toolbar);
+//        groupIconIv=findViewById(R.id.groupIconIv);
+//        attachBtn=findViewById(R.id.attachBtn);
+//        sendBtn=findViewById(R.id.sendBtn);
+//        messageET=findViewById(R.id.messageET);
+//        groupTitleTV=findViewById(R.id.groupTitleTV);
+//        chatRV=findViewById(R.id.chatRV);
 
         firebaseAuth=FirebaseAuth.getInstance();
         setSupportActionBar(toolbar);
